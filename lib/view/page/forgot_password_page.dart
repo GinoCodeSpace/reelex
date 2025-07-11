@@ -66,11 +66,6 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(height: _ui.spacing8),
-
-                // Back Button
-                _buildBackButton(isDark),
-
                 SizedBox(height: _ui.spacing12),
 
                 // Header Section
@@ -92,31 +87,6 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 _buildBackToLoginLink(theme),
               ],
             ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildBackButton(bool isDark) {
-    return Align(
-      alignment: Alignment.centerLeft,
-      child: IconButton(
-        onPressed: () {
-          context.pop();
-        },
-        icon: Icon(
-          Icons.arrow_back,
-          color: _ui.getOnSurfaceColor(isDark),
-        ),
-        style: IconButton.styleFrom(
-          backgroundColor: _ui.getColorByTheme(
-            isDark: isDark,
-            lightColor: _ui.lightSurfaceContainerLow,
-            darkColor: _ui.darkSurfaceContainer,
-          ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(_ui.radius12),
           ),
         ),
       ),
