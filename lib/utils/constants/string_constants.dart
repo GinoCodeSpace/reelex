@@ -18,6 +18,24 @@ class StringConstants {
   static const String authenticated = 'Você está autenticado!';
   static const String authenticatedDescription = 'Esta página só pode ser acessada por usuários logados.';
   
+  // Login Page
+  static const String logIn = 'Log In';
+  static const String pleaseSignIn = 'Please sign in to your existing account';
+  static const String email = 'EMAIL';
+  static const String emailHint = 'example@gmail.com';
+  static const String password = 'PASSWORD';
+  static const String passwordHint = '••••••••••••';
+  static const String rememberMe = 'Remember me';
+  static const String forgotPassword = 'Forgot Password';
+  static const String logInButton = 'LOG IN';
+  static const String dontHaveAccount = "Don't have an account? ";
+  static const String signUp = 'SIGN UP';
+  static const String or = 'Or';
+  static const String loginFailed = 'Login failed. Please check your credentials.';
+  static const String loginWithFacebook = 'Login with Facebook';
+  static const String loginWithTwitter = 'Login with Twitter';
+  static const String loginWithApple = 'Login with Apple';
+  
   // Locale Display Names (pode ser expandido para suporte a i18n)
   static const Map<String, String> localeDisplayNames = {
     'pt_BR': 'Português',

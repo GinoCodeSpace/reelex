@@ -1,4 +1,5 @@
 import '../../utils/imports/common_libs.dart';
+import '../../utils/constants/string_constants.dart';
 
 /// Página de login com formulário e opções de autenticação social
 class LoginPage extends StatefulWidget {
@@ -41,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
           // Show error message
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text('Login failed. Please check your credentials.'),
+              content: Text(StringConstants.loginFailed),
               backgroundColor: Colors.red,
             ),
           );
@@ -110,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
     return Column(
       children: [
         Text(
-          'Log In',
+          StringConstants.logIn,
           style: GoogleFonts.inter(
             fontSize: 32,
             fontWeight: FontWeight.bold,
@@ -119,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         SizedBox(height: _ui.spacing2),
         Text(
-          'Please sign in to your existing account',
+          StringConstants.pleaseSignIn,
           style: GoogleFonts.inter(
             fontSize: 16,
             color: _ui.getColorByTheme(
@@ -139,8 +140,8 @@ class _LoginPageState extends State<LoginPage> {
       children: [
         // Email Field
         CustomTextField(
-          label: 'EMAIL',
-          hintText: 'example@gmail.com',
+          label: StringConstants.email,
+          hintText: StringConstants.emailHint,
           controller: _emailController,
           keyboardType: TextInputType.emailAddress,
           validator: FormValidators.validateEmail,
@@ -150,8 +151,8 @@ class _LoginPageState extends State<LoginPage> {
 
         // Password Field
         CustomTextField(
-          label: 'PASSWORD',
-          hintText: '••••••••••••',
+          label: StringConstants.password,
+          hintText: StringConstants.passwordHint,
           controller: _passwordController,
           obscureText: !_isPasswordVisible,
           validator: FormValidators.validatePassword,
@@ -193,7 +194,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             Text(
-              'Remember me',
+              StringConstants.rememberMe,
               style: GoogleFonts.inter(
                 fontSize: 14,
                 color: _ui.getOnSurfaceColor(
@@ -208,7 +209,7 @@ class _LoginPageState extends State<LoginPage> {
             context.push(Routes.forgotPassword);
           },
           child: Text(
-            'Forgot Password',
+            StringConstants.forgotPassword,
             style: GoogleFonts.inter(
               fontSize: 14,
               color: _ui.getPrimaryColor(theme.brightness == Brightness.dark),
@@ -222,7 +223,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _buildLoginButton(ThemeData theme, AuthProvider authProvider) {
     return CustomPrimaryButton(
-      text: 'LOG IN',
+      text: StringConstants.logInButton,
       onPressed: _handleLogin,
       isLoading: authProvider.isLoading,
     );
@@ -233,7 +234,7 @@ class _LoginPageState extends State<LoginPage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          "Don't have an account? ",
+          StringConstants.dontHaveAccount,
           style: GoogleFonts.inter(
             fontSize: 14,
             color: _ui.getColorByTheme(
@@ -253,7 +254,7 @@ class _LoginPageState extends State<LoginPage> {
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           ),
           child: Text(
-            'SIGN UP',
+            StringConstants.signUp,
             style: GoogleFonts.inter(
               fontSize: 14,
               color: _ui.getPrimaryColor(theme.brightness == Brightness.dark),
@@ -269,7 +270,7 @@ class _LoginPageState extends State<LoginPage> {
     return Column(
       children: [
         Text(
-          'Or',
+          StringConstants.or,
           style: GoogleFonts.inter(
             fontSize: 14,
             color: _ui.getColorByTheme(
@@ -286,7 +287,7 @@ class _LoginPageState extends State<LoginPage> {
             SocialLoginButton(
               icon: Icons.facebook,
               color: const Color(0xFF1877F2),
-              tooltip: 'Login with Facebook',
+              tooltip: StringConstants.loginWithFacebook,
               onPressed: () {
                 // Handle Facebook login
               },
@@ -295,7 +296,7 @@ class _LoginPageState extends State<LoginPage> {
             SocialLoginButton(
               icon: Icons.alternate_email,
               color: const Color(0xFF1DA1F2),
-              tooltip: 'Login with Twitter',
+              tooltip: StringConstants.loginWithTwitter,
               onPressed: () {
                 // Handle Twitter login
               },
@@ -304,7 +305,7 @@ class _LoginPageState extends State<LoginPage> {
             SocialLoginButton(
               icon: Icons.apple,
               color: Colors.black,
-              tooltip: 'Login with Apple',
+              tooltip: StringConstants.loginWithApple,
               onPressed: () {
                 // Handle Apple login
               },
