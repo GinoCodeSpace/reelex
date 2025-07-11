@@ -16,13 +16,41 @@ class CustomSliverAppBar extends StatelessWidget {
           navigationProvider.updateNavigation(currentRoute, canPop: canPop);
         });
 
+        final theme = Theme.of(context);
+        final isDark = theme.brightness == Brightness.dark;
+        final ui = UIConstants();
+
         return SliverAppBar(
-          title: Text(appConstants.appName),
+          title: Text(
+            appConstants.appName,
+            style: TextStyle(
+              fontFamily: 'SanFranciscoPro',
+              fontWeight: FontWeight.w600,
+              color: ui.getColorByTheme(
+                isDark: isDark,
+                lightColor: ui.lightOnSurface,
+                darkColor: ui.darkOnSurface,
+              ),
+            ),
+          ),
+          backgroundColor: ui.getColorByTheme(
+            isDark: isDark,
+            lightColor: ui.lightSurface,
+            darkColor: ui.darkSurface,
+          ),
           floating: true,
           snap: true,
+          elevation: ui.elevation2,
           leading: navigationProvider.showBackButton
               ? IconButton(
-                  icon: const Icon(Icons.arrow_back),
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: ui.getColorByTheme(
+                      isDark: isDark,
+                      lightColor: ui.lightOnSurface,
+                      darkColor: ui.darkOnSurface,
+                    ),
+                  ),
                   onPressed: () {
                     if (router.canPop()) {
                       router.pop();
@@ -38,7 +66,7 @@ class CustomSliverAppBar extends StatelessWidget {
           actions: [
             const LanguageSelector(),
             const ThemeToggleButton(),
-            SizedBox(width: uiConstants.spacing2),
+            SizedBox(width: ui.spacing2),
           ],
         );
       },

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import '../../utils/imports/common_libs.dart';
 
 class SearchBarWidget extends StatelessWidget {
   final TextEditingController controller;
@@ -14,13 +14,25 @@ class SearchBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    final ui = UIConstants();
+
     return Container(
       decoration: BoxDecoration(
-        color: Colors.grey[100],
-        borderRadius: BorderRadius.circular(25),
+        color: ui.getColorByTheme(
+          isDark: isDark,
+          lightColor: ui.lightSurfaceContainerLow,
+          darkColor: ui.darkSurfaceContainerLow,
+        ),
+        borderRadius: BorderRadius.circular(ui.radius24),
         border: Border.all(
-          color: Colors.grey[300]!,
-          width: 1,
+          color: ui.getColorByTheme(
+            isDark: isDark,
+            lightColor: ui.lightOutlineVariant,
+            darkColor: ui.darkOutlineVariant,
+          ),
+          width: ui.borderWidth1,
         ),
       ),
       child: TextField(
@@ -29,19 +41,32 @@ class SearchBarWidget extends StatelessWidget {
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: TextStyle(
-            color: Colors.grey[500],
+            color: ui.getColorByTheme(
+              isDark: isDark,
+              lightColor: ui.lightOnSurfaceVariant,
+              darkColor: ui.darkOnSurfaceVariant,
+            ),
             fontSize: 14,
+            fontFamily: 'SanFranciscoPro',
           ),
           prefixIcon: Icon(
             Icons.search,
-            color: Colors.grey[500],
+            color: ui.getColorByTheme(
+              isDark: isDark,
+              lightColor: ui.lightOnSurfaceVariant,
+              darkColor: ui.darkOnSurfaceVariant,
+            ),
             size: 20,
           ),
           suffixIcon: controller.text.isNotEmpty
               ? IconButton(
                   icon: Icon(
                     Icons.clear,
-                    color: Colors.grey[500],
+                    color: ui.getColorByTheme(
+                      isDark: isDark,
+                      lightColor: ui.lightOnSurfaceVariant,
+                      darkColor: ui.darkOnSurfaceVariant,
+                    ),
                     size: 20,
                   ),
                   onPressed: () {
@@ -51,14 +76,19 @@ class SearchBarWidget extends StatelessWidget {
                 )
               : null,
           border: InputBorder.none,
-          contentPadding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 12,
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: ui.spacing4,
+            vertical: ui.spacing3,
           ),
         ),
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 14,
-          color: Colors.black87,
+          fontFamily: 'SanFranciscoPro',
+          color: ui.getColorByTheme(
+            isDark: isDark,
+            lightColor: ui.lightOnSurface,
+            darkColor: ui.darkOnSurface,
+          ),
         ),
       ),
     );

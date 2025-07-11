@@ -7,12 +7,23 @@ class ScaffoldSliver extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    final ui = UIConstants();
+
     return CustomScrollView(
       slivers: [
-        CustomSliverAppBar(),
+        const CustomSliverAppBar(),
         const SliverToBoxAdapter(),
         SliverFillRemaining(
-          child: Scaffold(body: Center(child: child)),
+          child: Scaffold(
+            backgroundColor: ui.getColorByTheme(
+              isDark: isDark,
+              lightColor: ui.lightSurface,
+            darkColor: ui.darkSurface,
+            ),
+            body: Center(child: child),
+          ),
         ),
       ],
     );

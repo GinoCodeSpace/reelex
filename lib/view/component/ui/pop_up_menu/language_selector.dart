@@ -6,20 +6,36 @@ class LanguageSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
+    final isDark = theme.brightness == Brightness.dark;
+    final ui = UIConstants();
 
     return Consumer<LocaleProvider>(
       builder: (context, localeProvider, child) {
         return PopupMenuButton<Locale>(
-          icon: Icon(Icons.language, color: colorScheme.onSurface),
+          icon: Icon(
+            Icons.language,
+            color: ui.getColorByTheme(
+              isDark: isDark,
+              lightColor: ui.lightOnSurface,
+              darkColor: ui.darkOnSurface,
+            ),
+          ),
           tooltip: LocaleConstants.languageSelectionTooltip(context),
-          color: colorScheme.surface,
-          elevation: uiConstants.elevation8,
+          color: ui.getColorByTheme(
+            isDark: isDark,
+            lightColor: ui.lightSurface,
+            darkColor: ui.darkSurface,
+          ),
+          elevation: ui.elevation2,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(uiConstants.radius12),
+            borderRadius: BorderRadius.circular(ui.radius12),
             side: BorderSide(
-              color: colorScheme.outline.withValues(alpha: uiConstants.opacity20),
-              width: uiConstants.borderWidth1,
+              color: ui.getColorByTheme(
+                isDark: isDark,
+                lightColor: ui.lightOutlineVariant.withValues(alpha: 0.2),
+                darkColor: ui.darkOutlineVariant.withValues(alpha: 0.2),
+              ),
+              width: ui.borderWidth1,
             ),
           ),
           onSelected: (Locale locale) {
@@ -31,32 +47,48 @@ class LanguageSelector extends StatelessWidget {
                 (localeData) => PopupMenuItem<Locale>(
                   value: localeData.locale,
                   padding: EdgeInsets.symmetric(
-                    horizontal: uiConstants.spacing4,
-                    vertical: uiConstants.spacing2,
+                    horizontal: ui.spacing4,
+                    vertical: ui.spacing2,
                   ),
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(uiConstants.radius8),
+                      borderRadius: BorderRadius.circular(ui.radius8),
                       color: localeProvider.currentLocale == localeData.locale
-                          ? colorScheme.primary.withValues(alpha: uiConstants.opacity10)
+                          ? ui.getColorByTheme(
+                              isDark: isDark,
+                              lightColor: ui.lightPrimary.withValues(alpha: 0.1),
+                              darkColor: ui.darkPrimary.withValues(alpha: 0.1),
+                            )
                           : Colors.transparent,
                     ),
-                    padding: EdgeInsets.all(uiConstants.spacing2),
+                    padding: EdgeInsets.all(ui.spacing2),
                     child: Row(
                       children: [
-                        Text(localeData.flag, style: theme.textTheme.bodyLarge),
-                        SizedBox(width: uiConstants.spacing2),
+                        Text(
+                          localeData.flag,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: 'SanFranciscoPro',
+                          ),
+                        ),
+                        SizedBox(width: ui.spacing2),
                         Text(
                           localeData.displayName,
-                          style: theme.textTheme.bodyMedium?.copyWith(
-                            color:
-                                localeProvider.currentLocale ==
-                                    localeData.locale
-                                ? colorScheme.primary
-                                : colorScheme.onSurface,
-                            fontWeight:
-                                localeProvider.currentLocale ==
-                                    localeData.locale
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontFamily: 'SanFranciscoPro',
+                            color: localeProvider.currentLocale == localeData.locale
+                                ? ui.getColorByTheme(
+                                    isDark: isDark,
+                                    lightColor: ui.lightPrimary,
+                                    darkColor: ui.darkPrimary,
+                                  )
+                                : ui.getColorByTheme(
+                                    isDark: isDark,
+                                    lightColor: ui.lightOnSurface,
+                                    darkColor: ui.darkOnSurface,
+                                  ),
+                            fontWeight: localeProvider.currentLocale == localeData.locale
                                 ? FontWeight.w600
                                 : FontWeight.w400,
                           ),

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import '../../utils/imports/common_libs.dart';
 
 import '../../model/restaurant.dart';
 
@@ -11,9 +11,31 @@ class RestaurantCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    final ui = UIConstants();
+
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: ui.spacing4, vertical: ui.spacing2),
+      decoration: BoxDecoration(
+        color: ui.getColorByTheme(
+          isDark: isDark,
+          lightColor: ui.lightSurface,
+          darkColor: ui.darkSurface,
+        ),
+        borderRadius: BorderRadius.circular(ui.radius4),
+        boxShadow: [
+          BoxShadow(
+            color: ui.getColorByTheme(
+              isDark: isDark,
+              lightColor: ui.lightShadow.withValues(alpha: 0.1),
+              darkColor: ui.darkShadow.withValues(alpha: 0.2),
+            ),
+            blurRadius: ui.elevation2,
+            offset: Offset(0, ui.spacing1 / 2),
+          ),
+        ],
+      ),
       child: InkWell(
         onTap: () {
           Navigator.push(
@@ -24,93 +46,128 @@ class RestaurantCard extends StatelessWidget {
             ),
           );
         },
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(ui.radius4),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Imagem do restaurante
-            Container(
-              height: 150,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(12),
-                ),
-                image: DecorationImage(
-                  image: NetworkImage(restaurant.image),
-                  fit: BoxFit.cover,
-                  onError: (exception, stackTrace) {
-                    // Fallback para imagem padrão
-                  },
-                ),
-              ),
+            // Image section
+            ClipRRect(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(ui.radius4)),
               child: Stack(
                 children: [
-                  // Overlay de carregamento/erro
                   Container(
+                    height: 160,
+                    width: double.infinity,
                     decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.vertical(
-                        top: Radius.circular(12),
-                      ),
-                      color: Colors.grey[200],
-                    ),
-                    child: const Center(
-                      child: Icon(
-                        Icons.restaurant,
-                        size: 40,
-                        color: Colors.grey,
+                      color: ui.getColorByTheme(
+                        isDark: isDark,
+                        lightColor: ui.lightSurfaceContainerHighest,
+                        darkColor: ui.darkSurfaceContainerHighest,
                       ),
                     ),
+                    child: restaurant.image.isNotEmpty
+                        ? Image.network(
+                            restaurant.image,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              return Container(
+                                color: ui.getColorByTheme(
+                                  isDark: isDark,
+                                  lightColor: ui.lightSurfaceContainerHighest,
+                                  darkColor: ui.darkSurfaceContainerHighest,
+                                ),
+                                child: Icon(
+                                  Icons.restaurant,
+                                  size: 50,
+                                  color: ui.getColorByTheme(
+                                    isDark: isDark,
+                                    lightColor: ui.lightOnSurfaceVariant,
+                                    darkColor: ui.darkOnSurfaceVariant,
+                                  ),
+                                ),
+                              );
+                            },
+                          )
+                        : Container(
+                            color: ui.getColorByTheme(
+                              isDark: isDark,
+                              lightColor: ui.lightSurfaceContainerHighest,
+                              darkColor: ui.darkSurfaceContainerHighest,
+                            ),
+                            child: Icon(
+                              Icons.restaurant,
+                              size: 50,
+                              color: ui.getColorByTheme(
+                                isDark: isDark,
+                                lightColor: ui.lightOnSurfaceVariant,
+                                darkColor: ui.darkOnSurfaceVariant,
+                              ),
+                            ),
+                          ),
                   ),
 
-                  // Status de funcionamento
+                  // Status badge
                   Positioned(
-                    top: 12,
-                    left: 12,
+                    top: ui.spacing3,
+                    left: ui.spacing3,
                     child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 4,
-                      ),
+                      padding: EdgeInsets.symmetric(horizontal: ui.spacing2, vertical: ui.spacing1),
                       decoration: BoxDecoration(
-                        color: restaurant.isOpen ? Colors.green : Colors.red,
-                        borderRadius: BorderRadius.circular(12),
+                        color: restaurant.isOpen 
+                             ? ui.getColorByTheme(
+                                 isDark: isDark,
+                                 lightColor: Colors.green,
+                                 darkColor: Colors.green,
+                               )
+                             : ui.getColorByTheme(
+                                 isDark: isDark,
+                                 lightColor: ui.lightError,
+                                 darkColor: ui.darkError,
+                               ),
+                         borderRadius: BorderRadius.circular(ui.radius12),
                       ),
                       child: Text(
                         restaurant.isOpen ? 'Aberto' : 'Fechado',
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: Colors.white,
                           fontSize: 12,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: 'SanFranciscoPro',
                         ),
                       ),
                     ),
                   ),
 
-                  // Rating
+                  // Rating badge
                   Positioned(
-                    top: 12,
-                    right: 12,
+                    top: ui.spacing3,
+                    right: ui.spacing3,
                     child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 4,
-                      ),
+                      padding: EdgeInsets.symmetric(horizontal: ui.spacing2, vertical: ui.spacing1),
                       decoration: BoxDecoration(
-                        color: Colors.black54,
-                        borderRadius: BorderRadius.circular(12),
+                        color: ui.getColorByTheme(
+                          isDark: isDark,
+                          lightColor: ui.lightScrim.withValues(alpha: 0.7),
+                          darkColor: ui.darkScrim.withValues(alpha: 0.7),
+                        ),
+                        borderRadius: BorderRadius.circular(ui.radius12),
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Icon(Icons.star, color: Colors.amber, size: 14),
-                          const SizedBox(width: 4),
+                          Icon(
+                             Icons.star,
+                             color: Colors.amber,
+                             size: 14,
+                           ),
+                          SizedBox(width: ui.spacing1),
                           Text(
                             restaurant.rating.toString(),
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: Colors.white,
                               fontSize: 12,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: 'SanFranciscoPro',
                             ),
                           ),
                         ],
@@ -123,32 +180,46 @@ class RestaurantCard extends StatelessWidget {
 
             // Informações do restaurante
             Padding(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(ui.spacing4),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Nome do restaurante
                   Text(
                     restaurant.name,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
+                      fontFamily: 'SanFranciscoPro',
+                      color: ui.getColorByTheme(
+                        isDark: isDark,
+                        lightColor: ui.lightOnSurface,
+                        darkColor: ui.darkOnSurface,
+                      ),
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
 
-                  const SizedBox(height: 4),
+                  SizedBox(height: ui.spacing1),
 
                   // Descrição
                   Text(
                     restaurant.description,
-                    style: TextStyle(color: Colors.grey[600], fontSize: 14),
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: 'SanFranciscoPro',
+                      color: ui.getColorByTheme(
+                        isDark: isDark,
+                        lightColor: ui.lightOnSurfaceVariant,
+                        darkColor: ui.darkOnSurfaceVariant,
+                      ),
+                    ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
 
-                  const SizedBox(height: 12),
+                  SizedBox(height: ui.spacing3),
 
                   // Informações de entrega
                   Row(
@@ -156,59 +227,105 @@ class RestaurantCard extends StatelessWidget {
                       Icon(
                         Icons.access_time,
                         size: 16,
-                        color: Colors.grey[600],
+                        color: ui.getColorByTheme(
+                          isDark: isDark,
+                          lightColor: ui.lightOnSurfaceVariant,
+                          darkColor: ui.darkOnSurfaceVariant,
+                        ),
                       ),
-                      const SizedBox(width: 4),
+                      SizedBox(width: ui.spacing1),
                       Text(
                         restaurant.deliveryTime,
-                        style: TextStyle(color: Colors.grey[600], fontSize: 12),
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontFamily: 'SanFranciscoPro',
+                          color: ui.getColorByTheme(
+                            isDark: isDark,
+                            lightColor: ui.lightOnSurfaceVariant,
+                            darkColor: ui.darkOnSurfaceVariant,
+                          ),
+                        ),
                       ),
-                      const SizedBox(width: 16),
+                      SizedBox(width: ui.spacing4),
                       Icon(
                         Icons.delivery_dining,
                         size: 16,
-                        color: Colors.grey[600],
+                        color: ui.getColorByTheme(
+                          isDark: isDark,
+                          lightColor: ui.lightOnSurfaceVariant,
+                          darkColor: ui.darkOnSurfaceVariant,
+                        ),
                       ),
-                      const SizedBox(width: 4),
+                      SizedBox(width: ui.spacing1),
                       Text(
                         'R\$ ${restaurant.deliveryFee.toStringAsFixed(2)}',
-                        style: TextStyle(color: Colors.grey[600], fontSize: 12),
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontFamily: 'SanFranciscoPro',
+                          color: ui.getColorByTheme(
+                            isDark: isDark,
+                            lightColor: ui.lightOnSurfaceVariant,
+                            darkColor: ui.darkOnSurfaceVariant,
+                          ),
+                        ),
                       ),
                     ],
                   ),
 
-                  const SizedBox(height: 8),
+                  SizedBox(height: ui.spacing2),
 
                   // Pedido mínimo
                   Text(
                     'Pedido mínimo: R\$ ${restaurant.minimumOrder.toStringAsFixed(2)}',
-                    style: TextStyle(color: Colors.grey[600], fontSize: 12),
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontFamily: 'SanFranciscoPro',
+                      color: ui.getColorByTheme(
+                        isDark: isDark,
+                        lightColor: ui.lightOnSurfaceVariant,
+                        darkColor: ui.darkOnSurfaceVariant,
+                      ),
+                    ),
                   ),
 
-                  const SizedBox(height: 12),
+                  SizedBox(height: ui.spacing3),
 
                   // Tags
                   Wrap(
-                    spacing: 6,
-                    runSpacing: 4,
+                    spacing: ui.spacing2,
+                    runSpacing: ui.spacing1,
                     children: restaurant.tags.take(3).map((tag) {
                       return Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 4,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: ui.spacing2,
+                          vertical: ui.spacing1,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.orange.withValues(alpha: 0.1),
-                          borderRadius: BorderRadius.circular(12),
+                          color: ui.getColorByTheme(
+                            isDark: isDark,
+                            lightColor: ui.lightSurfaceContainerLow,
+                            darkColor: ui.darkSurfaceContainerLow,
+                          ),
+                          borderRadius: BorderRadius.circular(ui.radius12),
                           border: Border.all(
-                            color: Colors.orange.withValues(alpha: 0.3),
+                            color: ui.getColorByTheme(
+                              isDark: isDark,
+                              lightColor: ui.lightOutlineVariant,
+                              darkColor: ui.darkOutlineVariant,
+                            ),
+                            width: ui.borderWidth1,
                           ),
                         ),
                         child: Text(
                           tag,
-                          style: const TextStyle(
-                            color: Colors.orange,
+                          style: TextStyle(
                             fontSize: 10,
+                            fontFamily: 'SanFranciscoPro',
+                            color: ui.getColorByTheme(
+                              isDark: isDark,
+                              lightColor: ui.lightOnSurfaceVariant,
+                              darkColor: ui.darkOnSurfaceVariant,
+                            ),
                             fontWeight: FontWeight.w500,
                           ),
                         ),

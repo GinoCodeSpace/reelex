@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import '../../utils/imports/common_libs.dart';
 
 class CategoryChip extends StatelessWidget {
   final String label;
@@ -14,43 +14,74 @@ class CategoryChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    final ui = UIConstants();
+
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 8,
+        padding: EdgeInsets.symmetric(
+          horizontal: ui.spacing4,
+          vertical: ui.spacing2,
         ),
         decoration: BoxDecoration(
-          color: isSelected ? Colors.orange : Colors.white,
-          borderRadius: BorderRadius.circular(20),
+          color: isSelected 
+              ? ui.getPrimaryColor(isDark)
+              : ui.getColorByTheme(
+                  isDark: isDark,
+                  lightColor: ui.lightSurface,
+                  darkColor: ui.darkSurface,
+                ),
+          borderRadius: BorderRadius.circular(ui.radius20),
           border: Border.all(
-            color: isSelected ? Colors.orange : Colors.grey[300]!,
-            width: 1,
+            color: isSelected 
+                ? ui.getPrimaryColor(isDark)
+                : ui.getColorByTheme(
+                    isDark: isDark,
+                    lightColor: ui.lightOutlineVariant,
+                    darkColor: ui.darkOutlineVariant,
+                  ),
+            width: ui.borderWidth1,
           ),
           boxShadow: isSelected
               ? [
                   BoxShadow(
-                    color: Colors.orange.withValues(alpha: 0.3),
-                    blurRadius: 8,
-                    offset: const Offset(0, 2),
+                    color: ui.getPrimaryColor(isDark).withValues(alpha: ui.opacity30),
+                    blurRadius: ui.elevation8,
+                    offset: Offset(0, ui.spacing1 / 2),
                   ),
                 ]
               : [
                   BoxShadow(
-                    color: Colors.grey.withValues(alpha: 0.1),
-                    blurRadius: 4,
-                    offset: const Offset(0, 1),
+                    color: ui.getColorByTheme(
+                      isDark: isDark,
+                      lightColor: ui.lightShadow,
+                      darkColor: ui.darkShadow,
+                    ).withValues(alpha: ui.opacity10),
+                    blurRadius: ui.elevation4,
+                    offset: Offset(0, ui.spacing1 / 4),
                   ),
                 ],
         ),
         child: Text(
           label,
           style: TextStyle(
-            color: isSelected ? Colors.white : Colors.grey[700],
+            color: isSelected 
+                ? ui.getColorByTheme(
+                    isDark: isDark,
+                    lightColor: ui.lightOnPrimary,
+                    darkColor: ui.darkOnPrimary,
+                  )
+                : ui.getColorByTheme(
+                    isDark: isDark,
+                    lightColor: ui.lightOnSurface,
+                    darkColor: ui.darkOnSurface,
+                  ),
             fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
             fontSize: 14,
+            fontFamily: 'SanFranciscoPro',
           ),
         ),
       ),

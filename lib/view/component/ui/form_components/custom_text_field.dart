@@ -42,10 +42,11 @@ class CustomTextField extends StatelessWidget {
       children: [
         Text(
           label,
-          style: GoogleFonts.inter(
+          style: TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w600,
             letterSpacing: 0.5,
+            fontFamily: 'SanFranciscoPro',
             color: ui.getOnSurfaceColor(isDark),
           ),
         ),
@@ -61,7 +62,8 @@ class CustomTextField extends StatelessWidget {
           readOnly: readOnly,
           decoration: InputDecoration(
             hintText: hintText,
-            hintStyle: GoogleFonts.inter(
+            hintStyle: TextStyle(
+              fontFamily: 'SanFranciscoPro',
               color: ui.getColorByTheme(
                 isDark: isDark,
                 lightColor: ui.lightOnSurfaceVariant,

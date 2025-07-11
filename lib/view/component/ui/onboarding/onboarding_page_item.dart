@@ -43,9 +43,10 @@ class OnboardingPageItem extends StatelessWidget {
           // Título
           Text(
             title,
-            style: GoogleFonts.inter(
+            style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.bold,
+              fontFamily: 'SanFranciscoPro',
               color: ui.getColorByTheme(
                 isDark: isDark,
                 lightColor: ui.lightOnSurface,
@@ -62,8 +63,9 @@ class OnboardingPageItem extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: ui.spacing4),
             child: Text(
               description,
-              style: GoogleFonts.inter(
+              style: TextStyle(
                 fontSize: 16,
+                fontFamily: 'SanFranciscoPro',
                 color: ui.getColorByTheme(
                   isDark: isDark,
                   lightColor: ui.lightOnSurfaceVariant,

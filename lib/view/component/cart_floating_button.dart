@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import '../../utils/imports/common_libs.dart';
 import '../../providers/cart_provider.dart';
 import '../page/cart_page.dart';
 
@@ -14,8 +13,12 @@ class CartFloatingButton extends StatelessWidget {
           return const SizedBox.shrink();
         }
 
+        final theme = Theme.of(context);
+        final isDark = theme.brightness == Brightness.dark;
+        final ui = UIConstants();
+
         return Container(
-          margin: const EdgeInsets.only(bottom: 16),
+          margin: EdgeInsets.only(bottom: ui.spacing4),
           child: FloatingActionButton.extended(
             onPressed: () {
               Navigator.push(
@@ -25,9 +28,13 @@ class CartFloatingButton extends StatelessWidget {
                 ),
               );
             },
-            backgroundColor: Colors.orange,
-            foregroundColor: Colors.white,
-            elevation: 8,
+            backgroundColor: ui.getPrimaryColor(isDark),
+            foregroundColor: ui.getColorByTheme(
+              isDark: isDark,
+              lightColor: ui.lightOnPrimary,
+              darkColor: ui.darkOnPrimary,
+            ),
+            elevation: ui.elevation8,
             icon: Stack(
               children: [
                 const Icon(Icons.shopping_cart),
@@ -36,21 +43,30 @@ class CartFloatingButton extends StatelessWidget {
                     right: 0,
                     top: 0,
                     child: Container(
-                      padding: const EdgeInsets.all(2),
+                      padding: EdgeInsets.all(ui.spacing1 / 2),
                       decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(10),
+                        color: ui.getColorByTheme(
+                          isDark: isDark,
+                          lightColor: ui.lightError,
+                          darkColor: ui.darkError,
+                        ),
+                        borderRadius: BorderRadius.circular(ui.radius8),
                       ),
-                      constraints: const BoxConstraints(
-                        minWidth: 16,
-                        minHeight: 16,
+                      constraints: BoxConstraints(
+                        minWidth: ui.spacing4,
+                        minHeight: ui.spacing4,
                       ),
                       child: Text(
                         cartProvider.itemCount.toString(),
-                        style: const TextStyle(
-                          color: Colors.white,
+                        style: TextStyle(
+                          color: ui.getColorByTheme(
+                            isDark: isDark,
+                            lightColor: ui.lightOnError,
+                            darkColor: ui.darkOnError,
+                          ),
                           fontSize: 10,
                           fontWeight: FontWeight.bold,
+                          fontFamily: 'SanFranciscoPro',
                         ),
                         textAlign: TextAlign.center,
                       ),
@@ -64,16 +80,28 @@ class CartFloatingButton extends StatelessWidget {
               children: [
                 Text(
                   '${cartProvider.itemCount} ${cartProvider.itemCount == 1 ? 'item' : 'itens'}',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
+                    fontFamily: 'SanFranciscoPro',
+                    color: ui.getColorByTheme(
+                      isDark: isDark,
+                      lightColor: ui.lightOnPrimary,
+                      darkColor: ui.darkOnPrimary,
+                    ),
                   ),
                 ),
                 Text(
                   'R\$ ${cartProvider.totalAmount.toStringAsFixed(2)}',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
+                    fontFamily: 'SanFranciscoPro',
+                    color: ui.getColorByTheme(
+                      isDark: isDark,
+                      lightColor: ui.lightOnPrimary,
+                      darkColor: ui.darkOnPrimary,
+                    ),
                   ),
                 ),
               ],
