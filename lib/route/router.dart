@@ -1,5 +1,6 @@
 import '../utils/imports/common_libs.dart';
 import '../view/page/login_page.dart';
+import '../view/page/orders_page.dart';
 
 final GoRouter appRouter = GoRouter(
   redirect: HandleRedirect().handleRedirect,
@@ -15,6 +16,7 @@ final GoRouter appRouter = GoRouter(
         AppRoute(Routes.signUp, (state) => SignUpPage()),
         AppRoute(Routes.forgotPassword, (state) => ForgotPasswordPage()),
         AppRoute(Routes.onboarding, (state) => OnboardingPage()),
+        AppRoute(Routes.orders, (state) => OrdersPage()),
       ],
     ),
   ],

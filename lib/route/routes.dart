@@ -13,6 +13,7 @@ class Routes {
     RouteInfo(name: 'ForgotPassword', path: '/forgot-password'),
     RouteInfo(name: 'Onboarding', path: '/onboarding'),
     RouteInfo(name: 'Example', path: '/example'),
+    RouteInfo(name: 'Orders', path: '/orders'),
   ];
 
   // Helper method to get route by name
@@ -37,4 +38,6 @@ class Routes {
       routes.firstWhere((route) => route.name == 'Onboarding').path;
   static String get example =>
       routes.firstWhere((route) => route.name == 'Example').path;
+  static String get orders =>
+      routes.firstWhere((route) => route.name == 'Orders').path;
 }

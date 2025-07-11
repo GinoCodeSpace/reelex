@@ -1,0 +1,74 @@
+[
+  {
+    "id": "1",
+    "name": "Pizza Margherita",
+    "description": "Pizza clássica com molho de tomate, mussarela e manjericão fresco",
+    "price": 45.90,
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400",
+    "category": "Pizza",
+    "restaurantId": "1",
+    "preparationTime": 25,
+    "rating": 4.8,
+    "ingredients": ["Molho de tomate", "Mussarela", "Manjericão", "Azeite"]
+  },
+  {
+    "id": "2",
+    "name": "Hambúrguer Artesanal",
+    "description": "Hambúrguer de carne bovina 180g com queijo cheddar, alface e tomate",
+    "price": 32.50,
+    "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400",
+    "category": "Burger",
+    "restaurantId": "2",
+    "preparationTime": 15,
+    "rating": 4.6,
+    "ingredients": ["Carne bovina", "Queijo cheddar", "Alface", "Tomate", "Pão brioche"]
+  },
+  {
+    "id": "3",
+    "name": "Sushi Combo",
+    "description": "Combinado com 20 peças variadas de sushi e sashimi",
+    "price": 68.00,
+    "image": "https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=400",
+    "category": "Japonesa",
+    "restaurantId": "3",
+    "preparationTime": 30,
+    "rating": 4.9,
+    "ingredients": ["Salmão", "Atum", "Arroz", "Nori", "Wasabi"]
+  },
+  {
+    "id": "4",
+    "name": "Lasanha Bolonhesa",
+    "description": "Lasanha tradicional com molho bolonhesa e queijo gratinado",
+    "price": 38.90,
+    "image": "https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=400",
+    "category": "Italiana",
+    "restaurantId": "1",
+    "preparationTime": 35,
+    "rating": 4.7,
+    "ingredients": ["Massa", "Carne moída", "Molho de tomate", "Queijo", "Bechamel"]
+  },
+  {
+    "id": "5",
+    "name": "Açaí na Tigela",
+    "description": "Açaí cremoso com granola, banana e mel",
+    "price": 18.50,
+    "image": "https://images.unsplash.com/photo-1590736969955-71cc94901144?w=400",
+    "category": "Sobremesa",
+    "restaurantId": "4",
+    "preparationTime": 10,
+    "rating": 4.5,
+    "ingredients": ["Açaí", "Granola", "Banana", "Mel", "Coco ralado"]
+  },
+  {
+    "id": "6",
+    "name": "Tacos Mexicanos",
+    "description": "3 tacos com carne, guacamole e pico de gallo",
+    "price": 28.90,
+    "image": "https://images.unsplash.com/photo-1565299585323-38174c4a6c18?w=400",
+    "category": "Mexicana",
+    "restaurantId": "5",
+    "preparationTime": 20,
+    "rating": 4.4,
+    "ingredients": ["Tortilla", "Carne", "Guacamole", "Tomate", "Cebola"]
+  }
+]
