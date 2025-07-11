@@ -57,6 +57,9 @@ class StringConstants {
   static const String signUpWithTwitter = 'Sign up with Twitter';
   static const String signUpWithApple = 'Sign up with Apple';
   
+  // UI Components
+  static const String back = 'Voltar';
+  
   // Locale Display Names (pode ser expandido para suporte a i18n)
   static const Map<String, String> localeDisplayNames = {
     'pt_BR': 'Português',
