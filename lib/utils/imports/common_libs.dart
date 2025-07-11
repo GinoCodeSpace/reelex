@@ -77,7 +77,9 @@ export '../../view/theme/light_theme.dart';
 export '../../view/theme/dark_theme.dart';
 
 // Form Components
-export '../../view/component/form_components.dart';
+export '../../view/component/ui/form_components/custom_text_field.dart';
+export '../../view/component/ui/form_components/custom_primary_button.dart';
+export '../../view/component/ui/form_components/social_login_button.dart';
 
 // Validators
 export '../validators/form_validators.dart';
