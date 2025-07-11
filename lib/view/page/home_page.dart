@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
       builder: (context, authProvider, child) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text(StringConstants.home),
+            title: Text(StringConstants.home(context)),
             actions: [
               IconButton(
                 icon: const Icon(Icons.logout),
@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
                   authProvider.logout(context);
                   context.go(Routes.login);
                 },
-                tooltip: StringConstants.logout,
+                tooltip: StringConstants.logout(context),
               ),
             ],
           ),
@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
                 const Icon(Icons.home, size: 80, color: Colors.blue),
                 const SizedBox(height: 24),
                 Text(
-                  StringConstants.welcome,
+                  StringConstants.welcome(context),
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 16),
                 if (authProvider.userEmail != null) ...[
                   Text(
-                    '${StringConstants.user}: ${authProvider.userEmail}',
+                    '${StringConstants.user(context)}: ${authProvider.userEmail}',
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   const SizedBox(height: 24),
@@ -54,13 +54,13 @@ class HomePage extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
                         Text(
-                          StringConstants.authenticated,
+                          StringConstants.authenticated(context),
                           style: Theme.of(context).textTheme.titleMedium,
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          StringConstants.authenticatedDescription,
+                          StringConstants.authenticatedDescription(context),
                           style: Theme.of(context).textTheme.bodyMedium,
                           textAlign: TextAlign.center,
                         ),

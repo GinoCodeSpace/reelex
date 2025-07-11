@@ -46,8 +46,8 @@ class _SignUpPageState extends State<SignUpPage> {
         } else {
           // Show error message
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text(StringConstants.registrationFailed),
+            SnackBar(
+              content: Text(StringConstants.registrationFailed(context)),
               backgroundColor: Colors.red,
             ),
           );
@@ -111,7 +111,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Column(
       children: [
         Text(
-          StringConstants.signUpTitle,
+          StringConstants.signUpTitle(context),
           style: GoogleFonts.inter(
             fontSize: 32,
             fontWeight: FontWeight.bold,
@@ -120,7 +120,7 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
         SizedBox(height: _ui.spacing2),
         Text(
-          StringConstants.pleaseSignUp,
+          StringConstants.pleaseSignUp(context),
           style: GoogleFonts.inter(
             fontSize: 16,
             color: _ui.getColorByTheme(
@@ -140,33 +140,33 @@ class _SignUpPageState extends State<SignUpPage> {
       children: [
         // Name Field
         CustomTextField(
-          label: StringConstants.name,
-          hintText: StringConstants.nameHint,
+          label: StringConstants.name(context),
+          hintText: StringConstants.nameHint(context),
           controller: _nameController,
           keyboardType: TextInputType.name,
-          validator: FormValidators.validateName,
+          validator: (value) => FormValidators.validateName(value, context),
         ),
 
         SizedBox(height: _ui.spacing5),
 
         // Email Field
         CustomTextField(
-          label: StringConstants.email,
-          hintText: StringConstants.emailHint,
+          label: StringConstants.email(context),
+          hintText: StringConstants.emailHint(context),
           controller: _emailController,
           keyboardType: TextInputType.emailAddress,
-          validator: FormValidators.validateEmail,
+          validator: (value) => FormValidators.validateEmail(value, context),
         ),
 
         SizedBox(height: _ui.spacing5),
 
         // Password Field
         CustomTextField(
-          label: StringConstants.password,
-          hintText: StringConstants.passwordHint,
+          label: StringConstants.password(context),
+          hintText: StringConstants.passwordHint(context),
           controller: _passwordController,
           obscureText: !_isPasswordVisible,
-          validator: FormValidators.validatePassword,
+          validator: (value) => FormValidators.validatePassword(value, context),
           suffixIcon: IconButton(
             icon: Icon(
               _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
@@ -188,13 +188,14 @@ class _SignUpPageState extends State<SignUpPage> {
 
         // Confirm Password Field
         CustomTextField(
-          label: StringConstants.retypePassword,
-          hintText: StringConstants.passwordHint,
+          label: StringConstants.retypePassword(context),
+          hintText: StringConstants.passwordHint(context),
           controller: _confirmPasswordController,
           obscureText: !_isConfirmPasswordVisible,
           validator: (value) => FormValidators.validatePasswordConfirmation(
             value,
             _passwordController.text,
+            context,
           ),
           suffixIcon: IconButton(
             icon: Icon(
@@ -218,7 +219,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Widget _buildSignUpButton(ThemeData theme, AuthProvider authProvider) {
     return CustomPrimaryButton(
-      text: StringConstants.signUpButton,
+      text: StringConstants.signUpButton(context),
       onPressed: _handleSignUp,
       isLoading: authProvider.isLoading,
     );
@@ -229,7 +230,7 @@ class _SignUpPageState extends State<SignUpPage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          StringConstants.alreadyHaveAccount,
+          StringConstants.alreadyHaveAccount(context),
           style: GoogleFonts.inter(
             fontSize: 14,
             color: _ui.getColorByTheme(
@@ -249,7 +250,7 @@ class _SignUpPageState extends State<SignUpPage> {
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           ),
           child: Text(
-            StringConstants.logInButton,
+            StringConstants.logInButton(context),
             style: GoogleFonts.inter(
               fontSize: 14,
               color: _ui.getPrimaryColor(theme.brightness == Brightness.dark),
@@ -265,7 +266,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Column(
       children: [
         Text(
-          StringConstants.or,
+          StringConstants.or(context),
           style: GoogleFonts.inter(
             fontSize: 14,
             color: _ui.getColorByTheme(
@@ -282,7 +283,7 @@ class _SignUpPageState extends State<SignUpPage> {
             SocialLoginButton(
               icon: Icons.facebook,
               color: const Color(0xFF1877F2),
-              tooltip: StringConstants.signUpWithFacebook,
+              tooltip: StringConstants.signUpWithFacebook(context),
               onPressed: () {
                 // Handle Facebook sign up
               },
@@ -291,7 +292,7 @@ class _SignUpPageState extends State<SignUpPage> {
             SocialLoginButton(
               icon: Icons.alternate_email,
               color: const Color(0xFF1DA1F2),
-              tooltip: StringConstants.signUpWithTwitter,
+              tooltip: StringConstants.signUpWithTwitter(context),
               onPressed: () {
                 // Handle Twitter sign up
               },
@@ -300,7 +301,7 @@ class _SignUpPageState extends State<SignUpPage> {
             SocialLoginButton(
               icon: Icons.apple,
               color: Colors.black,
-              tooltip: StringConstants.signUpWithApple,
+              tooltip: StringConstants.signUpWithApple(context),
               onPressed: () {
                 // Handle Apple sign up
               },

@@ -36,7 +36,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                '${StringConstants.resetCodeSent} ${_emailController.text}',
+                '${StringConstants.resetCodeSent(context)} ${_emailController.text}',
                 style: GoogleFonts.inter(),
               ),
               backgroundColor: _ui.getPrimaryColor(
@@ -47,11 +47,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         } else {
           // Show error message
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text(StringConstants.failedToSendResetCode),
-              backgroundColor: Colors.red,
-            ),
-          );
+              SnackBar(
+                content: Text(StringConstants.failedToSendResetCode(context)),
+                backgroundColor: Colors.red,
+              ),
+            );
         }
       }
     }
@@ -107,7 +107,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     return Column(
       children: [
         Text(
-          StringConstants.forgotPasswordTitle,
+          StringConstants.forgotPasswordTitle(context),
           style: GoogleFonts.inter(
             fontSize: 32,
             fontWeight: FontWeight.bold,
@@ -116,7 +116,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         ),
         SizedBox(height: _ui.spacing2),
         Text(
-          StringConstants.forgotPasswordDescription,
+          StringConstants.forgotPasswordDescription(context),
           style: GoogleFonts.inter(
             fontSize: 16,
             color: _ui.getColorByTheme(
@@ -132,17 +132,17 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
   Widget _buildEmailForm(ThemeData theme, bool isDark) {
     return CustomTextField(
-      label: StringConstants.email,
-      hintText: StringConstants.emailHint,
+      label: StringConstants.email(context),
+          hintText: StringConstants.emailHint(context),
       controller: _emailController,
       keyboardType: TextInputType.emailAddress,
-      validator: FormValidators.validateEmail,
+      validator: (value) => FormValidators.validateEmail(value, context),
     );
   }
 
   Widget _buildSendCodeButton(ThemeData theme, AuthProvider authProvider) {
     return CustomPrimaryButton(
-      text: StringConstants.sendCode,
+      text: StringConstants.sendCode(context),
       onPressed: _handleSendCode,
       isLoading: authProvider.isLoading,
     );
@@ -153,7 +153,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          StringConstants.rememberPassword,
+          StringConstants.rememberPassword(context),
           style: GoogleFonts.inter(
             fontSize: 14,
             color: _ui.getColorByTheme(
@@ -173,7 +173,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           ),
           child: Text(
-            StringConstants.logInButton,
+            StringConstants.logInButton(context),
             style: GoogleFonts.inter(
               fontSize: 14,
               color: _ui.getPrimaryColor(theme.brightness == Brightness.dark),

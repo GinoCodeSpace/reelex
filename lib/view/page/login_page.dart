@@ -41,8 +41,8 @@ class _LoginPageState extends State<LoginPage> {
         } else {
           // Show error message
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text(StringConstants.loginFailed),
+            SnackBar(
+              content: Text(StringConstants.loginFailed(context)),
               backgroundColor: Colors.red,
             ),
           );
@@ -111,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
     return Column(
       children: [
         Text(
-          StringConstants.logIn,
+          StringConstants.logIn(context),
           style: GoogleFonts.inter(
             fontSize: 32,
             fontWeight: FontWeight.bold,
@@ -120,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         SizedBox(height: _ui.spacing2),
         Text(
-          StringConstants.pleaseSignIn,
+          StringConstants.pleaseSignIn(context),
           style: GoogleFonts.inter(
             fontSize: 16,
             color: _ui.getColorByTheme(
@@ -140,22 +140,22 @@ class _LoginPageState extends State<LoginPage> {
       children: [
         // Email Field
         CustomTextField(
-          label: StringConstants.email,
-          hintText: StringConstants.emailHint,
+          label: StringConstants.email(context),
+          hintText: StringConstants.emailHint(context),
           controller: _emailController,
           keyboardType: TextInputType.emailAddress,
-          validator: FormValidators.validateEmail,
+          validator: (value) => FormValidators.validateEmail(value, context),
         ),
 
         SizedBox(height: _ui.spacing5),
 
         // Password Field
         CustomTextField(
-          label: StringConstants.password,
-          hintText: StringConstants.passwordHint,
+          label: StringConstants.password(context),
+          hintText: StringConstants.passwordHint(context),
           controller: _passwordController,
           obscureText: !_isPasswordVisible,
-          validator: FormValidators.validatePassword,
+          validator: (value) => FormValidators.validatePassword(value, context),
           suffixIcon: IconButton(
             icon: Icon(
               _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
@@ -194,7 +194,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             Text(
-              StringConstants.rememberMe,
+              StringConstants.rememberMe(context),
               style: GoogleFonts.inter(
                 fontSize: 14,
                 color: _ui.getOnSurfaceColor(
@@ -209,7 +209,7 @@ class _LoginPageState extends State<LoginPage> {
             context.push(Routes.forgotPassword);
           },
           child: Text(
-            StringConstants.forgotPassword,
+            StringConstants.forgotPassword(context),
             style: GoogleFonts.inter(
               fontSize: 14,
               color: _ui.getPrimaryColor(theme.brightness == Brightness.dark),
@@ -223,7 +223,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _buildLoginButton(ThemeData theme, AuthProvider authProvider) {
     return CustomPrimaryButton(
-      text: StringConstants.logInButton,
+      text: StringConstants.logInButton(context),
       onPressed: _handleLogin,
       isLoading: authProvider.isLoading,
     );
@@ -234,7 +234,7 @@ class _LoginPageState extends State<LoginPage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          StringConstants.dontHaveAccount,
+          StringConstants.dontHaveAccount(context),
           style: GoogleFonts.inter(
             fontSize: 14,
             color: _ui.getColorByTheme(
@@ -254,7 +254,7 @@ class _LoginPageState extends State<LoginPage> {
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           ),
           child: Text(
-            StringConstants.signUp,
+            StringConstants.signUp(context),
             style: GoogleFonts.inter(
               fontSize: 14,
               color: _ui.getPrimaryColor(theme.brightness == Brightness.dark),
@@ -270,7 +270,7 @@ class _LoginPageState extends State<LoginPage> {
     return Column(
       children: [
         Text(
-          StringConstants.or,
+          StringConstants.or(context),
           style: GoogleFonts.inter(
             fontSize: 14,
             color: _ui.getColorByTheme(
@@ -287,7 +287,7 @@ class _LoginPageState extends State<LoginPage> {
             SocialLoginButton(
               icon: Icons.facebook,
               color: const Color(0xFF1877F2),
-              tooltip: StringConstants.loginWithFacebook,
+              tooltip: StringConstants.loginWithFacebook(context),
               onPressed: () {
                 // Handle Facebook login
               },
@@ -296,7 +296,7 @@ class _LoginPageState extends State<LoginPage> {
             SocialLoginButton(
               icon: Icons.alternate_email,
               color: const Color(0xFF1DA1F2),
-              tooltip: StringConstants.loginWithTwitter,
+              tooltip: StringConstants.loginWithTwitter(context),
               onPressed: () {
                 // Handle Twitter login
               },
@@ -305,7 +305,7 @@ class _LoginPageState extends State<LoginPage> {
             SocialLoginButton(
               icon: Icons.apple,
               color: Colors.black,
-              tooltip: StringConstants.loginWithApple,
+              tooltip: StringConstants.loginWithApple(context),
               onPressed: () {
                 // Handle Apple login
               },

@@ -32,7 +32,7 @@ class CustomSliverAppBar extends StatelessWidget {
                       router.go(navigationProvider.currentRoute);
                     }
                   },
-                  tooltip: StringConstants.back,
+                  tooltip: StringConstants.back(context),
                 )
               : null,
           actions: [
