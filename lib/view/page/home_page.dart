@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
       builder: (context, authProvider, child) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Home'),
+            title: const Text(StringConstants.home),
             actions: [
               IconButton(
                 icon: const Icon(Icons.logout),
@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
                   authProvider.logout(context);
                   context.go(Routes.login);
                 },
-                tooltip: 'Logout',
+                tooltip: StringConstants.logout,
               ),
             ],
           ),
@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
                 const Icon(Icons.home, size: 80, color: Colors.blue),
                 const SizedBox(height: 24),
                 Text(
-                  'Bem-vindo!',
+                  StringConstants.welcome,
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 16),
                 if (authProvider.userEmail != null) ...[
                   Text(
-                    'Usuário: ${authProvider.userEmail}',
+                    '${StringConstants.user}: ${authProvider.userEmail}',
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   const SizedBox(height: 24),
@@ -54,13 +54,13 @@ class HomePage extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
                         Text(
-                          'Você está autenticado!',
+                          StringConstants.authenticated,
                           style: Theme.of(context).textTheme.titleMedium,
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          'Esta página só pode ser acessada por usuários logados.',
+                          StringConstants.authenticatedDescription,
                           style: Theme.of(context).textTheme.bodyMedium,
                           textAlign: TextAlign.center,
                         ),

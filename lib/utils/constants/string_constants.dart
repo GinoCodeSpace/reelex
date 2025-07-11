@@ -10,6 +10,14 @@ class StringConstants {
   static const String lightMode = 'Modo claro';
   static const String darkMode = 'Modo escuro';
   
+  // Home Page
+  static const String home = 'Home';
+  static const String logout = 'Logout';
+  static const String welcome = 'Bem-vindo!';
+  static const String user = 'Usuário';
+  static const String authenticated = 'Você está autenticado!';
+  static const String authenticatedDescription = 'Esta página só pode ser acessada por usuários logados.';
+  
   // Locale Display Names (pode ser expandido para suporte a i18n)
   static const Map<String, String> localeDisplayNames = {
     'pt_BR': 'Português',
