@@ -93,30 +93,30 @@ class UIConstants {
   // LIGHT THEME COLORS
   // ==========================================================================
   
-  // Primary Colors
-   Color lightPrimary = Color(0xFF48319D);
+  // Primary Colors - Based on #36B77F (Green)
+   Color lightPrimary = Color(0xFF36B77F);
    Color lightOnPrimary = Color(0xFFFFFFFF);
-   Color lightPrimaryContainer = Color(0xFFE0D9FF);
-   Color lightOnPrimaryContainer = Color(0xFF1C1B33);
-   Color lightPrimaryFixedDim = Color(0xFFC4B5FF);
-   Color lightInversePrimary = Color(0xFFC4B5FF);
-   Color lightSurfaceTint = Color(0xFF48319D);
+   Color lightPrimaryContainer = Color(0xFFB8F5D1);
+   Color lightOnPrimaryContainer = Color(0xFF002114);
+   Color lightPrimaryFixedDim = Color(0xFF9CE8B8);
+   Color lightInversePrimary = Color(0xFF9CE8B8);
+   Color lightSurfaceTint = Color(0xFF36B77F);
   
-  // Secondary Colors
-   Color lightSecondary = Color(0xFF1F1D47);
+  // Secondary Colors - Based on #7A2299 (Purple)
+   Color lightSecondary = Color(0xFF7A2299);
    Color lightOnSecondary = Color(0xFFFFFFFF);
-   Color lightSecondaryContainer = Color(0xFF625B71);
-   Color lightOnSecondaryContainer = Color(0xFFE8DEF8);
-   Color lightSecondaryFixedDim = Color(0xFFCCC2DC);
-   Color lightOnSecondaryFixed = Color(0xFF1D192B);
+   Color lightSecondaryContainer = Color(0xFFE8B8FF);
+   Color lightOnSecondaryContainer = Color(0xFF2E0038);
+   Color lightSecondaryFixedDim = Color(0xFFD19EFF);
+   Color lightOnSecondaryFixed = Color(0xFF2E0038);
   
-  // Tertiary Colors
-   Color lightTertiary = Color(0xFFC427FB);
+  // Tertiary Colors - Complementary accent
+   Color lightTertiary = Color(0xFF4A6741);
    Color lightOnTertiary = Color(0xFFFFFFFF);
-   Color lightTertiaryContainer = Color(0xFFF2DAFF);
-   Color lightOnTertiaryContainer = Color(0xFF36003C);
-   Color lightTertiaryFixedDim = Color(0xFFD0BCFF);
-   Color lightOnTertiaryFixedVariant = Color(0xFF7F39FB);
+   Color lightTertiaryContainer = Color(0xFFCBEDBE);
+   Color lightOnTertiaryContainer = Color(0xFF072100);
+   Color lightTertiaryFixedDim = Color(0xFFAFD1A3);
+   Color lightOnTertiaryFixedVariant = Color(0xFF334F2A);
   
   // Error Colors
    Color lightError = Color(0xFFBA1A1A);
@@ -125,24 +125,24 @@ class UIConstants {
    Color lightOnErrorContainer = Color(0xFF410002);
   
   // Surface Colors
-   Color lightSurface = Color(0xFFE0D9FF);
-   Color lightOnSurface = Color(0xFF1C1B33);
-   Color lightOnSurfaceVariant = Color(0xFF49454F);
+   Color lightSurface = Color(0xFFF5FDF7);
+   Color lightOnSurface = Color(0xFF191C19);
+   Color lightOnSurfaceVariant = Color(0xFF414941);
    Color lightSurfaceContainerLowest = Color(0xFFFFFFFF);
-   Color lightSurfaceContainerLow = Color(0xFFF7F2FA);
-   Color lightSurfaceContainer = Color(0xFFF1ECF4);
-   Color lightSurfaceContainerHigh = Color(0xFFEBE6EE);
-   Color lightSurfaceContainerHighest = Color(0xFFE6E0E9);
-   Color lightSurfaceDim = Color(0xFFDDD8E1);
-   Color lightSurfaceBright = Color(0xFFFDF8FD);
+   Color lightSurfaceContainerLow = Color(0xFFEFF7F0);
+   Color lightSurfaceContainer = Color(0xFFE9F1EA);
+   Color lightSurfaceContainerHigh = Color(0xFFE3EBE5);
+   Color lightSurfaceContainerHighest = Color(0xFFDDE5DF);
+   Color lightSurfaceDim = Color(0xFFD5DDD7);
+   Color lightSurfaceBright = Color(0xFFF5FDF7);
   
   // Outline Colors
-   Color lightOutline = Color(0xFF79747E);
-   Color lightOutlineVariant = Color(0xFFCAC4D0);
+   Color lightOutline = Color(0xFF717971);
+   Color lightOutlineVariant = Color(0xFFC1C9C1);
   
   // Inverse Colors
-   Color lightInverseSurface = Color(0xFF313033);
-   Color lightOnInverseSurface = Color(0xFFF4EFF4);
+   Color lightInverseSurface = Color(0xFF2E312E);
+   Color lightOnInverseSurface = Color(0xFFEFF1EF);
   
   // Shadow & Scrim
    Color lightShadow = Color(0xFF000000);
@@ -152,30 +152,30 @@ class UIConstants {
   // DARK THEME COLORS
   // ==========================================================================
   
-  // Primary Colors
-   Color darkPrimary = Color(0xFF9575FF);
-   Color darkOnPrimary = Color(0xFF1C1B33);
-   Color darkPrimaryContainer = Color(0xFF3A2E7C);
-   Color darkOnPrimaryContainer = Color(0xFFE0D9FF);
-   Color darkPrimaryFixedDim = Color(0xFFC4B5FF);
-   Color darkOnPrimaryFixedVariant = Color(0xFF48319D);
-   Color darkInversePrimary = Color(0xFF48319D);
-   Color darkSurfaceTint = Color(0xFF9575FF);
+  // Primary Colors - Based on #36B77F (Green)
+   Color darkPrimary = Color(0xFF9CE8B8);
+   Color darkOnPrimary = Color(0xFF003826);
+   Color darkPrimaryContainer = Color(0xFF1A7F52);
+   Color darkOnPrimaryContainer = Color(0xFFB8F5D1);
+   Color darkPrimaryFixedDim = Color(0xFF9CE8B8);
+   Color darkOnPrimaryFixedVariant = Color(0xFF1A7F52);
+   Color darkInversePrimary = Color(0xFF36B77F);
+   Color darkSurfaceTint = Color(0xFF9CE8B8);
   
-  // Secondary Colors
-   Color darkSecondary = Color(0xFF7C7C7C);
-   Color darkOnSecondary = Color(0xFF1D192B);
-   Color darkSecondaryContainer = Color(0xFF332D41);
-   Color darkOnSecondaryContainer = Color(0xFFE8DEF8);
-   Color darkSecondaryFixedDim = Color(0xFFCCC2DC);
+  // Secondary Colors - Based on #7A2299 (Purple)
+   Color darkSecondary = Color(0xFFD19EFF);
+   Color darkOnSecondary = Color(0xFF44005C);
+   Color darkSecondaryContainer = Color(0xFF5E1A7A);
+   Color darkOnSecondaryContainer = Color(0xFFE8B8FF);
+   Color darkSecondaryFixedDim = Color(0xFFD19EFF);
   
-  // Tertiary Colors
-   Color darkTertiary = Color(0xFFE91E63);
-   Color darkOnTertiary = Color(0xFF36003C);
-   Color darkTertiaryContainer = Color(0xFF5D1049);
-   Color darkOnTertiaryContainer = Color(0xFFF2DAFF);
-   Color darkTertiaryFixedDim = Color(0xFFD0BCFF);
-   Color darkOnTertiaryFixedVariant = Color(0xFF7F39FB);
+  // Tertiary Colors - Complementary accent
+   Color darkTertiary = Color(0xFFAFD1A3);
+   Color darkOnTertiary = Color(0xFF1D3715);
+   Color darkTertiaryContainer = Color(0xFF334F2A);
+   Color darkOnTertiaryContainer = Color(0xFFCBEDBE);
+   Color darkTertiaryFixedDim = Color(0xFFAFD1A3);
+   Color darkOnTertiaryFixedVariant = Color(0xFF334F2A);
   
   // Error Colors
    Color darkError = Color(0xFFFFB4AB);
@@ -184,24 +184,24 @@ class UIConstants {
    Color darkOnErrorContainer = Color(0xFFFFDAD6);
   
   // Surface Colors
-   Color darkSurface = Color(0xFF2D2D2D);
-   Color darkOnSurface = Color(0xFFE1E1E1);
-   Color darkOnSurfaceVariant = Color(0xFFCAC4D0);
-   Color darkSurfaceContainerLowest = Color(0xFF0F0D13);
-   Color darkSurfaceContainerLow = Color(0xFF1D1B20);
-   Color darkSurfaceContainer = Color(0xFF211F26);
-   Color darkSurfaceContainerHigh = Color(0xFF2B2930);
-   Color darkSurfaceContainerHighest = Color(0xFF36343B);
-   Color darkSurfaceDim = Color(0xFF141218);
-   Color darkSurfaceBright = Color(0xFF3B383E);
+   Color darkSurface = Color(0xFF101211);
+   Color darkOnSurface = Color(0xFFDDE5DF);
+   Color darkOnSurfaceVariant = Color(0xFFC1C9C1);
+   Color darkSurfaceContainerLowest = Color(0xFF0B0D0C);
+   Color darkSurfaceContainerLow = Color(0xFF191C19);
+   Color darkSurfaceContainer = Color(0xFF1D201D);
+   Color darkSurfaceContainerHigh = Color(0xFF272B27);
+   Color darkSurfaceContainerHighest = Color(0xFF323532);
+   Color darkSurfaceDim = Color(0xFF101211);
+   Color darkSurfaceBright = Color(0xFF363936);
   
   // Outline Colors
-   Color darkOutline = Color(0xFF938F99);
-   Color darkOutlineVariant = Color(0xFF49454F);
+   Color darkOutline = Color(0xFF8B938B);
+   Color darkOutlineVariant = Color(0xFF414941);
   
   // Inverse Colors
-   Color darkInverseSurface = Color(0xFFE6E0E9);
-   Color darkOnInverseSurface = Color(0xFF313033);
+   Color darkInverseSurface = Color(0xFFDDE5DF);
+   Color darkOnInverseSurface = Color(0xFF2E312E);
   
   // Shadow & Scrim
    Color darkShadow = Color(0xFF000000);
