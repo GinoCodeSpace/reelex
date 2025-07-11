@@ -11,7 +11,7 @@ class ForgotPasswordPage extends StatefulWidget {
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
-  bool _isLoading = false;
+
 
   final UIConstants _ui = UIConstants();
 
@@ -23,30 +23,35 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
   Future<void> _handleSendCode() async {
     if (_formKey.currentState!.validate()) {
-      setState(() {
-        _isLoading = true;
-      });
+      final authProvider = Provider.of<AuthProvider>(context, listen: false);
+      
+      final success = await authProvider.forgotPassword(
+        _emailController.text.trim(),
+      );
 
-      // Simulate sending reset code
-      await Future.delayed(const Duration(seconds: 2));
-
-      setState(() {
-        _isLoading = false;
-      });
-
-      // Show success message
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              'Reset code sent to ${_emailController.text}',
-              style: GoogleFonts.inter(),
+        if (success) {
+          // Show success message
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Reset code sent to ${_emailController.text}',
+                style: GoogleFonts.inter(),
+              ),
+              backgroundColor: _ui.getPrimaryColor(
+                Theme.of(context).brightness == Brightness.dark,
+              ),
             ),
-            backgroundColor: _ui.getPrimaryColor(
-              Theme.of(context).brightness == Brightness.dark,
+          );
+        } else {
+          // Show error message
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Failed to send reset code. Please try again.'),
+              backgroundColor: Colors.red,
             ),
-          ),
-        );
+          );
+        }
       }
     }
   }
@@ -56,40 +61,44 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
 
-    return Scaffold(
-      backgroundColor: _ui.getSurfaceColor(isDark),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.all(_ui.spacing6),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                SizedBox(height: _ui.spacing12),
+    return Consumer<AuthProvider>(
+      builder: (context, authProvider, child) {
+        return Scaffold(
+          backgroundColor: _ui.getSurfaceColor(isDark),
+          body: SafeArea(
+            child: SingleChildScrollView(
+              padding: EdgeInsets.all(_ui.spacing6),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    SizedBox(height: _ui.spacing12),
 
-                // Header Section
-                _buildHeader(isDark),
+                    // Header Section
+                    _buildHeader(isDark),
 
-                SizedBox(height: _ui.spacing12),
+                    SizedBox(height: _ui.spacing12),
 
-                // Email Form
-                _buildEmailForm(theme, isDark),
+                    // Email Form
+                    _buildEmailForm(theme, isDark),
 
-                SizedBox(height: _ui.spacing8),
+                    SizedBox(height: _ui.spacing8),
 
-                // Send Code Button
-                _buildSendCodeButton(theme),
+                    // Send Code Button
+                    _buildSendCodeButton(theme, authProvider),
 
-                SizedBox(height: _ui.spacing6),
+                    SizedBox(height: _ui.spacing6),
 
-                // Back to Login Link
-                _buildBackToLoginLink(theme),
-              ],
+                    // Back to Login Link
+                    _buildBackToLoginLink(theme),
+                  ],
+                ),
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
@@ -130,11 +139,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     );
   }
 
-  Widget _buildSendCodeButton(ThemeData theme) {
+  Widget _buildSendCodeButton(ThemeData theme, AuthProvider authProvider) {
     return CustomPrimaryButton(
       text: 'SEND CODE',
       onPressed: _handleSendCode,
-      isLoading: _isLoading,
+      isLoading: authProvider.isLoading,
     );
   }
 

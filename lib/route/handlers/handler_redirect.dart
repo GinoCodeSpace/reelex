@@ -11,7 +11,27 @@ class HandleRedirect {
   }
 
   String? _redirectBasedOnState(GoRouterState state, BuildContext context) {
-    // Allow normal navigation - only redirect if needed
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    final currentPath = state.uri.path;
+    
+    // Rotas que não precisam de autenticação
+    final publicRoutes = [
+      Routes.login,
+      Routes.signUp,
+      Routes.forgotPassword,
+    ];
+    
+    // Se o usuário não está autenticado e está tentando acessar uma rota protegida
+    if (!authProvider.isAuthenticated && !publicRoutes.contains(currentPath)) {
+      return Routes.login;
+    }
+    
+    // Se o usuário está autenticado e está tentando acessar a página de login
+    if (authProvider.isAuthenticated && currentPath == Routes.login) {
+      return Routes.home;
+    }
+    
+    // Permite navegação normal
     return null;
   }
 }

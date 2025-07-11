@@ -14,7 +14,6 @@ class _LoginPageState extends State<LoginPage> {
   final _passwordController = TextEditingController();
   bool _isPasswordVisible = false;
   bool _rememberMe = false;
-  bool _isLoading = false;
 
   final UIConstants _ui = UIConstants();
 
@@ -27,20 +26,26 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> _handleLogin() async {
     if (_formKey.currentState!.validate()) {
-      setState(() {
-        _isLoading = true;
-      });
+      final authProvider = Provider.of<AuthProvider>(context, listen: false);
+      
+      final success = await authProvider.login(
+        _emailController.text.trim(),
+        _passwordController.text,
+      );
 
-      // Simulate login process
-      await Future.delayed(const Duration(seconds: 2));
-
-      setState(() {
-        _isLoading = false;
-      });
-
-      // Navigate to home page after successful login
       if (mounted) {
-        context.go(Routes.home);
+        if (success) {
+          // Navigate to home page after successful login
+          context.go(Routes.home);
+        } else {
+          // Show error message
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Login failed. Please check your credentials.'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
       }
     }
   }
@@ -50,50 +55,54 @@ class _LoginPageState extends State<LoginPage> {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
 
-    return Scaffold(
-      backgroundColor: _ui.getSurfaceColor(isDark),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.all(_ui.spacing6),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                SizedBox(height: _ui.spacing20),
+    return Consumer<AuthProvider>(
+      builder: (context, authProvider, child) {
+        return Scaffold(
+          backgroundColor: _ui.getSurfaceColor(isDark),
+          body: SafeArea(
+            child: SingleChildScrollView(
+              padding: EdgeInsets.all(_ui.spacing6),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    SizedBox(height: _ui.spacing20),
 
-                // Header Section
-                _buildHeader(isDark),
+                    // Header Section
+                    _buildHeader(isDark),
 
-                SizedBox(height: _ui.spacing12),
+                    SizedBox(height: _ui.spacing12),
 
-                // Login Form
-                _buildLoginForm(theme, isDark),
+                    // Login Form
+                    _buildLoginForm(theme, isDark),
 
-                SizedBox(height: _ui.spacing8),
+                    SizedBox(height: _ui.spacing8),
 
-                // Remember Me & Forgot Password
-                _buildRememberAndForgot(theme),
+                    // Remember Me & Forgot Password
+                    _buildRememberAndForgot(theme),
 
-                SizedBox(height: _ui.spacing8),
+                    SizedBox(height: _ui.spacing8),
 
-                // Login Button
-                _buildLoginButton(theme),
+                    // Login Button
+                    _buildLoginButton(theme, authProvider),
 
-                SizedBox(height: _ui.spacing6),
+                    SizedBox(height: _ui.spacing6),
 
-                // Sign Up Link
-                _buildSignUpLink(theme),
+                    // Sign Up Link
+                    _buildSignUpLink(theme),
 
-                SizedBox(height: _ui.spacing6),
+                    SizedBox(height: _ui.spacing6),
 
-                // Social Login
-                _buildSocialLogin(theme, isDark),
-              ],
+                    // Social Login
+                    _buildSocialLogin(theme, isDark),
+                  ],
+                ),
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
@@ -211,11 +220,11 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _buildLoginButton(ThemeData theme) {
+  Widget _buildLoginButton(ThemeData theme, AuthProvider authProvider) {
     return CustomPrimaryButton(
       text: 'LOG IN',
       onPressed: _handleLogin,
-      isLoading: _isLoading,
+      isLoading: authProvider.isLoading,
     );
   }
 

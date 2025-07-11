@@ -16,7 +16,6 @@ class _SignUpPageState extends State<SignUpPage> {
   final _confirmPasswordController = TextEditingController();
   bool _isPasswordVisible = false;
   bool _isConfirmPasswordVisible = false;
-  bool _isLoading = false;
 
   final UIConstants _ui = UIConstants();
 
@@ -31,20 +30,27 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Future<void> _handleSignUp() async {
     if (_formKey.currentState!.validate()) {
-      setState(() {
-        _isLoading = true;
-      });
+      final authProvider = Provider.of<AuthProvider>(context, listen: false);
+      
+      final success = await authProvider.register(
+        _emailController.text.trim(),
+        _passwordController.text,
+        _confirmPasswordController.text,
+      );
 
-      // Simulate sign up process
-      await Future.delayed(const Duration(seconds: 2));
-
-      setState(() {
-        _isLoading = false;
-      });
-
-      // Navigate to home page after successful sign up
       if (mounted) {
-        context.go(Routes.home);
+        if (success) {
+          // Navigate to home page after successful registration
+          context.go(Routes.home);
+        } else {
+          // Show error message
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Registration failed. Please check your information.'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
       }
     }
   }
@@ -54,45 +60,49 @@ class _SignUpPageState extends State<SignUpPage> {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
 
-    return Scaffold(
-      backgroundColor: _ui.getSurfaceColor(isDark),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.all(_ui.spacing6),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                SizedBox(height: _ui.spacing12),
+    return Consumer<AuthProvider>(
+      builder: (context, authProvider, child) {
+        return Scaffold(
+          backgroundColor: _ui.getSurfaceColor(isDark),
+          body: SafeArea(
+            child: SingleChildScrollView(
+              padding: EdgeInsets.all(_ui.spacing6),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    SizedBox(height: _ui.spacing12),
 
-                // Header Section
-                _buildHeader(isDark),
+                    // Header Section
+                    _buildHeader(isDark),
 
-                SizedBox(height: _ui.spacing8),
+                    SizedBox(height: _ui.spacing8),
 
-                // Sign Up Form
-                _buildSignUpForm(theme, isDark),
+                    // Sign Up Form
+                    _buildSignUpForm(theme, isDark),
 
-                SizedBox(height: _ui.spacing8),
+                    SizedBox(height: _ui.spacing8),
 
-                // Sign Up Button
-                _buildSignUpButton(theme),
+                    // Sign Up Button
+                    _buildSignUpButton(theme, authProvider),
 
-                SizedBox(height: _ui.spacing6),
+                    SizedBox(height: _ui.spacing6),
 
-                // Login Link
-                _buildLoginLink(theme),
+                    // Login Link
+                    _buildLoginLink(theme),
 
-                SizedBox(height: _ui.spacing6),
+                    SizedBox(height: _ui.spacing6),
 
-                // Social Login
-                _buildSocialLogin(theme, isDark),
-              ],
+                    // Social Login
+                    _buildSocialLogin(theme, isDark),
+                  ],
+                ),
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
@@ -205,11 +215,11 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget _buildSignUpButton(ThemeData theme) {
+  Widget _buildSignUpButton(ThemeData theme, AuthProvider authProvider) {
     return CustomPrimaryButton(
       text: 'SIGN UP',
       onPressed: _handleSignUp,
-      isLoading: _isLoading,
+      isLoading: authProvider.isLoading,
     );
   }
 
