@@ -196,7 +196,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         TextButton(
           onPressed: () {
-            // Handle forgot password
+            context.push(Routes.forgotPassword);
           },
           child: Text(
             'Forgot Password',

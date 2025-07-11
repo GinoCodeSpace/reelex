@@ -86,6 +86,7 @@ export '../validators/form_validators.dart';
 
 // Pages
 export '../../view/page/home_page.dart';
+export '../../view/page/forgot_password_page.dart';
 
 // Components - Screens
 export '../../view/component/ui/screen/scaffold_sliver.dart';
