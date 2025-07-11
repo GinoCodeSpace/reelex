@@ -48,8 +48,8 @@ class _FavoritesIllustration extends StatelessWidget {
               shape: BoxShape.circle,
               gradient: RadialGradient(
                 colors: [
-                  primaryColor.withOpacity(0.1),
-                  primaryColor.withOpacity(0.05),
+                  primaryColor.withValues(alpha: 0.1),
+                  primaryColor.withValues(alpha: 0.05),
                 ],
               ),
             ),
@@ -76,7 +76,7 @@ class _FavoritesIllustration extends StatelessWidget {
             child: Icon(
               Icons.local_pizza,
               size: 28,
-              color: primaryColor.withOpacity(0.7),
+              color: primaryColor.withValues(alpha: 0.7),
             ),
           ),
           Positioned(
@@ -85,7 +85,7 @@ class _FavoritesIllustration extends StatelessWidget {
             child: Icon(
               Icons.cake,
               size: 24,
-              color: secondaryColor.withOpacity(0.8),
+              color: secondaryColor.withValues(alpha: 0.8),
             ),
           ),
         ],
@@ -135,8 +135,8 @@ class _ChefIllustration extends StatelessWidget {
               shape: BoxShape.circle,
               gradient: RadialGradient(
                 colors: [
-                  secondaryColor.withOpacity(0.1),
-                  secondaryColor.withOpacity(0.05),
+                  secondaryColor.withValues(alpha: 0.1),
+                  secondaryColor.withValues(alpha: 0.05),
                 ],
               ),
             ),
@@ -163,7 +163,7 @@ class _ChefIllustration extends StatelessWidget {
             child: Icon(
               Icons.kitchen,
               size: 28,
-              color: primaryColor.withOpacity(0.7),
+              color: primaryColor.withValues(alpha: 0.7),
             ),
           ),
           Positioned(
@@ -172,7 +172,7 @@ class _ChefIllustration extends StatelessWidget {
             child: Icon(
               Icons.dining,
               size: 24,
-              color: secondaryColor.withOpacity(0.8),
+              color: secondaryColor.withValues(alpha: 0.8),
             ),
           ),
         ],
@@ -222,8 +222,8 @@ class _DeliveryIllustration extends StatelessWidget {
               shape: BoxShape.circle,
               gradient: RadialGradient(
                 colors: [
-                  primaryColor.withOpacity(0.1),
-                  primaryColor.withOpacity(0.05),
+                  primaryColor.withValues(alpha: 0.1),
+                  primaryColor.withValues(alpha: 0.05),
                 ],
               ),
             ),
@@ -250,7 +250,7 @@ class _DeliveryIllustration extends StatelessWidget {
             child: Icon(
               Icons.schedule,
               size: 28,
-              color: primaryColor.withOpacity(0.7),
+              color: primaryColor.withValues(alpha: 0.7),
             ),
           ),
           Positioned(
@@ -259,7 +259,7 @@ class _DeliveryIllustration extends StatelessWidget {
             child: Icon(
               Icons.location_on,
               size: 24,
-              color: secondaryColor.withOpacity(0.8),
+              color: secondaryColor.withValues(alpha: 0.8),
             ),
           ),
           // Indicador de "grátis"
