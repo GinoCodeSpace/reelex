@@ -58,7 +58,8 @@ class FormValidators {
     if (value == null || value.isEmpty) {
       return 'Please enter your name';
     }
-    if (!RegExp(r'^[a-zA-ZÀ-ÿ\s]+\$').hasMatch(value)) {
+    // Regex corrigida para aceitar letras (incluindo acentos), espaços, hífens e apostrofes
+    if (!RegExp(r"^[a-zA-ZÀ-ÿ\u00C0-\u017F\s'-]+$").hasMatch(value)) {
       return 'Name can only contain letters and spaces';
     }
     if (value.trim().length < 2) {
