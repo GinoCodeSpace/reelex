@@ -16,7 +16,7 @@ class DataService {
     if (_products != null) return _products!;
     
     try {
-      final String response = await rootBundle.loadString('lib/service/products_data.json');
+      final String response = await rootBundle.loadString('assets/data/products_data.json');
       final List<dynamic> data = json.decode(response);
       _products = data.map((json) => Product.fromJson(json)).toList();
       return _products!;
@@ -30,7 +30,7 @@ class DataService {
     if (_restaurants != null) return _restaurants!;
     
     try {
-      final String response = await rootBundle.loadString('lib/service/restaurants_data.json');
+      final String response = await rootBundle.loadString('assets/data/restaurants_data.json');
       final List<dynamic> data = json.decode(response);
       _restaurants = data.map((json) => Restaurant.fromJson(json)).toList();
       return _restaurants!;

@@ -106,8 +106,9 @@ class ProductCard extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: Padding(
-                  padding: const EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(8),
                   child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Nome do produto
@@ -121,7 +122,7 @@ class ProductCard extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                       
-                      const SizedBox(height: 4),
+                      const SizedBox(height: 2),
                       
                       // Restaurante
                       if (restaurant != null)
@@ -135,7 +136,7 @@ class ProductCard extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                       
-                      const SizedBox(height: 4),
+                      const SizedBox(height: 2),
                       
                       // Tempo de preparo
                       Row(
@@ -156,7 +157,7 @@ class ProductCard extends StatelessWidget {
                         ],
                       ),
                       
-                      const Spacer(),
+                      const SizedBox(height: 4),
                       
                       // Preço e botão de adicionar
                       Row(
