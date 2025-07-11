@@ -79,6 +79,9 @@ export '../../view/theme/dark_theme.dart';
 // Form Components
 export '../../view/component/form_components.dart';
 
+// Validators
+export '../validators/form_validators.dart';
+
 // Pages
 export '../../view/page/home_page.dart';
 

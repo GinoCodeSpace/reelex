@@ -1,49 +1,5 @@
 import '../../utils/imports/common_libs.dart';
 
-/// Validadores de formulário reutilizáveis
-class FormValidators {
-  /// Valida endereço de email
-  static String? validateEmail(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter your email';
-    }
-    if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}\$').hasMatch(value)) {
-      return 'Please enter a valid email';
-    }
-    return null;
-  }
-
-  /// Valida senha com requisitos mínimos
-  static String? validatePassword(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter your password';
-    }
-    if (value.length < 6) {
-      return 'Password must be at least 6 characters';
-    }
-    return null;
-  }
-
-  /// Valida campo obrigatório
-  static String? validateRequired(String? value, String fieldName) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter your $fieldName';
-    }
-    return null;
-  }
-
-  /// Valida confirmação de senha
-  static String? validatePasswordConfirmation(String? value, String originalPassword) {
-    if (value == null || value.isEmpty) {
-      return 'Please confirm your password';
-    }
-    if (value != originalPassword) {
-      return 'Passwords do not match';
-    }
-    return null;
-  }
-}
-
 /// Campo de texto customizado com estilo consistente
 class CustomTextField extends StatelessWidget {
   final String label;
@@ -189,20 +145,13 @@ class SocialLoginButton extends StatelessWidget {
         ],
       ),
       child: IconButton(
-        icon: Icon(
-          icon,
-          color: Colors.white,
-          size: 24,
-        ),
+        icon: Icon(icon, color: Colors.white, size: 24),
         onPressed: onPressed,
       ),
     );
 
     if (tooltip != null) {
-      return Tooltip(
-        message: tooltip!,
-        child: button,
-      );
+      return Tooltip(message: tooltip!, child: button);
     }
 
     return button;
@@ -250,7 +199,9 @@ class CustomPrimaryButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(ui.radius12),
           ),
           elevation: 0,
-          disabledBackgroundColor: ui.getPrimaryColor(isDark).withValues(alpha: 0.6),
+          disabledBackgroundColor: ui
+              .getPrimaryColor(isDark)
+              .withValues(alpha: 0.6),
         ),
         child: isLoading
             ? SizedBox(
