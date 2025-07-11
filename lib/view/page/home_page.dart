@@ -5,6 +5,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center(
+      child: TextButton(
+        child: Text('Login'),
+        onPressed: () => appRouter.push(Routes.login),
+      ),
+    );
   }
 }

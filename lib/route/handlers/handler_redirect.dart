@@ -11,6 +11,7 @@ class HandleRedirect {
   }
 
   String? _redirectBasedOnState(GoRouterState state, BuildContext context) {
-    return Routes.home;
+    // Allow normal navigation - only redirect if needed
+    return null;
   }
 }
