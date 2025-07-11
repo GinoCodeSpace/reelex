@@ -1,5 +1,6 @@
 import '../../utils/imports/common_libs.dart';
 
+
 /// Página de cadastro com formulário de registro
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -46,7 +47,7 @@ class _SignUpPageState extends State<SignUpPage> {
           // Show error message
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text('Registration failed. Please check your information.'),
+              content: Text(StringConstants.registrationFailed),
               backgroundColor: Colors.red,
             ),
           );
@@ -110,7 +111,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Column(
       children: [
         Text(
-          'Sign Up',
+          StringConstants.signUpTitle,
           style: GoogleFonts.inter(
             fontSize: 32,
             fontWeight: FontWeight.bold,
@@ -119,7 +120,7 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
         SizedBox(height: _ui.spacing2),
         Text(
-          'Please sign up to get started',
+          StringConstants.pleaseSignUp,
           style: GoogleFonts.inter(
             fontSize: 16,
             color: _ui.getColorByTheme(
@@ -139,8 +140,8 @@ class _SignUpPageState extends State<SignUpPage> {
       children: [
         // Name Field
         CustomTextField(
-          label: 'NAME',
-          hintText: 'John doe',
+          label: StringConstants.name,
+          hintText: StringConstants.nameHint,
           controller: _nameController,
           keyboardType: TextInputType.name,
           validator: FormValidators.validateName,
@@ -150,8 +151,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
         // Email Field
         CustomTextField(
-          label: 'EMAIL',
-          hintText: 'example@gmail.com',
+          label: StringConstants.email,
+          hintText: StringConstants.emailHint,
           controller: _emailController,
           keyboardType: TextInputType.emailAddress,
           validator: FormValidators.validateEmail,
@@ -161,8 +162,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
         // Password Field
         CustomTextField(
-          label: 'PASSWORD',
-          hintText: '••••••••••••',
+          label: StringConstants.password,
+          hintText: StringConstants.passwordHint,
           controller: _passwordController,
           obscureText: !_isPasswordVisible,
           validator: FormValidators.validatePassword,
@@ -187,8 +188,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
         // Confirm Password Field
         CustomTextField(
-          label: 'RE-TYPE PASSWORD',
-          hintText: '••••••••••••',
+          label: StringConstants.retypePassword,
+          hintText: StringConstants.passwordHint,
           controller: _confirmPasswordController,
           obscureText: !_isConfirmPasswordVisible,
           validator: (value) => FormValidators.validatePasswordConfirmation(
@@ -217,7 +218,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Widget _buildSignUpButton(ThemeData theme, AuthProvider authProvider) {
     return CustomPrimaryButton(
-      text: 'SIGN UP',
+      text: StringConstants.signUpButton,
       onPressed: _handleSignUp,
       isLoading: authProvider.isLoading,
     );
@@ -228,7 +229,7 @@ class _SignUpPageState extends State<SignUpPage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          'Already have an account? ',
+          StringConstants.alreadyHaveAccount,
           style: GoogleFonts.inter(
             fontSize: 14,
             color: _ui.getColorByTheme(
@@ -248,7 +249,7 @@ class _SignUpPageState extends State<SignUpPage> {
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           ),
           child: Text(
-            'LOG IN',
+            StringConstants.logInButton,
             style: GoogleFonts.inter(
               fontSize: 14,
               color: _ui.getPrimaryColor(theme.brightness == Brightness.dark),
@@ -264,7 +265,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Column(
       children: [
         Text(
-          'Or',
+          StringConstants.or,
           style: GoogleFonts.inter(
             fontSize: 14,
             color: _ui.getColorByTheme(
@@ -281,7 +282,7 @@ class _SignUpPageState extends State<SignUpPage> {
             SocialLoginButton(
               icon: Icons.facebook,
               color: const Color(0xFF1877F2),
-              tooltip: 'Sign up with Facebook',
+              tooltip: StringConstants.signUpWithFacebook,
               onPressed: () {
                 // Handle Facebook sign up
               },
@@ -290,7 +291,7 @@ class _SignUpPageState extends State<SignUpPage> {
             SocialLoginButton(
               icon: Icons.alternate_email,
               color: const Color(0xFF1DA1F2),
-              tooltip: 'Sign up with Twitter',
+              tooltip: StringConstants.signUpWithTwitter,
               onPressed: () {
                 // Handle Twitter sign up
               },
@@ -299,7 +300,7 @@ class _SignUpPageState extends State<SignUpPage> {
             SocialLoginButton(
               icon: Icons.apple,
               color: Colors.black,
-              tooltip: 'Sign up with Apple',
+              tooltip: StringConstants.signUpWithApple,
               onPressed: () {
                 // Handle Apple sign up
               },

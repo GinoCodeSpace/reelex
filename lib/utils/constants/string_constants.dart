@@ -44,6 +44,19 @@ class StringConstants {
   static const String resetCodeSent = 'Reset code sent to';
   static const String failedToSendResetCode = 'Failed to send reset code. Please try again.';
   
+  // Sign Up Page
+  static const String signUpTitle = 'Sign Up';
+  static const String pleaseSignUp = 'Please sign up to get started';
+  static const String name = 'NAME';
+  static const String nameHint = 'John doe';
+  static const String retypePassword = 'RE-TYPE PASSWORD';
+  static const String signUpButton = 'SIGN UP';
+  static const String alreadyHaveAccount = 'Already have an account? ';
+  static const String registrationFailed = 'Registration failed. Please check your information.';
+  static const String signUpWithFacebook = 'Sign up with Facebook';
+  static const String signUpWithTwitter = 'Sign up with Twitter';
+  static const String signUpWithApple = 'Sign up with Apple';
+  
   // Locale Display Names (pode ser expandido para suporte a i18n)
   static const Map<String, String> localeDisplayNames = {
     'pt_BR': 'Português',
