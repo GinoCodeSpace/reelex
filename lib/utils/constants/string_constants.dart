@@ -60,6 +60,25 @@ class StringConstants {
   // UI Components
   static const String back = 'Voltar';
   
+  // Form Validation Messages
+  static const String pleaseEnterEmail = 'Please enter your email';
+  static const String pleaseEnterValidEmail = 'Please enter a valid email';
+  static const String pleaseEnterPassword = 'Please enter your password';
+  static const String passwordMinLength = 'Password must be at least 6 characters';
+  static const String pleaseConfirmPassword = 'Please confirm your password';
+  static const String passwordsDoNotMatch = 'Passwords do not match';
+  static const String pleaseEnterPhoneNumber = 'Please enter your phone number';
+  static const String pleaseEnterValidPhoneNumber = 'Please enter a valid phone number';
+  static const String pleaseEnterName = 'Please enter your name';
+  static const String nameOnlyLettersAndSpaces = 'Name can only contain letters and spaces';
+  static const String nameMinLength = 'Name must be at least 2 characters';
+  static const String pleaseEnterUrl = 'Please enter a URL';
+  static const String pleaseEnterValidUrl = 'Please enter a valid URL (starting with http:// or https://)';
+  static const String pleaseEnterAge = 'Please enter your age';
+  static const String pleaseEnterValidNumber = 'Please enter a valid number';
+  static const String pleaseEnterValidAge = 'Please enter a valid age (1-120)';
+  static const String pleaseEnterYour = 'Please enter your';
+  
   // Locale Display Names (pode ser expandido para suporte a i18n)
   static const Map<String, String> localeDisplayNames = {
     'pt_BR': 'Português',

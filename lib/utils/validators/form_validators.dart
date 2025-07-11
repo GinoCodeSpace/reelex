@@ -1,13 +1,15 @@
+import '../constants/string_constants.dart';
+
 /// Validadores de formulário reutilizáveis
 class FormValidators {
   /// Valida endereço de email
   static String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter your email';
+      return StringConstants.pleaseEnterEmail;
     }
     // Regex mais flexível que aceita uma gama maior de emails válidos
     if (!RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$').hasMatch(value)) {
-      return 'Please enter a valid email';
+      return StringConstants.pleaseEnterValidEmail;
     }
     return null;
   }
@@ -15,10 +17,10 @@ class FormValidators {
   /// Valida senha com requisitos mínimos
   static String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter your password';
+      return StringConstants.pleaseEnterPassword;
     }
     if (value.length < 6) {
-      return 'Password must be at least 6 characters';
+      return StringConstants.passwordMinLength;
     }
     return null;
   }
@@ -26,7 +28,7 @@ class FormValidators {
   /// Valida campo obrigatório
   static String? validateRequired(String? value, String fieldName) {
     if (value == null || value.isEmpty) {
-      return 'Please enter your $fieldName';
+      return '${StringConstants.pleaseEnterYour} $fieldName';
     }
     return null;
   }
@@ -34,10 +36,10 @@ class FormValidators {
   /// Valida confirmação de senha
   static String? validatePasswordConfirmation(String? value, String originalPassword) {
     if (value == null || value.isEmpty) {
-      return 'Please confirm your password';
+      return StringConstants.pleaseConfirmPassword;
     }
     if (value != originalPassword) {
-      return 'Passwords do not match';
+      return StringConstants.passwordsDoNotMatch;
     }
     return null;
   }
@@ -45,10 +47,10 @@ class FormValidators {
   /// Valida número de telefone
   static String? validatePhone(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter your phone number';
+      return StringConstants.pleaseEnterPhoneNumber;
     }
     if (!RegExp(r'^[\+]?[1-9][\d]{0,15}\$').hasMatch(value.replaceAll(RegExp(r'[\s\-\(\)]'), ''))) {
-      return 'Please enter a valid phone number';
+      return StringConstants.pleaseEnterValidPhoneNumber;
     }
     return null;
   }
@@ -56,14 +58,14 @@ class FormValidators {
   /// Valida nome (apenas letras e espaços)
   static String? validateName(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter your name';
+      return StringConstants.pleaseEnterName;
     }
     // Regex corrigida para aceitar letras (incluindo acentos), espaços, hífens e apostrofes
     if (!RegExp(r"^[a-zA-ZÀ-ÿ\u00C0-\u017F\s'-]+$").hasMatch(value)) {
-      return 'Name can only contain letters and spaces';
+      return StringConstants.nameOnlyLettersAndSpaces;
     }
     if (value.trim().length < 2) {
-      return 'Name must be at least 2 characters';
+      return StringConstants.nameMinLength;
     }
     return null;
   }
@@ -71,10 +73,10 @@ class FormValidators {
   /// Valida URL
   static String? validateUrl(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter a URL';
+      return StringConstants.pleaseEnterUrl;
     }
     if (!RegExp(r'^https?:\/\/.+').hasMatch(value)) {
-      return 'Please enter a valid URL (starting with http:// or https://)';
+      return StringConstants.pleaseEnterValidUrl;
     }
     return null;
   }
@@ -82,14 +84,14 @@ class FormValidators {
   /// Valida idade (número entre 1 e 120)
   static String? validateAge(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter your age';
+      return StringConstants.pleaseEnterAge;
     }
     final age = int.tryParse(value);
     if (age == null) {
-      return 'Please enter a valid number';
+      return StringConstants.pleaseEnterValidNumber;
     }
     if (age < 1 || age > 120) {
-      return 'Please enter a valid age (1-120)';
+      return StringConstants.pleaseEnterValidAge;
     }
     return null;
   }
