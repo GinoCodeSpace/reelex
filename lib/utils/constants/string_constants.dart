@@ -36,6 +36,14 @@ class StringConstants {
   static const String loginWithTwitter = 'Login with Twitter';
   static const String loginWithApple = 'Login with Apple';
   
+  // Forgot Password Page
+  static const String forgotPasswordTitle = 'Forgot Password';
+  static const String forgotPasswordDescription = 'Please sign in to your existing account';
+  static const String sendCode = 'SEND CODE';
+  static const String rememberPassword = 'Remember your password? ';
+  static const String resetCodeSent = 'Reset code sent to';
+  static const String failedToSendResetCode = 'Failed to send reset code. Please try again.';
+  
   // Locale Display Names (pode ser expandido para suporte a i18n)
   static const Map<String, String> localeDisplayNames = {
     'pt_BR': 'Português',
