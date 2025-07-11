@@ -20,22 +20,24 @@ class HandleRedirect {
       Routes.login,
       Routes.signUp,
       Routes.forgotPassword,
-      Routes.onboarding,
     ];
-    
-    // Se o onboarding não foi completado e não está na rota de onboarding
-    if (!onboardingProvider.isOnboardingCompleted && currentPath != Routes.onboarding) {
-      return Routes.onboarding;
-    }
     
     // Se o usuário não está autenticado e está tentando acessar uma rota protegida
     if (!authProvider.isAuthenticated && !publicRoutes.contains(currentPath)) {
       return Routes.login;
     }
     
-    // Se o usuário está autenticado e está tentando acessar a página de login
-    if (authProvider.isAuthenticated && currentPath == Routes.login) {
-      return Routes.home;
+    // Se o usuário está autenticado
+    if (authProvider.isAuthenticated) {
+      // Se está tentando acessar a página de login, redireciona para home
+      if (currentPath == Routes.login) {
+        return Routes.home;
+      }
+      
+      // Se o onboarding não foi completado e não está na rota de onboarding
+      if (!onboardingProvider.isOnboardingCompleted && currentPath != Routes.onboarding) {
+        return Routes.onboarding;
+      }
     }
     
     // Permite navegação normal
