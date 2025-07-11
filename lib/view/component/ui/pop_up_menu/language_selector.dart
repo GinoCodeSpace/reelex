@@ -12,7 +12,7 @@ class LanguageSelector extends StatelessWidget {
       builder: (context, localeProvider, child) {
         return PopupMenuButton<Locale>(
           icon: Icon(Icons.language, color: colorScheme.onSurface),
-          tooltip: LocaleConstants.languageSelectionTooltip,
+          tooltip: LocaleConstants.languageSelectionTooltip(context),
           color: colorScheme.surface,
           elevation: uiConstants.elevation8,
           shape: RoundedRectangleBorder(

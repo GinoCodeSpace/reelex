@@ -43,6 +43,8 @@ export '../../config/locale_config.dart';
 export '../../providers/register_provider.dart';
 export '../../providers/theme_provider.dart';
 export '../../providers/locale_provider.dart';
+export '../../providers/auth_provider.dart';
+export '../../providers/navigation_provider.dart';
 
 // =============================================================================
 // ROUTING
@@ -76,8 +78,18 @@ export 'package:montreal/utils/constants/string_constants.dart';
 export '../../view/theme/light_theme.dart';
 export '../../view/theme/dark_theme.dart';
 
+// Form Components
+export '../../view/component/ui/form_components/custom_text_field.dart';
+export '../../view/component/ui/form_components/custom_primary_button.dart';
+export '../../view/component/ui/form_components/social_login_button.dart';
+
+// Validators
+export '../validators/form_validators.dart';
+
 // Pages
 export '../../view/page/home_page.dart';
+export '../../view/page/forgot_password_page.dart';
+export '../../view/page/sign_up_page.dart';
 
 // Components - Screens
 export '../../view/component/ui/screen/scaffold_sliver.dart';

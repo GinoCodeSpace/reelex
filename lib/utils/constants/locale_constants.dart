@@ -18,7 +18,13 @@ class LocaleConstants {
       .map((entry) => LocaleData.fromLocale(entry.key, entry.value))
       .toList();
 
-  static String get languageSelectionTooltip => StringConstants.languageSelection;
-  static String get lightModeTooltip => StringConstants.lightMode;
-  static String get darkModeTooltip => StringConstants.darkMode;
+  /// Métodos para obter tooltips localizados (requer BuildContext)
+  static String languageSelectionTooltip(BuildContext context) => StringConstants.languageSelection(context);
+  static String lightModeTooltip(BuildContext context) => StringConstants.lightMode(context);
+  static String darkModeTooltip(BuildContext context) => StringConstants.darkMode(context);
+  
+  /// Métodos para obter tooltips com locale específico (sem BuildContext)
+  static String languageSelectionTooltipWithLocale(Locale locale) => StringConstants.getLocalizedStringWithLocale(locale, 'languageSelection');
+  static String lightModeTooltipWithLocale(Locale locale) => StringConstants.getLocalizedStringWithLocale(locale, 'lightMode');
+  static String darkModeTooltipWithLocale(Locale locale) => StringConstants.getLocalizedStringWithLocale(locale, 'darkMode');
 }
