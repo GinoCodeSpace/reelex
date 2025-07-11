@@ -79,7 +79,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
   void _completeOnboarding() {
     final onboardingProvider = Provider.of<OnboardingProvider>(context, listen: false);
     onboardingProvider.completeOnboarding();
-    context.go(Routes.signUp);
+    context.go(Routes.home);
   }
 
   void _skipOnboarding() {
