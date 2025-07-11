@@ -12,6 +12,7 @@ class HandleRedirect {
 
   String? _redirectBasedOnState(GoRouterState state, BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    final onboardingProvider = Provider.of<OnboardingProvider>(context, listen: false);
     final currentPath = state.uri.path;
     
     // Rotas que não precisam de autenticação
@@ -26,9 +27,17 @@ class HandleRedirect {
       return Routes.login;
     }
     
-    // Se o usuário está autenticado e está tentando acessar a página de login
-    if (authProvider.isAuthenticated && currentPath == Routes.login) {
-      return Routes.home;
+    // Se o usuário está autenticado
+    if (authProvider.isAuthenticated) {
+      // Se está tentando acessar a página de login, redireciona para home
+      if (currentPath == Routes.login) {
+        return Routes.home;
+      }
+      
+      // Se o onboarding não foi completado e não está na rota de onboarding
+      if (!onboardingProvider.isOnboardingCompleted && currentPath != Routes.onboarding) {
+        return Routes.onboarding;
+      }
     }
     
     // Permite navegação normal
