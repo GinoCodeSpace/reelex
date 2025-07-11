@@ -14,6 +14,7 @@ final GoRouter appRouter = GoRouter(
         AppRoute(Routes.login, (state) => LoginPage()),
         AppRoute(Routes.signUp, (state) => SignUpPage()),
         AppRoute(Routes.forgotPassword, (state) => ForgotPasswordPage()),
+        AppRoute(Routes.onboarding, (state) => OnboardingPage()),
       ],
     ),
   ],

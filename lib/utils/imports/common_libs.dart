@@ -45,6 +45,7 @@ export '../../providers/theme_provider.dart';
 export '../../providers/locale_provider.dart';
 export '../../providers/auth_provider.dart';
 export '../../providers/navigation_provider.dart';
+export '../../providers/onboarding_provider.dart';
 
 // =============================================================================
 // ROUTING
@@ -83,6 +84,11 @@ export '../../view/component/ui/form_components/custom_text_field.dart';
 export '../../view/component/ui/form_components/custom_primary_button.dart';
 export '../../view/component/ui/form_components/social_login_button.dart';
 
+// Onboarding Components
+export '../../view/component/ui/onboarding/onboarding_page_item.dart';
+export '../../view/component/ui/onboarding/page_indicator.dart';
+export '../../view/component/ui/onboarding/onboarding_illustrations.dart';
+
 // Validators
 export '../validators/form_validators.dart';
 
@@ -90,6 +96,7 @@ export '../validators/form_validators.dart';
 export '../../view/page/home_page.dart';
 export '../../view/page/forgot_password_page.dart';
 export '../../view/page/sign_up_page.dart';
+export '../../view/page/onboarding_page.dart';
 
 // Components - Screens
 export '../../view/component/ui/screen/scaffold_sliver.dart';

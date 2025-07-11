@@ -81,6 +81,17 @@ class StringConstants {
       'pleaseEnterValidNumber': 'Por favor, digite um número válido',
       'pleaseEnterValidAge': 'Por favor, digite uma idade válida (1-120)',
       'pleaseEnterYour': 'Por favor, digite seu',
+      
+      // Onboarding
+      'onboardingTitle1': 'Todos os seus favoritos',
+      'onboardingDescription1': 'Tenha todas as suas comidas favoritas em um só lugar, você só faz o pedido e nós fazemos o resto',
+      'onboardingTitle2': 'Peça do chef escolhido',
+      'onboardingDescription2': 'Tenha todas as suas comidas favoritas em um só lugar, você só faz o pedido e nós fazemos o resto',
+      'onboardingTitle3': 'Ofertas de entrega grátis',
+      'onboardingDescription3': 'Tenha todas as suas comidas favoritas em um só lugar, você só faz o pedido e nós fazemos o resto',
+      'next': 'PRÓXIMO',
+      'skip': 'Pular',
+      'getStarted': 'COMEÇAR',
     },
     'en_US': {
       // App Bar
@@ -156,6 +167,17 @@ class StringConstants {
       'pleaseEnterValidNumber': 'Please enter a valid number',
       'pleaseEnterValidAge': 'Please enter a valid age (1-120)',
       'pleaseEnterYour': 'Please enter your',
+      
+      // Onboarding
+      'onboardingTitle1': 'All your favorites',
+      'onboardingDescription1': 'Get all your loved foods in one once place, you just place the orer we do the rest',
+      'onboardingTitle2': 'Order from choosen chef',
+      'onboardingDescription2': 'Get all your loved foods in one once place, you just place the orer we do the rest',
+      'onboardingTitle3': 'Free delivery offers',
+      'onboardingDescription3': 'Get all your loved foods in one once place, you just place the orer we do the rest',
+      'next': 'NEXT',
+      'skip': 'Skip',
+      'getStarted': 'GET STARTED',
     },
     'es_MX': {
       // App Bar
@@ -231,6 +253,17 @@ class StringConstants {
       'pleaseEnterValidNumber': 'Por favor, ingresa un número válido',
       'pleaseEnterValidAge': 'Por favor, ingresa una edad válida (1-120)',
       'pleaseEnterYour': 'Por favor, ingresa tu',
+      
+      // Onboarding
+      'onboardingTitle1': 'Todos tus favoritos',
+      'onboardingDescription1': 'Obtén todas tus comidas favoritas en un solo lugar, solo haces el pedido y nosotros hacemos el resto',
+      'onboardingTitle2': 'Pide del chef elegido',
+      'onboardingDescription2': 'Obtén todas tus comidas favoritas en un solo lugar, solo haces el pedido y nosotros hacemos el resto',
+      'onboardingTitle3': 'Ofertas de entrega gratis',
+      'onboardingDescription3': 'Obtén todas tus comidas favoritas en un solo lugar, solo haces el pedido y nosotros hacemos el resto',
+      'next': 'SIGUIENTE',
+      'skip': 'Saltar',
+      'getStarted': 'COMENZAR',
     },
   };
 
@@ -327,6 +360,17 @@ class StringConstants {
   static String pleaseEnterValidNumber(BuildContext context) => getLocalizedString(context, 'pleaseEnterValidNumber');
   static String pleaseEnterValidAge(BuildContext context) => getLocalizedString(context, 'pleaseEnterValidAge');
   static String pleaseEnterYour(BuildContext context) => getLocalizedString(context, 'pleaseEnterYour');
+  
+  // Onboarding
+  static String onboardingTitle1(BuildContext context) => getLocalizedString(context, 'onboardingTitle1');
+  static String onboardingDescription1(BuildContext context) => getLocalizedString(context, 'onboardingDescription1');
+  static String onboardingTitle2(BuildContext context) => getLocalizedString(context, 'onboardingTitle2');
+  static String onboardingDescription2(BuildContext context) => getLocalizedString(context, 'onboardingDescription2');
+  static String onboardingTitle3(BuildContext context) => getLocalizedString(context, 'onboardingTitle3');
+  static String onboardingDescription3(BuildContext context) => getLocalizedString(context, 'onboardingDescription3');
+  static String next(BuildContext context) => getLocalizedString(context, 'next');
+  static String skip(BuildContext context) => getLocalizedString(context, 'skip');
+  static String getStarted(BuildContext context) => getLocalizedString(context, 'getStarted');
   
   // Locale Display Names (pode ser expandido para suporte a i18n)
   static const Map<String, String> localeDisplayNames = {
