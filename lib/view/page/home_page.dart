@@ -6,9 +6,19 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: TextButton(
-        child: Text('Login'),
-        onPressed: () => appRouter.push(Routes.login),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          TextButton(
+            child: Text('Login'),
+            onPressed: () => appRouter.push(Routes.login),
+          ),
+          SizedBox(height: 16),
+          TextButton(
+            child: Text('Sign Up'),
+            onPressed: () => appRouter.push(Routes.signUp),
+          ),
+        ],
       ),
     );
   }

@@ -1,44 +1,48 @@
 import '../../utils/imports/common_libs.dart';
 
-/// Página de login com formulário e opções de autenticação social
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+/// Página de cadastro com formulário de registro
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
   bool _isPasswordVisible = false;
-  bool _rememberMe = false;
+  bool _isConfirmPasswordVisible = false;
   bool _isLoading = false;
 
   final UIConstants _ui = UIConstants();
 
   @override
   void dispose() {
+    _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
-  Future<void> _handleLogin() async {
+  Future<void> _handleSignUp() async {
     if (_formKey.currentState!.validate()) {
       setState(() {
         _isLoading = true;
       });
 
-      // Simulate login process
+      // Simulate sign up process
       await Future.delayed(const Duration(seconds: 2));
 
       setState(() {
         _isLoading = false;
       });
 
-      // Navigate to home page after successful login
+      // Navigate to home page after successful sign up
       if (mounted) {
         context.go(Routes.home);
       }
@@ -60,30 +64,25 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(height: _ui.spacing20),
+                SizedBox(height: _ui.spacing12),
 
                 // Header Section
                 _buildHeader(isDark),
 
-                SizedBox(height: _ui.spacing12),
+                SizedBox(height: _ui.spacing8),
 
-                // Login Form
-                _buildLoginForm(theme, isDark),
+                // Sign Up Form
+                _buildSignUpForm(theme, isDark),
 
                 SizedBox(height: _ui.spacing8),
 
-                // Remember Me & Forgot Password
-                _buildRememberAndForgot(theme),
-
-                SizedBox(height: _ui.spacing8),
-
-                // Login Button
-                _buildLoginButton(theme),
+                // Sign Up Button
+                _buildSignUpButton(theme),
 
                 SizedBox(height: _ui.spacing6),
 
-                // Sign Up Link
-                _buildSignUpLink(theme),
+                // Login Link
+                _buildLoginLink(theme),
 
                 SizedBox(height: _ui.spacing6),
 
@@ -101,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
     return Column(
       children: [
         Text(
-          'Log In',
+          'Sign Up',
           style: GoogleFonts.inter(
             fontSize: 32,
             fontWeight: FontWeight.bold,
@@ -110,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         SizedBox(height: _ui.spacing2),
         Text(
-          'Please sign in to your existing account',
+          'Please sign up to get started',
           style: GoogleFonts.inter(
             fontSize: 16,
             color: _ui.getColorByTheme(
@@ -124,10 +123,21 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _buildLoginForm(ThemeData theme, bool isDark) {
+  Widget _buildSignUpForm(ThemeData theme, bool isDark) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // Name Field
+        CustomTextField(
+          label: 'NAME',
+          hintText: 'John doe',
+          controller: _nameController,
+          keyboardType: TextInputType.name,
+          validator: FormValidators.validateName,
+        ),
+
+        SizedBox(height: _ui.spacing5),
+
         // Email Field
         CustomTextField(
           label: 'EMAIL',
@@ -162,69 +172,53 @@ class _LoginPageState extends State<LoginPage> {
             },
           ),
         ),
-      ],
-    );
-  }
 
-  Widget _buildRememberAndForgot(ThemeData theme) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          children: [
-            Checkbox(
-              value: _rememberMe,
-              onChanged: (value) {
-                setState(() {
-                  _rememberMe = value ?? false;
-                });
-              },
-              activeColor: _ui.getPrimaryColor(
-                theme.brightness == Brightness.dark,
+        SizedBox(height: _ui.spacing5),
+
+        // Confirm Password Field
+        CustomTextField(
+          label: 'RE-TYPE PASSWORD',
+          hintText: '••••••••••••',
+          controller: _confirmPasswordController,
+          obscureText: !_isConfirmPasswordVisible,
+          validator: (value) => FormValidators.validatePasswordConfirmation(
+            value,
+            _passwordController.text,
+          ),
+          suffixIcon: IconButton(
+            icon: Icon(
+              _isConfirmPasswordVisible ? Icons.visibility : Icons.visibility_off,
+              color: _ui.getColorByTheme(
+                isDark: isDark,
+                lightColor: _ui.lightOnSurfaceVariant,
+                darkColor: _ui.darkOnSurfaceVariant,
               ),
             ),
-            Text(
-              'Remember me',
-              style: GoogleFonts.inter(
-                fontSize: 14,
-                color: _ui.getOnSurfaceColor(
-                  theme.brightness == Brightness.dark,
-                ),
-              ),
-            ),
-          ],
-        ),
-        TextButton(
-          onPressed: () {
-            context.push(Routes.forgotPassword);
-          },
-          child: Text(
-            'Forgot Password',
-            style: GoogleFonts.inter(
-              fontSize: 14,
-              color: _ui.getPrimaryColor(theme.brightness == Brightness.dark),
-              fontWeight: FontWeight.w500,
-            ),
+            onPressed: () {
+              setState(() {
+                _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
+              });
+            },
           ),
         ),
       ],
     );
   }
 
-  Widget _buildLoginButton(ThemeData theme) {
+  Widget _buildSignUpButton(ThemeData theme) {
     return CustomPrimaryButton(
-      text: 'LOG IN',
-      onPressed: _handleLogin,
+      text: 'SIGN UP',
+      onPressed: _handleSignUp,
       isLoading: _isLoading,
     );
   }
 
-  Widget _buildSignUpLink(ThemeData theme) {
+  Widget _buildLoginLink(ThemeData theme) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          "Don't have an account? ",
+          'Already have an account? ',
           style: GoogleFonts.inter(
             fontSize: 14,
             color: _ui.getColorByTheme(
@@ -236,7 +230,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         TextButton(
           onPressed: () {
-            context.push(Routes.signUp);
+            context.go(Routes.login);
           },
           style: TextButton.styleFrom(
             padding: EdgeInsets.zero,
@@ -244,7 +238,7 @@ class _LoginPageState extends State<LoginPage> {
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           ),
           child: Text(
-            'SIGN UP',
+            'LOG IN',
             style: GoogleFonts.inter(
               fontSize: 14,
               color: _ui.getPrimaryColor(theme.brightness == Brightness.dark),
@@ -277,27 +271,27 @@ class _LoginPageState extends State<LoginPage> {
             SocialLoginButton(
               icon: Icons.facebook,
               color: const Color(0xFF1877F2),
-              tooltip: 'Login with Facebook',
+              tooltip: 'Sign up with Facebook',
               onPressed: () {
-                // Handle Facebook login
+                // Handle Facebook sign up
               },
             ),
             SizedBox(width: _ui.spacing4),
             SocialLoginButton(
               icon: Icons.alternate_email,
               color: const Color(0xFF1DA1F2),
-              tooltip: 'Login with Twitter',
+              tooltip: 'Sign up with Twitter',
               onPressed: () {
-                // Handle Twitter login
+                // Handle Twitter sign up
               },
             ),
             SizedBox(width: _ui.spacing4),
             SocialLoginButton(
               icon: Icons.apple,
               color: Colors.black,
-              tooltip: 'Login with Apple',
+              tooltip: 'Sign up with Apple',
               onPressed: () {
-                // Handle Apple login
+                // Handle Apple sign up
               },
             ),
           ],
