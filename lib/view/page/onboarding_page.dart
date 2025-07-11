@@ -43,9 +43,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
     super.dispose();
   }
 
-  void _nextPage() {
+  void _nextPage(List<OnboardingData> onboardingData) {
     final onboardingProvider = Provider.of<OnboardingProvider>(context, listen: false);
-    final onboardingData = _getOnboardingData();
     
     if (onboardingProvider.currentPageIndex < onboardingData.length - 1) {
       onboardingProvider.nextPage();
@@ -198,7 +197,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 text: isLastPage 
                     ? StringConstants.getStarted(context)
                     : StringConstants.next(context),
-                onPressed: _nextPage,
+                onPressed: () => _nextPage(onboardingData),
                 width: 160,
               ),
             ],
