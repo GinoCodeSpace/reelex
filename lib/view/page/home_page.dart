@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
               IconButton(
                 icon: const Icon(Icons.logout),
                 onPressed: () {
-                  authProvider.logout();
+                  authProvider.logout(context);
                   context.go(Routes.login);
                 },
                 tooltip: 'Logout',
@@ -25,11 +25,7 @@ class HomePage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(
-                  Icons.home,
-                  size: 80,
-                  color: Colors.blue,
-                ),
+                const Icon(Icons.home, size: 80, color: Colors.blue),
                 const SizedBox(height: 24),
                 Text(
                   'Bem-vindo!',

@@ -68,9 +68,16 @@ class AuthProvider extends ChangeNotifier {
   }
 
   /// Realiza o logout do usuário
-  void logout() {
+  void logout(BuildContext? context) {
     _isAuthenticated = false;
     _userEmail = null;
+    
+    // Limpa o stack de navegação se o contexto estiver disponível
+    if (context != null) {
+      final navigationProvider = Provider.of<NavigationProvider>(context, listen: false);
+      navigationProvider.resetToRoute(Routes.login);
+    }
+    
     notifyListeners();
   }
 

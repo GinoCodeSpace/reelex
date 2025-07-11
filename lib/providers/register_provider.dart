@@ -8,6 +8,7 @@ class RegisterProvider {
       ChangeNotifierProvider(create: (context) => ThemeProvider()),
       ChangeNotifierProvider(create: (context) => LocaleProvider()),
       ChangeNotifierProvider(create: (context) => AuthProvider()),
+      ChangeNotifierProvider(create: (context) => NavigationProvider()),
     ];
   }
 }

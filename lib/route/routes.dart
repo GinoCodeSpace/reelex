@@ -11,6 +11,7 @@ class Routes {
     RouteInfo(name: 'Login', path: '/login'),
     RouteInfo(name: 'SignUp', path: '/sign-up'),
     RouteInfo(name: 'ForgotPassword', path: '/forgot-password'),
+    RouteInfo(name: 'Example', path: '/example'),
   ];
 
   // Helper method to get route by name
@@ -31,4 +32,6 @@ class Routes {
       routes.firstWhere((route) => route.name == 'SignUp').path;
   static String get forgotPassword =>
       routes.firstWhere((route) => route.name == 'ForgotPassword').path;
+  static String get example =>
+      routes.firstWhere((route) => route.name == 'Example').path;
 }

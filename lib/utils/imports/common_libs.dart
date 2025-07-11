@@ -44,6 +44,7 @@ export '../../providers/register_provider.dart';
 export '../../providers/theme_provider.dart';
 export '../../providers/locale_provider.dart';
 export '../../providers/auth_provider.dart';
+export '../../providers/navigation_provider.dart';
 
 // =============================================================================
 // ROUTING
