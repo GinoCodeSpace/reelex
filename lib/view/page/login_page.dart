@@ -1,5 +1,6 @@
 import '../../utils/imports/common_libs.dart';
 
+/// Página de login com formulário e opções de autenticação social
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -48,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
-    
+
     return Scaffold(
       backgroundColor: _ui.getSurfaceColor(isDark),
       body: SafeArea(
@@ -60,32 +61,32 @@ class _LoginPageState extends State<LoginPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 SizedBox(height: _ui.spacing20),
-                
+
                 // Header Section
                 _buildHeader(isDark),
-                
+
                 SizedBox(height: _ui.spacing12),
-                
+
                 // Login Form
                 _buildLoginForm(theme, isDark),
-                
+
                 SizedBox(height: _ui.spacing8),
-                
+
                 // Remember Me & Forgot Password
                 _buildRememberAndForgot(theme),
-                
+
                 SizedBox(height: _ui.spacing8),
-                
+
                 // Login Button
                 _buildLoginButton(theme),
-                
+
                 SizedBox(height: _ui.spacing6),
-                
+
                 // Sign Up Link
                 _buildSignUpLink(theme),
-                
+
                 SizedBox(height: _ui.spacing6),
-                
+
                 // Social Login
                 _buildSocialLogin(theme, isDark),
               ],
@@ -128,118 +129,38 @@ class _LoginPageState extends State<LoginPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Email Field
-        Text(
-          'EMAIL',
-          style: GoogleFonts.inter(
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-            letterSpacing: 0.5,
-            color: _ui.getOnSurfaceColor(isDark),
-          ),
-        ),
-        SizedBox(height: _ui.spacing2),
-        TextFormField(
+        CustomTextField(
+          label: 'EMAIL',
+          hintText: 'example@gmail.com',
           controller: _emailController,
           keyboardType: TextInputType.emailAddress,
-          decoration: InputDecoration(
-            hintText: 'example@gmail.com',
-            hintStyle: GoogleFonts.inter(
-              color: _ui.getColorByTheme(
-                isDark: isDark,
-                lightColor: _ui.lightOnSurfaceVariant,
-                darkColor: _ui.darkOnSurfaceVariant,
-              ),
-            ),
-            filled: true,
-            fillColor: _ui.getColorByTheme(
-              isDark: isDark,
-              lightColor: _ui.lightSurfaceContainerLow,
-              darkColor: _ui.darkSurfaceContainer,
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(_ui.radius12),
-              borderSide: BorderSide.none,
-            ),
-            contentPadding: EdgeInsets.symmetric(
-              horizontal: _ui.spacing4,
-              vertical: _ui.spacing4,
-            ),
-          ),
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter your email';
-            }
-            if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}\$').hasMatch(value)) {
-              return 'Please enter a valid email';
-            }
-            return null;
-          },
+          validator: FormValidators.validateEmail,
         ),
-        
+
         SizedBox(height: _ui.spacing5),
-        
+
         // Password Field
-        Text(
-          'PASSWORD',
-          style: GoogleFonts.inter(
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-            letterSpacing: 0.5,
-            color: _ui.getOnSurfaceColor(isDark),
-          ),
-        ),
-        SizedBox(height: _ui.spacing2),
-        TextFormField(
+        CustomTextField(
+          label: 'PASSWORD',
+          hintText: '••••••••••••',
           controller: _passwordController,
           obscureText: !_isPasswordVisible,
-          decoration: InputDecoration(
-            hintText: '••••••••••••',
-            hintStyle: GoogleFonts.inter(
+          validator: FormValidators.validatePassword,
+          suffixIcon: IconButton(
+            icon: Icon(
+              _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
               color: _ui.getColorByTheme(
                 isDark: isDark,
                 lightColor: _ui.lightOnSurfaceVariant,
                 darkColor: _ui.darkOnSurfaceVariant,
               ),
             ),
-            filled: true,
-            fillColor: _ui.getColorByTheme(
-              isDark: isDark,
-              lightColor: _ui.lightSurfaceContainerLow,
-              darkColor: _ui.darkSurfaceContainer,
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(_ui.radius12),
-              borderSide: BorderSide.none,
-            ),
-            contentPadding: EdgeInsets.symmetric(
-              horizontal: _ui.spacing4,
-              vertical: _ui.spacing4,
-            ),
-            suffixIcon: IconButton(
-              icon: Icon(
-                _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                color: _ui.getColorByTheme(
-                  isDark: isDark,
-                  lightColor: _ui.lightOnSurfaceVariant,
-                  darkColor: _ui.darkOnSurfaceVariant,
-                ),
-              ),
-              onPressed: () {
-                setState(() {
-                  _isPasswordVisible = !_isPasswordVisible;
-                });
-              },
-            ),
+            onPressed: () {
+              setState(() {
+                _isPasswordVisible = !_isPasswordVisible;
+              });
+            },
           ),
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter your password';
-            }
-            if (value.length < 6) {
-              return 'Password must be at least 6 characters';
-            }
-            return null;
-          },
         ),
       ],
     );
@@ -258,13 +179,17 @@ class _LoginPageState extends State<LoginPage> {
                   _rememberMe = value ?? false;
                 });
               },
-              activeColor: _ui.getPrimaryColor(theme.brightness == Brightness.dark),
+              activeColor: _ui.getPrimaryColor(
+                theme.brightness == Brightness.dark,
+              ),
             ),
             Text(
               'Remember me',
               style: GoogleFonts.inter(
                 fontSize: 14,
-                color: _ui.getOnSurfaceColor(theme.brightness == Brightness.dark),
+                color: _ui.getOnSurfaceColor(
+                  theme.brightness == Brightness.dark,
+                ),
               ),
             ),
           ],
@@ -287,46 +212,10 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _buildLoginButton(ThemeData theme) {
-    return SizedBox(
-      height: 56,
-      child: ElevatedButton(
-        onPressed: _isLoading ? null : _handleLogin,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: _ui.getPrimaryColor(theme.brightness == Brightness.dark),
-          foregroundColor: _ui.getColorByTheme(
-            isDark: theme.brightness == Brightness.dark,
-            lightColor: _ui.lightOnPrimary,
-            darkColor: _ui.darkOnPrimary,
-          ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(_ui.radius12),
-          ),
-          elevation: 0,
-        ),
-        child: _isLoading
-            ? SizedBox(
-                height: 20,
-                width: 20,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    _ui.getColorByTheme(
-                      isDark: theme.brightness == Brightness.dark,
-                      lightColor: _ui.lightOnPrimary,
-                      darkColor: _ui.darkOnPrimary,
-                    ),
-                  ),
-                ),
-              )
-            : Text(
-                'LOG IN',
-                style: GoogleFonts.inter(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: 0.5,
-                ),
-              ),
-      ),
+    return CustomPrimaryButton(
+      text: 'LOG IN',
+      onPressed: _handleLogin,
+      isLoading: _isLoading,
     );
   }
 
@@ -385,25 +274,28 @@ class _LoginPageState extends State<LoginPage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _buildSocialButton(
+            SocialLoginButton(
               icon: Icons.facebook,
               color: const Color(0xFF1877F2),
+              tooltip: 'Login with Facebook',
               onPressed: () {
                 // Handle Facebook login
               },
             ),
             SizedBox(width: _ui.spacing4),
-            _buildSocialButton(
+            SocialLoginButton(
               icon: Icons.alternate_email,
               color: const Color(0xFF1DA1F2),
+              tooltip: 'Login with Twitter',
               onPressed: () {
                 // Handle Twitter login
               },
             ),
             SizedBox(width: _ui.spacing4),
-            _buildSocialButton(
+            SocialLoginButton(
               icon: Icons.apple,
-              color: isDark ? Colors.white : Colors.black,
+              color: Colors.black,
+              tooltip: 'Login with Apple',
               onPressed: () {
                 // Handle Apple login
               },
@@ -411,29 +303,6 @@ class _LoginPageState extends State<LoginPage> {
           ],
         ),
       ],
-    );
-  }
-
-  Widget _buildSocialButton({
-    required IconData icon,
-    required Color color,
-    required VoidCallback onPressed,
-  }) {
-    return Container(
-      width: 56,
-      height: 56,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: color,
-      ),
-      child: IconButton(
-        icon: Icon(
-          icon,
-          color: Colors.white,
-          size: 24,
-        ),
-        onPressed: onPressed,
-      ),
     );
   }
 }

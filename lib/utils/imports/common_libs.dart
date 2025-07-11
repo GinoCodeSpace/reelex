@@ -76,6 +76,9 @@ export 'package:montreal/utils/constants/string_constants.dart';
 export '../../view/theme/light_theme.dart';
 export '../../view/theme/dark_theme.dart';
 
+// Form Components
+export '../../view/component/form_components.dart';
+
 // Pages
 export '../../view/page/home_page.dart';
 
