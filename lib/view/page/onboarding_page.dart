@@ -11,37 +11,30 @@ class OnboardingPage extends StatefulWidget {
 class _OnboardingPageState extends State<OnboardingPage> {
   final PageController _pageController = PageController();
   final UIConstants _ui = UIConstants();
-  
-  final List<OnboardingData> _onboardingData = [];
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _initializeOnboardingData();
-    });
   }
 
-  void _initializeOnboardingData() {
-    setState(() {
-      _onboardingData.addAll([
-        OnboardingData(
-          title: StringConstants.onboardingTitle1(context),
-          description: StringConstants.onboardingDescription1(context),
-          illustration: OnboardingIllustrations.favorites,
-        ),
-        OnboardingData(
-          title: StringConstants.onboardingTitle2(context),
-          description: StringConstants.onboardingDescription2(context),
-          illustration: OnboardingIllustrations.chef,
-        ),
-        OnboardingData(
-          title: StringConstants.onboardingTitle3(context),
-          description: StringConstants.onboardingDescription3(context),
-          illustration: OnboardingIllustrations.delivery,
-        ),
-      ]);
-    });
+  List<OnboardingData> _getOnboardingData() {
+    return [
+      OnboardingData(
+        title: StringConstants.onboardingTitle1(context),
+        description: StringConstants.onboardingDescription1(context),
+        illustration: OnboardingIllustrations.favorites,
+      ),
+      OnboardingData(
+        title: StringConstants.onboardingTitle2(context),
+        description: StringConstants.onboardingDescription2(context),
+        illustration: OnboardingIllustrations.chef,
+      ),
+      OnboardingData(
+        title: StringConstants.onboardingTitle3(context),
+        description: StringConstants.onboardingDescription3(context),
+        illustration: OnboardingIllustrations.delivery,
+      ),
+    ];
   }
 
   @override
@@ -52,8 +45,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   void _nextPage() {
     final onboardingProvider = Provider.of<OnboardingProvider>(context, listen: false);
+    final onboardingData = _getOnboardingData();
     
-    if (onboardingProvider.currentPageIndex < _onboardingData.length - 1) {
+    if (onboardingProvider.currentPageIndex < onboardingData.length - 1) {
       onboardingProvider.nextPage();
       _pageController.nextPage(
         duration: const Duration(milliseconds: 300),
@@ -91,18 +85,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
 
-    if (_onboardingData.isEmpty) {
-      return Scaffold(
-        backgroundColor: _ui.getSurfaceColor(isDark),
-        body: const Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
-    }
-
-    return Consumer<OnboardingProvider>(
-      builder: (context, onboardingProvider, child) {
-        final isLastPage = onboardingProvider.currentPageIndex == _onboardingData.length - 1;
+    return Consumer2<OnboardingProvider, LocaleProvider>(
+      builder: (context, onboardingProvider, localeProvider, child) {
+        final onboardingData = _getOnboardingData();
+        final isLastPage = onboardingProvider.currentPageIndex == onboardingData.length - 1;
         
         return Scaffold(
           backgroundColor: _ui.getSurfaceColor(isDark),
@@ -119,9 +105,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     onPageChanged: (index) {
                       onboardingProvider.setCurrentPage(index);
                     },
-                    itemCount: _onboardingData.length,
+                    itemCount: onboardingData.length,
                     itemBuilder: (context, index) {
-                      final data = _onboardingData[index];
+                      final data = onboardingData[index];
                       return OnboardingPageItem(
                         title: data.title,
                         description: data.description,
@@ -132,7 +118,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 ),
                 
                 // Footer com indicadores e botões
-                _buildFooter(onboardingProvider, isLastPage),
+                _buildFooter(onboardingProvider, isLastPage, onboardingData),
               ],
             ),
           ),
@@ -167,7 +153,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
     );
   }
 
-  Widget _buildFooter(OnboardingProvider onboardingProvider, bool isLastPage) {
+  Widget _buildFooter(OnboardingProvider onboardingProvider, bool isLastPage, List<OnboardingData> onboardingData) {
     return Padding(
       padding: EdgeInsets.all(_ui.spacing6),
       child: Column(
@@ -175,7 +161,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
           // Indicador de páginas
           PageIndicator(
             currentPage: onboardingProvider.currentPageIndex,
-            totalPages: _onboardingData.length,
+            totalPages: onboardingData.length,
           ),
           
           SizedBox(height: _ui.spacing8),

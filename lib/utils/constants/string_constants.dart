@@ -269,7 +269,7 @@ class StringConstants {
 
   /// Método para obter string localizada baseada no contexto atual
   static String getLocalizedString(BuildContext context, String key) {
-    final localeProvider = Provider.of<LocaleProvider>(context, listen: false);
+    final localeProvider = Provider.of<LocaleProvider>(context, listen: true);
     final localeKey = '${localeProvider.currentLocale.languageCode}_${localeProvider.currentLocale.countryCode}';
     
     return _localizedStrings[localeKey]?[key] ?? 
