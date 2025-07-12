@@ -401,6 +401,9 @@ class UIConstants {
    double productCardMaxWidth = 300.0;
    double productCardDesktopAspectRatio = 0.8;
    double productCardMobileAspectRatio = 1.2;
+   double productCardDesktopBreakpoint = 600.0;
+   double productCardMinWidth = 200.0;
+   double productCardDesktopWidthRatio = 0.3;
 
   // ==========================================================================
   // UTILITY METHODS
