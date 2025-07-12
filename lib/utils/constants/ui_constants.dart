@@ -405,6 +405,31 @@ class UIConstants {
    double productCardMinWidth = 200.0;
    double productCardDesktopWidthRatio = 0.22;
 
+  // Restaurant card constants
+   static const double restaurantCardImageHeight = 160.0;
+   static const double restaurantCardIconSize = 50.0;
+   static const double restaurantCardStatusIconSize = 14.0;
+   static const double restaurantCardRatingIconSize = 14.0;
+   static const double restaurantCardTimeIconSize = 16.0;
+   static const double restaurantCardDeliveryIconSize = 16.0;
+   static const double restaurantCardStatusFontSize = 12.0;
+   static const double restaurantCardRatingFontSize = 12.0;
+   static const double restaurantCardNameFontSize = 18.0;
+   static const double restaurantCardDescriptionFontSize = 14.0;
+   static const double restaurantCardInfoFontSize = 12.0;
+   static const double restaurantCardMinOrderFontSize = 12.0;
+   static const double restaurantCardTagFontSize = 10.0;
+   static const FontWeight restaurantCardStatusFontWeight = FontWeight.w500;
+   static const FontWeight restaurantCardRatingFontWeight = FontWeight.w500;
+   static const FontWeight restaurantCardNameFontWeight = FontWeight.bold;
+   static const FontWeight restaurantCardTagFontWeight = FontWeight.w500;
+   static const String restaurantCardFontFamily = 'SanFranciscoPro';
+   Color restaurantCardStatusOpenColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightTertiary, darkColor: darkTertiary);
+   Color restaurantCardStatusClosedColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightError, darkColor: darkError);
+   Color restaurantCardStatusTextColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnTertiary, darkColor: darkOnTertiary);
+   Color restaurantCardRatingIconColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: Color(0xFFFFC107), darkColor: Color(0xFFFFC107));
+   Color restaurantCardRatingTextColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnPrimary, darkColor: darkOnPrimary);
+
   // ==========================================================================
   // UTILITY METHODS
   // ==========================================================================
