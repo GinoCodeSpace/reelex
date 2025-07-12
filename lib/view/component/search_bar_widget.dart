@@ -46,8 +46,8 @@ class SearchBarWidget extends StatelessWidget {
               lightColor: ui.lightOnSurfaceVariant,
               darkColor: ui.darkOnSurfaceVariant,
             ),
-            fontSize: 14,
-            fontFamily: 'SanFranciscoPro',
+            fontSize: UIConstants.searchBarFontSize,
+            fontFamily: UIConstants.searchBarFontFamily,
           ),
           prefixIcon: Icon(
             Icons.search,
@@ -56,7 +56,7 @@ class SearchBarWidget extends StatelessWidget {
               lightColor: ui.lightOnSurfaceVariant,
               darkColor: ui.darkOnSurfaceVariant,
             ),
-            size: 20,
+            size: UIConstants.searchBarIconSize,
           ),
           suffixIcon: controller.text.isNotEmpty
               ? IconButton(
@@ -67,7 +67,7 @@ class SearchBarWidget extends StatelessWidget {
                       lightColor: ui.lightOnSurfaceVariant,
                       darkColor: ui.darkOnSurfaceVariant,
                     ),
-                    size: 20,
+                    size: UIConstants.searchBarIconSize,
                   ),
                   onPressed: () {
                     controller.clear();
@@ -82,8 +82,8 @@ class SearchBarWidget extends StatelessWidget {
           ),
         ),
         style: TextStyle(
-          fontSize: 14,
-          fontFamily: 'SanFranciscoPro',
+          fontSize: UIConstants.searchBarFontSize,
+          fontFamily: UIConstants.searchBarFontFamily,
           color: ui.getColorByTheme(
             isDark: isDark,
             lightColor: ui.lightOnSurface,

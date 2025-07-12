@@ -405,6 +405,11 @@ class UIConstants {
    double productCardMinWidth = 200.0;
    double productCardDesktopWidthRatio = 0.22;
 
+  // Search Bar Constants
+  static const double searchBarFontSize = 14.0;
+  static const double searchBarIconSize = 20.0;
+  static const String searchBarFontFamily = 'SanFranciscoPro';
+
   // Restaurant card constants
    static const double restaurantCardImageHeight = 160.0;
    static const double restaurantCardIconSize = 50.0;
