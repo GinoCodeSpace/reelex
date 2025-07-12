@@ -26,12 +26,12 @@ class OnboardingPageItem extends StatelessWidget {
         children: [
           // Ilustração
           Expanded(
-            flex: 3,
+            flex: ui.onboardingIllustrationFlex,
             child: Center(
               child: Container(
-                constraints: const BoxConstraints(
-                  maxWidth: 300,
-                  maxHeight: 300,
+                constraints: BoxConstraints(
+                  maxWidth: ui.onboardingIllustrationMaxSize,
+                  maxHeight: ui.onboardingIllustrationMaxSize,
                 ),
                 child: illustration,
               ),
@@ -44,9 +44,9 @@ class OnboardingPageItem extends StatelessWidget {
           Text(
             title,
             style: TextStyle(
-              fontSize: 28,
+              fontSize: ui.onboardingTitleFontSize,
               fontWeight: FontWeight.bold,
-              fontFamily: 'SanFranciscoPro',
+              fontFamily: ui.onboardingFontFamily,
               color: ui.getColorByTheme(
                 isDark: isDark,
                 lightColor: ui.lightOnSurface,
@@ -64,14 +64,14 @@ class OnboardingPageItem extends StatelessWidget {
             child: Text(
               description,
               style: TextStyle(
-                fontSize: 16,
-                fontFamily: 'SanFranciscoPro',
+                fontSize: ui.onboardingDescriptionFontSize,
+                fontFamily: ui.onboardingFontFamily,
                 color: ui.getColorByTheme(
                   isDark: isDark,
                   lightColor: ui.lightOnSurfaceVariant,
                   darkColor: ui.darkOnSurfaceVariant,
                 ),
-                height: 1.5,
+                height: ui.onboardingDescriptionLineHeight,
               ),
               textAlign: TextAlign.center,
             ),

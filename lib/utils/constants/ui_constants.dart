@@ -297,6 +297,14 @@ class UIConstants {
   
   // Text sizes for onboarding
    double onboardingFreeTextSize = 10.0;
+   double onboardingTitleFontSize = 28.0;
+   double onboardingDescriptionFontSize = 16.0;
+
+  // Onboarding page item constants
+   double onboardingIllustrationMaxSize = 300.0;
+   int onboardingIllustrationFlex = 3;
+   String onboardingFontFamily = 'SanFranciscoPro';
+   double onboardingDescriptionLineHeight = 1.5;
 
   // ==========================================================================
   // UTILITY METHODS
