@@ -10,6 +10,11 @@ final GoRouter appRouter = GoRouter(
       },
       routes: [
         AppRoute(Routes.home, (state) => HomePage()),
+        AppRoute(Routes.login, (state) => LoginPage()),
+        AppRoute(Routes.signUp, (state) => SignUpPage()),
+        AppRoute(Routes.forgotPassword, (state) => ForgotPasswordPage()),
+        AppRoute(Routes.onboarding, (state) => OnboardingPage()),
+        AppRoute(Routes.orders, (state) => OrdersPage()),
       ],
     ),
   ],
