@@ -43,10 +43,10 @@ class CustomTextField extends StatelessWidget {
         Text(
           label,
           style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-            letterSpacing: 0.5,
-            fontFamily: 'SanFranciscoPro',
+            fontSize: ui.textFieldLabelFontSize,
+            fontWeight: ui.textFieldLabelFontWeight,
+            letterSpacing: ui.textFieldLabelLetterSpacing,
+            fontFamily: ui.textFieldFontFamily,
             color: ui.getOnSurfaceColor(isDark),
           ),
         ),
@@ -63,7 +63,7 @@ class CustomTextField extends StatelessWidget {
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: TextStyle(
-              fontFamily: 'SanFranciscoPro',
+              fontFamily: ui.textFieldFontFamily,
               color: ui.getColorByTheme(
                 isDark: isDark,
                 lightColor: ui.lightOnSurfaceVariant,
@@ -88,7 +88,7 @@ class CustomTextField extends StatelessWidget {
               borderRadius: BorderRadius.circular(ui.radius12),
               borderSide: BorderSide(
                 color: ui.getPrimaryColor(isDark),
-                width: 2,
+                width: ui.textFieldFocusedBorderWidth,
               ),
             ),
             errorBorder: OutlineInputBorder(
@@ -99,7 +99,7 @@ class CustomTextField extends StatelessWidget {
                   lightColor: ui.lightError,
                   darkColor: ui.darkError,
                 ),
-                width: 1,
+                width: ui.textFieldErrorBorderWidth,
               ),
             ),
             contentPadding: EdgeInsets.symmetric(

@@ -323,6 +323,14 @@ class UIConstants {
    double primaryButtonLetterSpacing = 0.5;
    double primaryButtonDisabledAlpha = 0.6;
 
+  // Text field constants
+   double textFieldLabelFontSize = 12.0;
+   FontWeight textFieldLabelFontWeight = FontWeight.w600;
+   double textFieldLabelLetterSpacing = 0.5;
+   String textFieldFontFamily = 'SanFranciscoPro';
+   double textFieldFocusedBorderWidth = 2.0;
+   double textFieldErrorBorderWidth = 1.0;
+
   // ==========================================================================
   // UTILITY METHODS
   // ==========================================================================
