@@ -18,7 +18,21 @@ class ProductCard extends StatelessWidget {
         );
         final quantity = cartProvider.getQuantity(product.id);
 
-        return Card(
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            final isDesktop = constraints.maxWidth > 600;
+            final cardWidth = isDesktop 
+                ? ui.productCardMaxWidth.clamp(200.0, constraints.maxWidth * 0.3)
+                : constraints.maxWidth;
+            final aspectRatio = isDesktop 
+                ? ui.productCardDesktopAspectRatio 
+                : ui.productCardMobileAspectRatio;
+
+            return SizedBox(
+              width: cardWidth,
+              child: AspectRatio(
+                aspectRatio: aspectRatio,
+                child: Card(
           elevation: ui.productCardElevation,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(ui.productCardBorderRadius),
@@ -256,6 +270,10 @@ class ProductCard extends StatelessWidget {
               ),
             ],
           ),
+                ),
+              ),
+            );
+          },
         );
       },
     );
