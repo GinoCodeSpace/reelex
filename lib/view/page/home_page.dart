@@ -115,7 +115,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           children: [
                             Icon(
                               Icons.error_outline,
-                              size: UIConstants.homeErrorIconSize,
+                              size: uiConstants.homeErrorIconSize,
                               color: ui.homeErrorIconColor(isDark),
                             ),
                             const SizedBox(height: 16),
@@ -167,14 +167,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           children: [
             Icon(
               Icons.restaurant,
-              size: UIConstants.homeEmptyIconSize.toDouble(),
+              size: uiConstants.homeEmptyIconSize.toDouble(),
               color: ui.homeEmptyIconColor(isDark),
             ),
             const SizedBox(height: 16),
             Text(
               'Nenhum restaurante encontrado',
               style: TextStyle(
-                fontSize: UIConstants.homeEmptyTextFontSize,
+                fontSize: uiConstants.homeEmptyTextFontSize,
                 color: ui.homeEmptyTextColor(isDark),
               ),
             ),
@@ -204,7 +204,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         // Filtros de categoria
         if (productsProvider.categories.isNotEmpty)
           Container(
-            height: UIConstants.homeCategoryFilterHeight,
+            height: uiConstants.homeCategoryFilterHeight,
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -257,14 +257,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           children: [
             Icon(
               Icons.fastfood,
-              size: UIConstants.homeEmptyIconSize.toDouble(),
+              size: uiConstants.homeEmptyIconSize.toDouble(),
               color: ui.homeEmptyIconColor(isDark),
             ),
             const SizedBox(height: 16),
             Text(
               'Nenhum produto encontrado',
               style: TextStyle(
-                fontSize: UIConstants.homeEmptyTextFontSize,
+                fontSize: uiConstants.homeEmptyTextFontSize,
                 color: ui.homeEmptyTextColor(isDark),
               ),
             ),
@@ -278,10 +278,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       child: GridView.builder(
         padding: const EdgeInsets.all(16),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: UIConstants.homeProductGridCrossAxisCount,
-          childAspectRatio: UIConstants.homeProductGridAspectRatio,
-          crossAxisSpacing: UIConstants.homeProductGridSpacing,
-          mainAxisSpacing: UIConstants.homeProductGridSpacing,
+          crossAxisCount: uiConstants.homeProductGridCrossAxisCount,
+          childAspectRatio: uiConstants.homeProductGridAspectRatio,
+          crossAxisSpacing: uiConstants.homeProductGridSpacing,
+          mainAxisSpacing: uiConstants.homeProductGridSpacing,
         ),
         itemCount: products.length,
         itemBuilder: (context, index) {

@@ -52,7 +52,7 @@ class RestaurantCard extends StatelessWidget {
               child: Stack(
                 children: [
                   Container(
-                    height: UIConstants.restaurantCardImageHeight,
+                    height: uiConstants.restaurantCardImageHeight,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: ui.getColorByTheme(
@@ -74,7 +74,7 @@ class RestaurantCard extends StatelessWidget {
                                 ),
                                 child: Icon(
                                   Icons.restaurant,
-                                  size: UIConstants.restaurantCardIconSize,
+                                  size: uiConstants.restaurantCardIconSize,
                                   color: ui.getColorByTheme(
                                     isDark: isDark,
                                     lightColor: ui.lightOnSurfaceVariant,
@@ -92,7 +92,7 @@ class RestaurantCard extends StatelessWidget {
                             ),
                             child: Icon(
                               Icons.restaurant,
-                              size: UIConstants.restaurantCardIconSize,
+                              size: uiConstants.restaurantCardIconSize,
                               color: ui.getColorByTheme(
                                 isDark: isDark,
                                 lightColor: ui.lightOnSurfaceVariant,
@@ -118,9 +118,9 @@ class RestaurantCard extends StatelessWidget {
                         restaurant.isOpen ? 'Aberto' : 'Fechado',
                         style: TextStyle(
                           color: ui.restaurantCardStatusTextColor(isDark),
-                          fontSize: UIConstants.restaurantCardStatusFontSize,
-                           fontWeight: UIConstants.restaurantCardStatusFontWeight,
-                           fontFamily: UIConstants.restaurantCardFontFamily,
+                          fontSize: uiConstants.restaurantCardStatusFontSize,
+                           fontWeight: uiConstants.restaurantCardStatusFontWeight,
+                           fontFamily: uiConstants.restaurantCardFontFamily,
                         ),
                       ),
                     ),
@@ -146,16 +146,16 @@ class RestaurantCard extends StatelessWidget {
                           Icon(
                              Icons.star,
                              color: ui.restaurantCardRatingIconColor(isDark),
-                             size: UIConstants.restaurantCardRatingIconSize,
+                             size: uiConstants.restaurantCardRatingIconSize,
                            ),
                           SizedBox(width: ui.spacing1),
                           Text(
                             restaurant.rating.toString(),
                             style: TextStyle(
                               color: ui.restaurantCardRatingTextColor(isDark),
-                              fontSize: UIConstants.restaurantCardRatingFontSize,
-                               fontWeight: UIConstants.restaurantCardRatingFontWeight,
-                               fontFamily: UIConstants.restaurantCardFontFamily,
+                              fontSize: uiConstants.restaurantCardRatingFontSize,
+                               fontWeight: uiConstants.restaurantCardRatingFontWeight,
+                               fontFamily: uiConstants.restaurantCardFontFamily,
                             ),
                           ),
                         ],
@@ -176,9 +176,9 @@ class RestaurantCard extends StatelessWidget {
                   Text(
                     restaurant.name,
                     style: TextStyle(
-                      fontWeight: UIConstants.restaurantCardNameFontWeight,
-                       fontSize: UIConstants.restaurantCardNameFontSize,
-                       fontFamily: UIConstants.restaurantCardFontFamily,
+                      fontWeight: uiConstants.restaurantCardNameFontWeight,
+                       fontSize: uiConstants.restaurantCardNameFontSize,
+                       fontFamily: uiConstants.restaurantCardFontFamily,
                       color: ui.getColorByTheme(
                         isDark: isDark,
                         lightColor: ui.lightOnSurface,
@@ -195,8 +195,8 @@ class RestaurantCard extends StatelessWidget {
                   Text(
                     restaurant.description,
                     style: TextStyle(
-                      fontSize: UIConstants.restaurantCardDescriptionFontSize,
-                       fontFamily: UIConstants.restaurantCardFontFamily,
+                      fontSize: uiConstants.restaurantCardDescriptionFontSize,
+                       fontFamily: uiConstants.restaurantCardFontFamily,
                       color: ui.getColorByTheme(
                         isDark: isDark,
                         lightColor: ui.lightOnSurfaceVariant,
@@ -214,7 +214,7 @@ class RestaurantCard extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.access_time,
-                        size: UIConstants.restaurantCardTimeIconSize,
+                        size: uiConstants.restaurantCardTimeIconSize,
                         color: ui.getColorByTheme(
                           isDark: isDark,
                           lightColor: ui.lightOnSurfaceVariant,
@@ -225,8 +225,8 @@ class RestaurantCard extends StatelessWidget {
                       Text(
                         restaurant.deliveryTime,
                         style: TextStyle(
-                          fontSize: UIConstants.restaurantCardInfoFontSize,
-                           fontFamily: UIConstants.restaurantCardFontFamily,
+                          fontSize: uiConstants.restaurantCardInfoFontSize,
+                           fontFamily: uiConstants.restaurantCardFontFamily,
                           color: ui.getColorByTheme(
                             isDark: isDark,
                             lightColor: ui.lightOnSurfaceVariant,
@@ -237,7 +237,7 @@ class RestaurantCard extends StatelessWidget {
                       SizedBox(width: ui.spacing4),
                       Icon(
                         Icons.delivery_dining,
-                        size: UIConstants.restaurantCardDeliveryIconSize,
+                        size: uiConstants.restaurantCardDeliveryIconSize,
                         color: ui.getColorByTheme(
                           isDark: isDark,
                           lightColor: ui.lightOnSurfaceVariant,
@@ -248,8 +248,8 @@ class RestaurantCard extends StatelessWidget {
                       Text(
                         'R\$ ${restaurant.deliveryFee.toStringAsFixed(2)}',
                         style: TextStyle(
-                          fontSize: UIConstants.restaurantCardInfoFontSize,
-                            fontFamily: UIConstants.restaurantCardFontFamily,
+                          fontSize: uiConstants.restaurantCardInfoFontSize,
+                            fontFamily: uiConstants.restaurantCardFontFamily,
                           color: ui.getColorByTheme(
                             isDark: isDark,
                             lightColor: ui.lightOnSurfaceVariant,
@@ -266,8 +266,8 @@ class RestaurantCard extends StatelessWidget {
                   Text(
                     'Pedido mínimo: R\$ ${restaurant.minimumOrder.toStringAsFixed(2)}',
                     style: TextStyle(
-                      fontSize: UIConstants.restaurantCardMinOrderFontSize,
-                        fontFamily: UIConstants.restaurantCardFontFamily,
+                      fontSize: uiConstants.restaurantCardMinOrderFontSize,
+                        fontFamily: uiConstants.restaurantCardFontFamily,
                       color: ui.getColorByTheme(
                         isDark: isDark,
                         lightColor: ui.lightOnSurfaceVariant,
@@ -307,14 +307,14 @@ class RestaurantCard extends StatelessWidget {
                         child: Text(
                           tag,
                           style: TextStyle(
-                          fontSize: UIConstants.restaurantCardTagFontSize,
-                            fontFamily: UIConstants.restaurantCardFontFamily,
+                          fontSize: uiConstants.restaurantCardTagFontSize,
+                            fontFamily: uiConstants.restaurantCardFontFamily,
                             color: ui.getColorByTheme(
                               isDark: isDark,
                               lightColor: ui.lightOnSurfaceVariant,
                               darkColor: ui.darkOnSurfaceVariant,
                             ),
-                            fontWeight: UIConstants.restaurantCardTagFontWeight,
+                            fontWeight: uiConstants.restaurantCardTagFontWeight,
                           ),
                         ),
                       );

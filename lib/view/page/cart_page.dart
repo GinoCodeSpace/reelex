@@ -85,15 +85,15 @@ class CartPage extends StatelessWidget {
         children: [
           Icon(
             Icons.shopping_cart_outlined,
-            size: UIConstants.cartEmptyIconSize,
+            size: uiConstants.cartEmptyIconSize,
             color: ui.cartEmptyIconColor(isDark),
           ),
           const SizedBox(height: 24),
           Text(
             'Seu carrinho está vazio',
             style: TextStyle(
-              fontSize: UIConstants.cartEmptyTitleFontSize,
-              fontWeight: UIConstants.cartEmptyTitleFontWeight,
+              fontSize: uiConstants.cartEmptyTitleFontSize,
+              fontWeight: uiConstants.cartEmptyTitleFontWeight,
               color: ui.cartEmptyTitleColor(isDark),
             ),
           ),
@@ -101,7 +101,7 @@ class CartPage extends StatelessWidget {
           Text(
             'Adicione alguns itens deliciosos!',
             style: TextStyle(
-              fontSize: UIConstants.cartEmptySubtitleFontSize,
+              fontSize: uiConstants.cartEmptySubtitleFontSize,
               color: ui.cartEmptySubtitleColor(isDark),
             ),
           ),
@@ -119,7 +119,7 @@ class CartPage extends StatelessWidget {
             child: Text(
               'Explorar Cardápio',
               style: TextStyle(
-                fontSize: UIConstants.cartButtonFontSize,
+                fontSize: uiConstants.cartButtonFontSize,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -144,11 +144,11 @@ class CartPage extends StatelessWidget {
         );
 
         return Card(
-          elevation: UIConstants.cartCardElevation,
+          elevation: uiConstants.cartCardElevation,
           color: ui.cartItemCardColor(isDark),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(
-              UIConstants.cartCardBorderRadius,
+              uiConstants.cartCardBorderRadius,
             ),
           ),
           child: Padding(
@@ -157,11 +157,11 @@ class CartPage extends StatelessWidget {
               children: [
                 // Imagem do produto
                 Container(
-                  width: UIConstants.cartItemImageSize,
-                  height: UIConstants.cartItemImageSize,
+                  width: uiConstants.cartItemImageSize,
+                  height: uiConstants.cartItemImageSize,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(
-                      UIConstants.cartItemImageBorderRadius,
+                      uiConstants.cartItemImageBorderRadius,
                     ),
                     image: DecorationImage(
                       image: NetworkImage(item.product.image),
@@ -172,7 +172,7 @@ class CartPage extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(
-                        UIConstants.cartItemImageBorderRadius,
+                        uiConstants.cartItemImageBorderRadius,
                       ),
                       color: ui.cartItemImagePlaceholderColor(isDark),
                     ),
@@ -194,8 +194,8 @@ class CartPage extends StatelessWidget {
                       Text(
                         item.product.name,
                         style: TextStyle(
-                          fontWeight: UIConstants.cartItemNameFontWeight,
-                          fontSize: UIConstants.cartItemNameFontSize,
+                          fontWeight: uiConstants.cartItemNameFontWeight,
+                          fontSize: uiConstants.cartItemNameFontSize,
                           color: ui.cartItemNameColor(isDark),
                         ),
                         maxLines: 2,
@@ -208,7 +208,7 @@ class CartPage extends StatelessWidget {
                           restaurant.name,
                           style: TextStyle(
                             color: ui.cartItemRestaurantColor(isDark),
-                            fontSize: UIConstants.cartItemRestaurantFontSize,
+                            fontSize: uiConstants.cartItemRestaurantFontSize,
                           ),
                         ),
                       ],
@@ -219,8 +219,8 @@ class CartPage extends StatelessWidget {
                         'R\$ ${item.product.price.toStringAsFixed(2)}',
                         style: TextStyle(
                           color: ui.cartItemPriceColor(isDark),
-                          fontWeight: UIConstants.cartItemPriceFontWeight,
-                          fontSize: UIConstants.cartItemPriceFontSize,
+                          fontWeight: uiConstants.cartItemPriceFontWeight,
+                          fontSize: uiConstants.cartItemPriceFontSize,
                         ),
                       ),
 
@@ -231,7 +231,7 @@ class CartPage extends StatelessWidget {
                           'Obs: ${item.specialInstructions}',
                           style: TextStyle(
                             color: ui.cartItemInstructionsColor(isDark),
-                            fontSize: UIConstants.cartItemInstructionsFontSize,
+                            fontSize: uiConstants.cartItemInstructionsFontSize,
                             fontStyle: FontStyle.italic,
                           ),
                         ),
@@ -249,7 +249,7 @@ class CartPage extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: ui.cartQuantityControlColor(isDark),
                         borderRadius: BorderRadius.circular(
-                          UIConstants.cartQuantityControlBorderRadius,
+                          uiConstants.cartQuantityControlBorderRadius,
                         ),
                       ),
                       child: Row(
@@ -263,7 +263,7 @@ class CartPage extends StatelessWidget {
                               child: Icon(
                                 Icons.remove,
                                 color: ui.cartQuantityControlTextColor(isDark),
-                                size: UIConstants.cartQuantityControlIconSize,
+                                size: uiConstants.cartQuantityControlIconSize,
                               ),
                             ),
                           ),
@@ -277,8 +277,8 @@ class CartPage extends StatelessWidget {
                               style: TextStyle(
                                 color: ui.cartQuantityControlTextColor(isDark),
                                 fontWeight:
-                                    UIConstants.cartQuantityTextFontWeight,
-                                fontSize: UIConstants.cartQuantityTextFontSize,
+                                    uiConstants.cartQuantityTextFontWeight,
+                                fontSize: uiConstants.cartQuantityTextFontSize,
                               ),
                             ),
                           ),
@@ -290,7 +290,7 @@ class CartPage extends StatelessWidget {
                               child: Icon(
                                 Icons.add,
                                 color: ui.cartQuantityControlTextColor(isDark),
-                                size: UIConstants.cartQuantityControlIconSize,
+                                size: uiConstants.cartQuantityControlIconSize,
                               ),
                             ),
                           ),
@@ -303,8 +303,8 @@ class CartPage extends StatelessWidget {
                     Text(
                       'R\$ ${item.totalPrice.toStringAsFixed(2)}',
                       style: TextStyle(
-                        fontWeight: UIConstants.cartTotalPriceFontWeight,
-                        fontSize: UIConstants.cartTotalPriceFontSize,
+                        fontWeight: uiConstants.cartTotalPriceFontWeight,
+                        fontSize: uiConstants.cartTotalPriceFontSize,
                         color: ui.cartTotalPriceColor(isDark),
                       ),
                     ),
@@ -328,7 +328,7 @@ class CartPage extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: ui.cartSummaryShadowColor(isDark),
-            blurRadius: UIConstants.cartSummaryBlurRadius,
+            blurRadius: uiConstants.cartSummaryBlurRadius,
             offset: const Offset(0, -2),
           ),
         ],
@@ -343,15 +343,15 @@ class CartPage extends StatelessWidget {
               Text(
                 'Subtotal',
                 style: TextStyle(
-                  fontSize: UIConstants.cartSummaryFontSize,
+                  fontSize: uiConstants.cartSummaryFontSize,
                   color: ui.cartSummaryTextColor(isDark),
                 ),
               ),
               Text(
                 'R\$ ${cartProvider.totalAmount.toStringAsFixed(2)}',
                 style: TextStyle(
-                  fontSize: UIConstants.cartSummaryFontSize,
-                  fontWeight: UIConstants.cartSummaryFontWeight,
+                  fontSize: uiConstants.cartSummaryFontSize,
+                  fontWeight: uiConstants.cartSummaryFontWeight,
                   color: ui.cartSummaryTextColor(isDark),
                 ),
               ),
@@ -366,15 +366,15 @@ class CartPage extends StatelessWidget {
               Text(
                 'Taxa de entrega',
                 style: TextStyle(
-                  fontSize: UIConstants.cartSummaryFontSize,
+                  fontSize: uiConstants.cartSummaryFontSize,
                   color: ui.cartSummaryTextColor(isDark),
                 ),
               ),
               Text(
                 'R\$ ${cartProvider.deliveryFee.toStringAsFixed(2)}',
                 style: TextStyle(
-                  fontSize: UIConstants.cartSummaryFontSize,
-                  fontWeight: UIConstants.cartSummaryFontWeight,
+                  fontSize: uiConstants.cartSummaryFontSize,
+                  fontWeight: uiConstants.cartSummaryFontWeight,
                   color: ui.cartSummaryTextColor(isDark),
                 ),
               ),
@@ -389,16 +389,16 @@ class CartPage extends StatelessWidget {
               Text(
                 'Total',
                 style: TextStyle(
-                  fontSize: UIConstants.cartTotalFontSize,
-                  fontWeight: UIConstants.cartTotalFontWeight,
+                  fontSize: uiConstants.cartTotalFontSize,
+                  fontWeight: uiConstants.cartTotalFontWeight,
                   color: ui.cartTotalTextColor(isDark),
                 ),
               ),
               Text(
                 'R\$ ${cartProvider.totalWithDelivery.toStringAsFixed(2)}',
                 style: TextStyle(
-                  fontSize: UIConstants.cartTotalFontSize,
-                  fontWeight: UIConstants.cartTotalFontWeight,
+                  fontSize: uiConstants.cartTotalFontSize,
+                  fontWeight: uiConstants.cartTotalFontWeight,
                   color: ui.cartTotalPriceTextColor(isDark),
                 ),
               ),
@@ -420,16 +420,16 @@ class CartPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(
-                    UIConstants.cartButtonBorderRadius,
+                    uiConstants.cartButtonBorderRadius,
                   ),
                 ),
-                elevation: UIConstants.cartCardElevation,
+                elevation: uiConstants.cartCardElevation,
               ),
               child: Text(
                 'Finalizar Pedido - R\$ ${cartProvider.totalWithDelivery.toStringAsFixed(2)}',
                 style: TextStyle(
-                  fontSize: UIConstants.cartButtonFontSize,
-                  fontWeight: UIConstants.cartButtonFontWeight,
+                  fontSize: uiConstants.cartButtonFontSize,
+                  fontWeight: uiConstants.cartButtonFontWeight,
                 ),
               ),
             ),
@@ -480,7 +480,7 @@ class CartPage extends StatelessWidget {
     showDialog(
       context: context,
       barrierDismissible: false, // Impede fechar clicando fora
-      builder: (BuildContext context) {
+      builder: (BuildContext dialogContext) {
         return AlertDialog(
           title: const Text('Pedido Confirmado!'),
           content: Column(
@@ -489,7 +489,7 @@ class CartPage extends StatelessWidget {
               Icon(
                 Icons.check_circle,
                 color: ui.cartConfirmationIconColor(isDark),
-                size: UIConstants.cartConfirmationIconSize,
+                size: uiConstants.cartConfirmationIconSize,
               ),
               const SizedBox(height: 16),
               Text(
@@ -501,8 +501,11 @@ class CartPage extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () async {
-                final ordersProvider = Provider.of<OrdersProvider>(context, listen: false);
-                final productsProvider = Provider.of<ProductsProvider>(context, listen: false);
+                final navigator = Navigator.of(dialogContext);
+                final scaffoldMessenger = ScaffoldMessenger.of(dialogContext);
+                final ordersProvider = Provider.of<OrdersProvider>(dialogContext, listen: false);
+                final productsProvider = Provider.of<ProductsProvider>(dialogContext, listen: false);
+                
                 try {
                   // Salvar o pedido antes de limpar o carrinho
                   final orderId = await ordersProvider.addOrder(cartProvider, productsProvider);
@@ -511,24 +514,32 @@ class CartPage extends StatelessWidget {
                   // Simular progresso do pedido
                   ordersProvider.simulateOrderProgress(orderId);
                   
-                  Navigator.pop(context); // Fecha o dialog
-                  context.go(Routes.orders); // Navega para a página de pedidos
+                  // Verificar se o widget ainda está montado antes de usar o context
+                  if (context.mounted) {
+                    navigator.pop(); // Fecha o dialog
+                    context.go(Routes.orders); // Navega para a página de pedidos
+                  }
                 } catch (e) {
-                  Navigator.pop(context);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('Erro ao processar pedido: $e'),
-                      backgroundColor: Colors.red,
-                    ),
-                  );
+                  if (context.mounted) {
+                    navigator.pop();
+                    scaffoldMessenger.showSnackBar(
+                      SnackBar(
+                        content: Text('Erro ao processar pedido: $e'),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                  }
                 }
               },
               child: const Text('Ver Pedidos'),
             ),
             TextButton(
               onPressed: () async {
-                final ordersProvider = Provider.of<OrdersProvider>(context, listen: false);
-                final productsProvider = Provider.of<ProductsProvider>(context, listen: false);
+                final navigator = Navigator.of(dialogContext);
+                final scaffoldMessenger = ScaffoldMessenger.of(dialogContext);
+                final ordersProvider = Provider.of<OrdersProvider>(dialogContext, listen: false);
+                final productsProvider = Provider.of<ProductsProvider>(dialogContext, listen: false);
+                
                 try {
                   // Salvar o pedido antes de limpar o carrinho
                   final orderId = await ordersProvider.addOrder(cartProvider, productsProvider);
@@ -537,16 +548,21 @@ class CartPage extends StatelessWidget {
                   // Simular progresso do pedido
                   ordersProvider.simulateOrderProgress(orderId);
                   
-                  Navigator.pop(context); // Fecha o dialog
-                  context.go(Routes.home); // Navega para a home
+                  // Verificar se o widget ainda está montado antes de usar o context
+                  if (context.mounted) {
+                    navigator.pop(); // Fecha o dialog
+                    context.go(Routes.home); // Navega para a home
+                  }
                 } catch (e) {
-                  Navigator.pop(context);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('Erro ao processar pedido: $e'),
-                      backgroundColor: Colors.red,
-                    ),
-                  );
+                  if (context.mounted) {
+                    navigator.pop();
+                    scaffoldMessenger.showSnackBar(
+                      SnackBar(
+                        content: Text('Erro ao processar pedido: $e'),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                  }
                 }
               },
               child: const Text('Continuar Comprando'),
