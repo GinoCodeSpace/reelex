@@ -398,12 +398,12 @@ class UIConstants {
    Color get productCardQuantityBackgroundColor => getColorByTheme(isDark: false, lightColor: Color(0xFFFF9800), darkColor: Color(0xFFFFB74D));
    Color get productCardQuantityTextColor => Colors.white;
    Color get productCardQuantityIconColor => Colors.white;
-   double productCardMaxWidth = 300.0;
-   double productCardDesktopAspectRatio = 0.8;
+   double productCardMaxWidth = 280.0;
+   double productCardDesktopAspectRatio = 0.9;
    double productCardMobileAspectRatio = 1.2;
    double productCardDesktopBreakpoint = 600.0;
    double productCardMinWidth = 200.0;
-   double productCardDesktopWidthRatio = 0.3;
+   double productCardDesktopWidthRatio = 0.22;
 
   // ==========================================================================
   // UTILITY METHODS
