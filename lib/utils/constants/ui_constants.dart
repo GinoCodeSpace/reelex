@@ -355,6 +355,50 @@ class UIConstants {
    FontWeight categoryChipUnselectedFontWeight = FontWeight.w500;
    String categoryChipFontFamily = 'SanFranciscoPro';
 
+  // Product card constants
+   double productCardElevation = 4.0;
+   double productCardBorderRadius = 12.0;
+   double productCardRatingBorderRadius = 8.0;
+   double productCardQuantityBorderRadius = 20.0;
+   double productCardRatingPositionTop = 8.0;
+   double productCardRatingPositionRight = 8.0;
+   double productCardRatingPaddingHorizontal = 6.0;
+   double productCardRatingPaddingVertical = 2.0;
+   double productCardContentPadding = 4.0;
+   double productCardQuantityPadding = 4.0;
+   double productCardQuantityPaddingHorizontal = 8.0;
+   double productCardQuantityPaddingVertical = 4.0;
+   double productCardAddButtonPadding = 6.0;
+   double productCardSpacing2 = 2.0;
+   double productCardSpacing4 = 4.0;
+   double productCardFallbackIconSize = 40.0;
+   double productCardRatingIconSize = 12.0;
+   double productCardTimeIconSize = 12.0;
+   double productCardQuantityIconSize = 16.0;
+   double productCardRatingFontSize = 10.0;
+   double productCardNameFontSize = 14.0;
+   double productCardRestaurantFontSize = 12.0;
+   double productCardTimeFontSize = 12.0;
+   double productCardPriceFontSize = 16.0;
+   double productCardQuantityFontSize = 12.0;
+   FontWeight productCardNameFontWeight = FontWeight.bold;
+   FontWeight productCardPriceFontWeight = FontWeight.bold;
+   FontWeight productCardQuantityFontWeight = FontWeight.bold;
+   int productCardImageFlex = 3;
+   int productCardContentFlex = 2;
+   Color get productCardFallbackBackgroundColor => getColorByTheme(isDark: false, lightColor: Color(0xFFEEEEEE), darkColor: Color(0xFF424242));
+   Color get productCardFallbackIconColor => getColorByTheme(isDark: false, lightColor: Color(0xFF9E9E9E), darkColor: Color(0xFF757575));
+   Color get productCardRatingBackgroundColor => getColorByTheme(isDark: false, lightColor: Color(0x8A000000), darkColor: Color(0x8AFFFFFF));
+   Color get productCardRatingIconColor => getColorByTheme(isDark: false, lightColor: Color(0xFFFFC107), darkColor: Color(0xFFFFC107));
+   Color get productCardRatingTextColor => getColorByTheme(isDark: false, lightColor: Colors.white, darkColor: Colors.black);
+   Color get productCardRestaurantTextColor => getColorByTheme(isDark: false, lightColor: Color(0xFF757575), darkColor: Color(0xFFBDBDBD));
+   Color get productCardTimeIconColor => getColorByTheme(isDark: false, lightColor: Color(0xFF757575), darkColor: Color(0xFFBDBDBD));
+   Color get productCardTimeTextColor => getColorByTheme(isDark: false, lightColor: Color(0xFF757575), darkColor: Color(0xFFBDBDBD));
+   Color get productCardPriceColor => getColorByTheme(isDark: false, lightColor: Color(0xFF4CAF50), darkColor: Color(0xFF81C784));
+   Color get productCardQuantityBackgroundColor => getColorByTheme(isDark: false, lightColor: Color(0xFFFF9800), darkColor: Color(0xFFFFB74D));
+   Color get productCardQuantityTextColor => Colors.white;
+   Color get productCardQuantityIconColor => Colors.white;
+
   // ==========================================================================
   // UTILITY METHODS
   // ==========================================================================

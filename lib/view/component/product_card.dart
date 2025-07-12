@@ -1,40 +1,39 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../../model/product.dart';
 import '../../providers/cart_provider.dart';
 import '../../providers/products_provider.dart';
+import '../../utils/imports/common_libs.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
 
-  const ProductCard({
-    super.key,
-    required this.product,
-  });
+  const ProductCard({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
     return Consumer2<CartProvider, ProductsProvider>(
       builder: (context, cartProvider, productsProvider, child) {
-        final restaurant = productsProvider.getRestaurantById(product.restaurantId);
+        final ui = uiConstants;
+        final restaurant = productsProvider.getRestaurantById(
+          product.restaurantId,
+        );
         final quantity = cartProvider.getQuantity(product.id);
-        
+
         return Card(
-          elevation: 4,
+          elevation: ui.productCardElevation,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(ui.productCardBorderRadius),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Imagem do produto
               Expanded(
-                flex: 3,
+                flex: ui.productCardImageFlex,
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(12),
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(ui.productCardBorderRadius),
                     ),
                     image: DecorationImage(
                       image: NetworkImage(product.image),
@@ -49,47 +48,49 @@ class ProductCard extends StatelessWidget {
                       // Overlay de carregamento/erro
                       Container(
                         decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.vertical(
-                            top: Radius.circular(12),
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(ui.productCardBorderRadius),
                           ),
-                          color: Colors.grey[200],
+                          color: ui.productCardFallbackBackgroundColor,
                         ),
-                        child: const Center(
+                        child: Center(
                           child: Icon(
                             Icons.fastfood,
-                            size: 40,
-                            color: Colors.grey,
+                            size: ui.productCardFallbackIconSize,
+                            color: ui.productCardFallbackIconColor,
                           ),
                         ),
                       ),
-                      
+
                       // Rating
                       Positioned(
-                        top: 8,
-                        right: 8,
+                        top: ui.productCardRatingPositionTop,
+                        right: ui.productCardRatingPositionRight,
                         child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 6,
-                            vertical: 2,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: ui.productCardRatingPaddingHorizontal,
+                            vertical: ui.productCardRatingPaddingVertical,
                           ),
                           decoration: BoxDecoration(
-                            color: Colors.black54,
-                            borderRadius: BorderRadius.circular(8),
+                            color: ui.productCardRatingBackgroundColor,
+                            borderRadius: BorderRadius.circular(
+                              ui.productCardRatingBorderRadius,
+                            ),
                           ),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              const Icon(
+                              Icon(
                                 Icons.star,
-                                color: Colors.amber,
-                                size: 12,
+                                color: ui.productCardRatingIconColor,
+                                size: ui.productCardRatingIconSize,
                               ),
-                              const SizedBox(width: 2),
+                              SizedBox(width: ui.productCardSpacing2),
                               Text(
                                 product.rating.toString(),
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 10,
+                                style: TextStyle(
+                                  color: ui.productCardRatingTextColor,
+                                  fontSize: ui.productCardRatingFontSize,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -101,12 +102,12 @@ class ProductCard extends StatelessWidget {
                   ),
                 ),
               ),
-              
+
               // Informações do produto
               Expanded(
-                flex: 2,
+                flex: ui.productCardContentFlex,
                 child: Padding(
-                  padding: const EdgeInsets.all(4),
+                  padding: EdgeInsets.all(ui.productCardContentPadding),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,101 +115,115 @@ class ProductCard extends StatelessWidget {
                       // Nome do produto
                       Text(
                         product.name,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
+                        style: TextStyle(
+                          fontWeight: ui.productCardNameFontWeight,
+                          fontSize: ui.productCardNameFontSize,
                         ),
-                        maxLines: 1,
+                        maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      
+
                       // Restaurante
                       if (restaurant != null)
                         Text(
                           restaurant.name,
                           style: TextStyle(
-                            color: Colors.grey[600],
-                            fontSize: 12,
+                            color: ui.productCardRestaurantTextColor,
+                            fontSize: ui.productCardRestaurantFontSize,
                           ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
-                      
+
                       // Tempo de preparo
                       Row(
                         children: [
                           Icon(
                             Icons.access_time,
-                            size: 12,
-                            color: Colors.grey[600],
+                            size: ui.productCardTimeIconSize,
+                            color: ui.productCardTimeIconColor,
                           ),
-                          const SizedBox(width: 4),
+                          SizedBox(width: ui.productCardSpacing4),
                           Text(
                             '${product.preparationTime} min',
                             style: TextStyle(
-                              color: Colors.grey[600],
-                              fontSize: 12,
+                              color: ui.productCardTimeTextColor,
+                              fontSize: ui.productCardTimeFontSize,
                             ),
                           ),
                         ],
                       ),
-                      
+
                       // Preço e botão de adicionar
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             'R\$ ${product.price.toStringAsFixed(2)}',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                              color: Colors.green,
+                            style: TextStyle(
+                              fontWeight: ui.productCardPriceFontWeight,
+                              fontSize: ui.productCardPriceFontSize,
+                              color: ui.productCardPriceColor,
                             ),
                           ),
-                          
+
                           // Controles de quantidade
                           if (quantity > 0)
                             Container(
                               decoration: BoxDecoration(
-                                color: Colors.orange,
-                                borderRadius: BorderRadius.circular(20),
+                                color: ui.productCardQuantityBackgroundColor,
+                                borderRadius: BorderRadius.circular(
+                                  ui.productCardQuantityBorderRadius,
+                                ),
                               ),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   GestureDetector(
-                                    onTap: () => cartProvider.decrementQuantity(product.id),
-                                    child: const Padding(
-                                      padding: EdgeInsets.all(4),
+                                    onTap: () => cartProvider.decrementQuantity(
+                                      product.id,
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(
+                                        ui.productCardQuantityPadding,
+                                      ),
                                       child: Icon(
                                         Icons.remove,
-                                        color: Colors.white,
-                                        size: 16,
+                                        color: ui.productCardQuantityIconColor,
+                                        size: ui.productCardQuantityIconSize,
                                       ),
                                     ),
                                   ),
                                   Container(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 8,
-                                      vertical: 4,
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: ui
+                                          .productCardQuantityPaddingHorizontal,
+                                      vertical:
+                                          ui.productCardQuantityPaddingVertical,
                                     ),
                                     child: Text(
                                       quantity.toString(),
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12,
+                                      style: TextStyle(
+                                        color: ui.productCardQuantityTextColor,
+                                        fontWeight:
+                                            ui.productCardQuantityFontWeight,
+                                        fontSize:
+                                            ui.productCardQuantityFontSize,
                                       ),
                                     ),
                                   ),
                                   GestureDetector(
-                                    onTap: () => cartProvider.incrementQuantity(product.id),
-                                    child: const Padding(
-                                      padding: EdgeInsets.all(4),
+                                    onTap: () => cartProvider.incrementQuantity(
+                                      product.id,
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(
+                                        ui.productCardQuantityPadding,
+                                      ),
                                       child: Icon(
                                         Icons.add,
-                                        color: Colors.white,
-                                        size: 16,
+                                        color: ui.productCardQuantityIconColor,
+                                        size: ui.productCardQuantityIconSize,
                                       ),
                                     ),
                                   ),
@@ -219,15 +234,17 @@ class ProductCard extends StatelessWidget {
                             GestureDetector(
                               onTap: () => cartProvider.addItem(product),
                               child: Container(
-                                padding: const EdgeInsets.all(6),
-                                decoration: const BoxDecoration(
-                                  color: Colors.orange,
+                                padding: EdgeInsets.all(
+                                  ui.productCardAddButtonPadding,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: ui.productCardQuantityBackgroundColor,
                                   shape: BoxShape.circle,
                                 ),
-                                child: const Icon(
+                                child: Icon(
                                   Icons.add,
-                                  color: Colors.white,
-                                  size: 16,
+                                  color: ui.productCardQuantityIconColor,
+                                  size: ui.productCardQuantityIconSize,
                                 ),
                               ),
                             ),
