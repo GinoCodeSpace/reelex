@@ -306,6 +306,12 @@ class UIConstants {
    String onboardingFontFamily = 'SanFranciscoPro';
    double onboardingDescriptionLineHeight = 1.5;
 
+  // Page indicator constants
+   int pageIndicatorAnimationDuration = 300;
+   double pageIndicatorActiveWidth = 24.0;
+   double pageIndicatorInactiveWidth = 8.0;
+   double pageIndicatorHeight = 8.0;
+
   // ==========================================================================
   // UTILITY METHODS
   // ==========================================================================
