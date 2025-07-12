@@ -3,26 +3,56 @@ import 'package:flutter_animate/flutter_animate.dart';
 
 /// Ilustrações SVG para as páginas de onboarding
 class OnboardingIllustrations {
-  static Widget get favorites => _FavoritesIllustration()
-      .animate()
-      .fadeIn(duration: 800.ms, curve: Curves.easeOutCubic)
-      .scale(begin: const Offset(0.8, 0.8), duration: 600.ms, curve: Curves.elasticOut)
-      .then(delay: 200.ms)
-      .shimmer(duration: 1500.ms, color: Colors.white.withValues(alpha: 0.3));
-  
-  static Widget get chef => _ChefIllustration()
-      .animate()
-      .fadeIn(duration: 800.ms, curve: Curves.easeOutCubic)
-      .slideY(begin: 0.3, duration: 700.ms, curve: Curves.easeOutBack)
-      .then(delay: 300.ms)
-      .shimmer(duration: 1500.ms, color: Colors.white.withValues(alpha: 0.3));
-  
-  static Widget get delivery => _DeliveryIllustration()
-      .animate()
-      .fadeIn(duration: 800.ms, curve: Curves.easeOutCubic)
-      .slideX(begin: 0.3, duration: 700.ms, curve: Curves.easeOutBack)
-      .then(delay: 400.ms)
-      .shimmer(duration: 1500.ms, color: Colors.white.withValues(alpha: 0.3));
+  static Widget get favorites {
+    final ui = UIConstants();
+    return _FavoritesIllustration()
+        .animate()
+        .fadeIn(duration: ui.animationDurationSlow.ms, curve: Curves.easeOutCubic)
+        .scale(
+          begin: Offset(ui.animationScaleExtraLarge, ui.animationScaleExtraLarge),
+          duration: ui.animationDurationMedium.ms,
+          curve: Curves.elasticOut,
+        )
+        .then(delay: ui.animationDelayShort.ms)
+        .shimmer(
+          duration: ui.animationDurationExtraSlow.ms,
+          color: ui.white.withValues(alpha: ui.animationAlphaMedium),
+        );
+  }
+
+  static Widget get chef {
+    final ui = UIConstants();
+    return _ChefIllustration()
+        .animate()
+        .fadeIn(duration: ui.animationDurationSlow.ms, curve: Curves.easeOutCubic)
+        .slideY(
+          begin: ui.animationSlideLarge,
+          duration: ui.animationDelayVeryLong.ms,
+          curve: Curves.easeOutBack,
+        )
+        .then(delay: ui.animationDelayMedium.ms)
+        .shimmer(
+            duration: ui.animationDurationExtraSlow.ms,
+            color: ui.white.withValues(alpha: ui.animationAlphaMedium),
+          );
+  }
+
+  static Widget get delivery {
+    final ui = UIConstants();
+    return _DeliveryIllustration()
+        .animate()
+        .fadeIn(duration: ui.animationDurationSlow.ms, curve: Curves.easeOutCubic)
+        .slideX(
+          begin: ui.animationSlideLarge,
+          duration: ui.animationDelayVeryLong.ms,
+          curve: Curves.easeOutBack,
+        )
+        .then(delay: ui.animationDelayLong.ms)
+        .shimmer(
+            duration: ui.animationDurationExtraSlow.ms,
+            color: ui.white.withValues(alpha: ui.animationAlphaMedium),
+          );
+  }
 }
 
 class _FavoritesIllustration extends StatelessWidget {
@@ -31,13 +61,13 @@ class _FavoritesIllustration extends StatelessWidget {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
     final ui = UIConstants();
-    
+
     final primaryColor = ui.getColorByTheme(
       isDark: isDark,
       lightColor: ui.lightPrimary,
       darkColor: ui.darkPrimary,
     );
-    
+
     final secondaryColor = ui.getColorByTheme(
       isDark: isDark,
       lightColor: ui.lightSecondary,
@@ -45,8 +75,8 @@ class _FavoritesIllustration extends StatelessWidget {
     );
 
     return Container(
-      width: 280,
-      height: 280,
+      width: ui.onboardingIllustrationSize,
+      height: ui.onboardingIllustrationSize,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(ui.radius24),
         color: ui.getColorByTheme(
@@ -60,96 +90,98 @@ class _FavoritesIllustration extends StatelessWidget {
         children: [
           // Fundo com gradiente sutil
           Container(
-            width: 200,
-            height: 200,
+            width: ui.onboardingBackgroundSize,
+            height: ui.onboardingBackgroundSize,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: RadialGradient(
                 colors: [
-                  primaryColor.withValues(alpha: 0.1),
-                  primaryColor.withValues(alpha: 0.05),
+                  primaryColor.withValues(alpha: ui.animationAlphaLight),
+                  primaryColor.withValues(alpha: ui.animationAlphaVeryLight),
                 ],
               ),
             ),
           ),
           // Ícone principal
-          Icon(
-            Icons.favorite,
-            size: 80,
-            color: primaryColor,
-          )
+          Icon(Icons.favorite, size: ui.onboardingMainIconSize, color: primaryColor)
               .animate()
               .scale(
-                begin: const Offset(1.0, 1.0),
-                end: const Offset(1.1, 1.1),
-                duration: 2000.ms,
+                begin: Offset(ui.animationScaleNormal, ui.animationScaleNormal),
+                end: Offset(ui.animationScaleSlightlyLarge, ui.animationScaleSlightlyLarge),
+                duration: ui.animationDurationUltraSlow.ms,
                 curve: Curves.easeInOut,
               )
               .then()
               .scale(
-                begin: const Offset(1.1, 1.1),
-                end: const Offset(1.0, 1.0),
-                duration: 2000.ms,
+                begin: Offset(ui.animationScaleSlightlyLarge, ui.animationScaleSlightlyLarge),
+                end: Offset(ui.animationScaleNormal, ui.animationScaleNormal),
+                duration: ui.animationDurationUltraSlow.ms,
                 curve: Curves.easeInOut,
               ),
           // Ícones menores ao redor
           Positioned(
-            top: 60,
-            right: 60,
-            child: Icon(
-              Icons.restaurant,
-              size: 32,
-              color: secondaryColor,
-            )
-                .animate(delay: 500.ms)
-                .fadeIn(duration: 600.ms)
-                .slideX(begin: 0.5, duration: 400.ms, curve: Curves.easeOut)
-                .then(delay: 1000.ms)
-                .rotate(begin: 0, end: 0.1, duration: 1500.ms)
+            top: ui.onboardingIconPosition60,
+            right: ui.onboardingIconPosition60,
+            child: Icon(Icons.restaurant, size: ui.onboardingSecondaryIconSize, color: secondaryColor)
+                .animate(delay: ui.animationDelayExtraLong.ms)
+                .fadeIn(duration: ui.animationDurationMedium.ms)
+                .slideX(begin: ui.animationSlideLarge, duration: ui.animationDurationFast.ms, curve: Curves.easeOut)
+                .then(delay: ui.animationDurationVerySlow.ms)
+                .rotate(begin: 0, end: ui.animationRotationMedium, duration: ui.animationDurationExtraSlow.ms)
                 .then()
-                .rotate(begin: 0.1, end: -0.1, duration: 3000.ms)
+                .rotate(begin: ui.animationRotationMedium, end: -ui.animationRotationMedium, duration: ui.animationDurationGiga.ms)
                 .then()
-                .rotate(begin: -0.1, end: 0, duration: 1500.ms),
+                .rotate(begin: -ui.animationRotationMedium, end: 0, duration: ui.animationDurationExtraSlow.ms),
           ),
           Positioned(
-            bottom: 60,
-            left: 60,
-            child: Icon(
-              Icons.local_pizza,
-              size: 28,
-              color: primaryColor.withValues(alpha: 0.7),
-            )
-                .animate(delay: 700.ms)
-                .fadeIn(duration: 600.ms)
-                .slideY(begin: 0.5, duration: 400.ms, curve: Curves.bounceOut)
-                .then(delay: 800.ms)
-                .scale(
-                  begin: const Offset(1.0, 1.0),
-                  end: const Offset(1.2, 1.2),
-                  duration: 1800.ms,
-                  curve: Curves.easeInOut,
-                )
-                .then()
-                .scale(
-                  begin: const Offset(1.2, 1.2),
-                  end: const Offset(1.0, 1.0),
-                  duration: 1800.ms,
-                  curve: Curves.easeInOut,
-                ),
+            bottom: ui.onboardingIconPosition60,
+            left: ui.onboardingIconPosition60,
+            child:
+                Icon(
+                      Icons.local_pizza,
+                      size: ui.onboardingTertiaryIconSize,
+                      color: primaryColor.withValues(alpha: ui.animationAlphaStrong),
+                    )
+                    .animate(delay: ui.animationDelayVeryLong.ms)
+                    .fadeIn(duration: ui.animationDurationMedium.ms)
+                    .slideY(
+                      begin: ui.animationSlideLarge,
+                      duration: ui.animationDurationFast.ms,
+                      curve: Curves.bounceOut,
+                    )
+                    .then(delay: ui.animationDelayUltraLong.ms)
+                    .scale(
+                      begin: Offset(ui.animationScaleNormal, ui.animationScaleNormal),
+                      end: Offset(ui.animationScaleLarger, ui.animationScaleLarger),
+                      duration: 1800.ms,
+                      curve: Curves.easeInOut,
+                    )
+                    .then()
+                    .scale(
+                      begin: Offset(ui.animationScaleLarger, ui.animationScaleLarger),
+                      end: Offset(ui.animationScaleNormal, ui.animationScaleNormal),
+                      duration: 1800.ms,
+                      curve: Curves.easeInOut,
+                    ),
           ),
           Positioned(
-            top: 80,
-            left: 80,
-            child: Icon(
-              Icons.cake,
-              size: 24,
-              color: secondaryColor.withValues(alpha: 0.8),
-            )
-                .animate(delay: 900.ms)
-                .fadeIn(duration: 600.ms)
-                .scale(begin: const Offset(0.5, 0.5), duration: 500.ms, curve: Curves.elasticOut)
-                .then(delay: 1200.ms)
-                .rotate(begin: 0, end: 1, duration: 4000.ms),
+            top: ui.onboardingIconPosition80,
+            left: ui.onboardingIconPosition80,
+            child:
+                Icon(
+                      Icons.cake,
+                      size: ui.onboardingSmallIconSize,
+                      color: secondaryColor.withValues(alpha: ui.animationAlphaVeryStrong),
+                    )
+                    .animate(delay: ui.animationDelayMega.ms)
+                    .fadeIn(duration: ui.animationDurationMedium.ms)
+                    .scale(
+                      begin: Offset(ui.animationScaleLarge, ui.animationScaleLarge),
+                      duration: ui.animationDelayExtraLong.ms,
+                      curve: Curves.elasticOut,
+                    )
+                    .then(delay: ui.animationDelayTera.ms)
+                    .rotate(begin: 0, end: ui.animationRotationFull, duration: ui.animationDurationTera.ms),
           ),
         ],
       ),
@@ -163,13 +195,13 @@ class _ChefIllustration extends StatelessWidget {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
     final ui = UIConstants();
-    
+
     final primaryColor = ui.getColorByTheme(
       isDark: isDark,
       lightColor: ui.lightPrimary,
       darkColor: ui.darkPrimary,
     );
-    
+
     final secondaryColor = ui.getColorByTheme(
       isDark: isDark,
       lightColor: ui.lightSecondary,
@@ -177,8 +209,8 @@ class _ChefIllustration extends StatelessWidget {
     );
 
     return Container(
-      width: 280,
-      height: 280,
+      width: ui.onboardingIllustrationSize,
+      height: ui.onboardingIllustrationSize,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(ui.radius24),
         color: ui.getColorByTheme(
@@ -192,98 +224,106 @@ class _ChefIllustration extends StatelessWidget {
         children: [
           // Fundo com gradiente sutil
           Container(
-            width: 200,
-            height: 200,
+            width: ui.onboardingBackgroundSize,
+            height: ui.onboardingBackgroundSize,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: RadialGradient(
                 colors: [
-                  secondaryColor.withValues(alpha: 0.1),
-                  secondaryColor.withValues(alpha: 0.05),
+                  secondaryColor.withValues(alpha: ui.animationAlphaLight),
+                  secondaryColor.withValues(alpha: ui.animationAlphaVeryLight),
                 ],
               ),
             ),
           ),
           // Ícone principal do chef
-          Icon(
-            Icons.person_outline,
-            size: 80,
-            color: primaryColor,
-          )
+          Icon(Icons.person_outline, size: ui.onboardingMainIconSize, color: primaryColor)
               .animate()
               .slideY(
                 begin: 0,
-                end: -0.02,
-                duration: 2500.ms,
+                end: -ui.animationSlideSmall,
+                duration: ui.animationDurationMega.ms,
                 curve: Curves.easeInOut,
               )
               .then()
               .slideY(
-                begin: -0.02,
+                begin: -ui.animationSlideSmall,
                 end: 0,
-                duration: 2500.ms,
+                duration: ui.animationDurationMega.ms,
                 curve: Curves.easeInOut,
               ),
           // Chapéu do chef
           Positioned(
-            top: 80,
-            child: Icon(
-              Icons.restaurant_menu,
-              size: 40,
-              color: secondaryColor,
-            )
-                .animate(delay: 400.ms)
-                .fadeIn(duration: 800.ms)
-                .slideY(begin: -0.3, duration: 600.ms, curve: Curves.bounceOut)
-                .then(delay: 1000.ms)
-                .rotate(begin: 0, end: 0.05, duration: 1800.ms)
+            top: ui.onboardingIconPosition80,
+            child: Icon(Icons.restaurant_menu, size: ui.onboardingChefHatIconSize, color: secondaryColor)
+                .animate(delay: ui.animationDelayLong.ms)
+                .fadeIn(duration: ui.animationDurationSlow.ms)
+                .slideY(begin: -ui.animationSlideLarge, duration: ui.animationDurationMedium.ms, curve: Curves.bounceOut)
+                .then(delay: ui.animationDurationVerySlow.ms)
+                .rotate(begin: 0, end: ui.animationRotationSmall, duration: 1800.ms)
                 .then()
-                .rotate(begin: 0.05, end: -0.05, duration: 3600.ms)
+                .rotate(begin: ui.animationRotationSmall, end: -ui.animationRotationSmall, duration: 3600.ms)
                 .then()
-                .rotate(begin: -0.05, end: 0, duration: 1800.ms),
+                .rotate(begin: -ui.animationRotationSmall, end: 0, duration: 1800.ms),
           ),
           // Utensílios ao redor
           Positioned(
-            top: 70,
-            right: 70,
-            child: Icon(
-              Icons.kitchen,
-              size: 28,
-              color: primaryColor.withValues(alpha: 0.7),
-            )
-                .animate(delay: 600.ms)
-                .fadeIn(duration: 600.ms)
-                .scale(begin: const Offset(0.3, 0.3), duration: 500.ms, curve: Curves.elasticOut)
-                .then(delay: 800.ms)
-                .shimmer(duration: 3000.ms, color: primaryColor.withValues(alpha: 0.4))
-                .then(delay: 1000.ms)
-                .shimmer(duration: 3000.ms, color: primaryColor.withValues(alpha: 0.4)),
+            top: ui.onboardingIconPosition70,
+            right: ui.onboardingIconPosition70,
+            child:
+                Icon(
+                      Icons.kitchen,
+                      size: ui.onboardingTertiaryIconSize,
+                      color: primaryColor.withValues(alpha: ui.animationAlphaStrong),
+                    )
+                    .animate(delay: ui.animationDurationMedium.ms)
+                    .fadeIn(duration: ui.animationDurationMedium.ms)
+                    .scale(
+                      begin: Offset(ui.animationScaleMedium, ui.animationScaleMedium),
+                      duration: ui.animationDelayExtraLong.ms,
+                      curve: Curves.elasticOut,
+                    )
+                    .then(delay: ui.animationDelayUltraLong.ms)
+                    .shimmer(
+                      duration: ui.animationDurationGiga.ms,
+                      color: primaryColor.withValues(alpha: ui.animationAlphaHeavy),
+                    )
+                    .then(delay: ui.animationDurationVerySlow.ms)
+                    .shimmer(
+                      duration: ui.animationDurationGiga.ms,
+                      color: primaryColor.withValues(alpha: ui.animationAlphaHeavy),
+                    ),
           ),
           Positioned(
-            bottom: 70,
-            left: 70,
-            child: Icon(
-              Icons.dining,
-              size: 24,
-              color: secondaryColor.withValues(alpha: 0.8),
-            )
-                .animate(delay: 800.ms)
-                .fadeIn(duration: 600.ms)
-                .slideX(begin: -0.5, duration: 400.ms, curve: Curves.easeOut)
-                .then(delay: 1500.ms)
-                .scale(
-                  begin: const Offset(1.0, 1.0),
-                  end: const Offset(1.15, 1.15),
-                  duration: 2200.ms,
-                  curve: Curves.easeInOut,
-                )
-                .then()
-                .scale(
-                  begin: const Offset(1.15, 1.15),
-                  end: const Offset(1.0, 1.0),
-                  duration: 2200.ms,
-                  curve: Curves.easeInOut,
-                ),
+            bottom: ui.onboardingIconPosition70,
+            left: ui.onboardingIconPosition70,
+            child:
+                Icon(
+                      Icons.dining,
+                      size: ui.onboardingSmallIconSize,
+                      color: secondaryColor.withValues(alpha: ui.animationAlphaVeryStrong),
+                    )
+                    .animate(delay: ui.animationDelayUltraLong.ms)
+                    .fadeIn(duration: ui.animationDurationMedium.ms)
+                    .slideX(
+                      begin: -ui.animationSlideExtraLarge,
+                      duration: ui.animationDurationFast.ms,
+                      curve: Curves.easeOut,
+                    )
+                    .then(delay: ui.animationDurationExtraSlow.ms)
+                    .scale(
+                      begin: Offset(ui.animationScaleNormal, ui.animationScaleNormal),
+                      end: Offset(ui.animationScaleModeratelyLarge, ui.animationScaleModeratelyLarge),
+                      duration: 2200.ms,
+                      curve: Curves.easeInOut,
+                    )
+                    .then()
+                    .scale(
+                      begin: Offset(ui.animationScaleModeratelyLarge, ui.animationScaleModeratelyLarge),
+                      end: Offset(ui.animationScaleNormal, ui.animationScaleNormal),
+                      duration: 2200.ms,
+                      curve: Curves.easeInOut,
+                    ),
           ),
         ],
       ),
@@ -297,13 +337,13 @@ class _DeliveryIllustration extends StatelessWidget {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
     final ui = UIConstants();
-    
+
     final primaryColor = ui.getColorByTheme(
       isDark: isDark,
       lightColor: ui.lightPrimary,
       darkColor: ui.darkPrimary,
     );
-    
+
     final secondaryColor = ui.getColorByTheme(
       isDark: isDark,
       lightColor: ui.lightSecondary,
@@ -311,8 +351,8 @@ class _DeliveryIllustration extends StatelessWidget {
     );
 
     return Container(
-      width: 280,
-      height: 280,
+      width: ui.onboardingIllustrationSize,
+      height: ui.onboardingIllustrationSize,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(ui.radius24),
         color: ui.getColorByTheme(
@@ -326,146 +366,159 @@ class _DeliveryIllustration extends StatelessWidget {
         children: [
           // Fundo com gradiente sutil
           Container(
-            width: 200,
-            height: 200,
+            width: ui.onboardingBackgroundSize,
+            height: ui.onboardingBackgroundSize,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: RadialGradient(
                 colors: [
-                  primaryColor.withValues(alpha: 0.1),
-                  primaryColor.withValues(alpha: 0.05),
+                  primaryColor.withValues(alpha: ui.animationAlphaLight),
+                  primaryColor.withValues(alpha: ui.animationAlphaVeryLight),
                 ],
               ),
             ),
           ),
           // Ícone principal de entrega
-          Icon(
-            Icons.delivery_dining,
-            size: 80,
-            color: primaryColor,
-          )
+          Icon(Icons.delivery_dining, size: ui.onboardingMainIconSize, color: primaryColor)
               .animate()
               .slideX(
                 begin: 0,
-                end: 0.03,
-                duration: 2000.ms,
+                end: ui.animationSlideNormal,
+                duration: ui.animationDurationUltraSlow.ms,
                 curve: Curves.easeInOut,
               )
               .then()
               .slideX(
-                begin: 0.03,
-                end: -0.03,
-                duration: 4000.ms,
+                begin: ui.animationSlideNormal,
+                end: -ui.animationSlideNormal,
+                duration: ui.animationDurationTera.ms,
                 curve: Curves.easeInOut,
               )
               .then()
               .slideX(
-                begin: -0.03,
+                begin: -ui.animationSlideNormal,
                 end: 0,
-                duration: 2000.ms,
+                duration: ui.animationDurationUltraSlow.ms,
                 curve: Curves.easeInOut,
               ),
           // Elementos de entrega ao redor
           Positioned(
-            top: 60,
-            right: 60,
-            child: Icon(
-              Icons.local_shipping,
-              size: 32,
-              color: secondaryColor,
-            )
-                .animate(delay: 500.ms)
-                .fadeIn(duration: 600.ms)
-                .slideX(begin: 0.8, duration: 500.ms, curve: Curves.easeOutBack)
-                .then(delay: 1200.ms)
+            top: ui.onboardingIconPosition60,
+            right: ui.onboardingIconPosition60,
+            child: Icon(Icons.local_shipping, size: ui.onboardingSecondaryIconSize, color: secondaryColor)
+                .animate(delay: ui.animationDelayExtraLong.ms)
+                .fadeIn(duration: ui.animationDurationMedium.ms)
+                .slideX(begin: ui.animationSlideHuge, duration: ui.animationDelayExtraLong.ms, curve: Curves.easeOutBack)
+                .then(delay: ui.animationDelayTera.ms)
                 .slideX(
                   begin: 0,
-                  end: 0.1,
-                  duration: 1500.ms,
+                  end: ui.animationSlideMedium,
+                  duration: ui.animationDurationExtraSlow.ms,
                   curve: Curves.easeInOut,
                 )
                 .then()
                 .slideX(
-                  begin: 0.1,
+                  begin: ui.animationSlideMedium,
                   end: 0,
-                  duration: 1500.ms,
+                  duration: ui.animationDurationExtraSlow.ms,
                   curve: Curves.easeInOut,
                 ),
           ),
           Positioned(
-            bottom: 60,
-            left: 60,
-            child: Icon(
-              Icons.schedule,
-              size: 28,
-              color: primaryColor.withValues(alpha: 0.7),
-            )
-                .animate(delay: 700.ms)
-                .fadeIn(duration: 600.ms)
-                .scale(begin: const Offset(0.2, 0.2), duration: 600.ms, curve: Curves.elasticOut)
-                .then(delay: 1000.ms)
-                .rotate(begin: 0, end: 1, duration: 8000.ms),
+            bottom: ui.onboardingIconPosition60,
+            left: ui.onboardingIconPosition60,
+            child:
+                Icon(
+                      Icons.schedule,
+                      size: ui.onboardingTertiaryIconSize,
+                      color: primaryColor.withValues(alpha: ui.animationAlphaStrong),
+                    )
+                    .animate(delay: ui.animationDelayVeryLong.ms)
+                    .fadeIn(duration: ui.animationDurationMedium.ms)
+                    .scale(
+                      begin: Offset(ui.animationScaleSmall, ui.animationScaleSmall),
+                      duration: ui.animationDurationMedium.ms,
+                      curve: Curves.elasticOut,
+                    )
+                    .then(delay: ui.animationDurationVerySlow.ms)
+                    .rotate(begin: 0, end: ui.animationRotationFull, duration: ui.animationDurationPeta.ms),
           ),
           Positioned(
-            top: 80,
-            left: 80,
-            child: Icon(
-              Icons.location_on,
-              size: 24,
-              color: secondaryColor.withValues(alpha: 0.8),
-            )
-                .animate(delay: 900.ms)
-                .fadeIn(duration: 600.ms)
-                .slideY(begin: -0.5, duration: 400.ms, curve: Curves.bounceOut)
-                .then(delay: 800.ms)
-                .scale(
-                  begin: const Offset(1.0, 1.0),
-                  end: const Offset(1.3, 1.3),
-                  duration: 1000.ms,
-                  curve: Curves.easeInOut,
-                )
-                .then()
-                .scale(
-                  begin: const Offset(1.3, 1.3),
-                  end: const Offset(1.0, 1.0),
-                  duration: 1000.ms,
-                  curve: Curves.easeInOut,
-                )
-                .then(delay: 2000.ms),
+            top: ui.onboardingIconPosition80,
+            left: ui.onboardingIconPosition80,
+            child:
+                Icon(
+                      Icons.location_on,
+                      size: ui.onboardingSmallIconSize,
+                      color: secondaryColor.withValues(alpha: ui.animationAlphaVeryStrong),
+                    )
+                    .animate(delay: ui.animationDelayMega.ms)
+                    .fadeIn(duration: ui.animationDurationMedium.ms)
+                    .slideY(
+                      begin: -ui.animationSlideExtraLarge,
+                      duration: ui.animationDurationFast.ms,
+                      curve: Curves.bounceOut,
+                    )
+                    .then(delay: ui.animationDelayUltraLong.ms)
+                    .scale(
+                      begin: Offset(ui.animationScaleNormal, ui.animationScaleNormal),
+                      end: Offset(ui.animationScaleVeryLarge, ui.animationScaleVeryLarge),
+                      duration: ui.animationDurationVerySlow.ms,
+                      curve: Curves.easeInOut,
+                    )
+                    .then()
+                    .scale(
+                      begin: Offset(ui.animationScaleVeryLarge, ui.animationScaleVeryLarge),
+                      end: Offset(ui.animationScaleNormal, ui.animationScaleNormal),
+                      duration: ui.animationDurationVerySlow.ms,
+                      curve: Curves.easeInOut,
+                    )
+                    .then(delay: ui.animationDurationUltraSlow.ms),
           ),
           // Indicador de "grátis"
           Positioned(
-            bottom: 80,
-            right: 80,
-            child: Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: ui.spacing2,
-                vertical: ui.spacing1,
-              ),
-              decoration: BoxDecoration(
-                color: primaryColor,
-                borderRadius: BorderRadius.circular(ui.radius8),
-              ),
-              child: Text(
-                'FREE',
-                style: GoogleFonts.inter(
-                  fontSize: 10,
-                  fontWeight: FontWeight.bold,
-                  color: ui.getColorByTheme(
-                    isDark: isDark,
-                    lightColor: ui.lightOnPrimary,
-                    darkColor: ui.darkOnPrimary,
-                  ),
-                ),
-              ),
-            )
-                .animate(delay: 1100.ms)
-                .fadeIn(duration: 800.ms)
-                .scale(begin: const Offset(0.5, 0.5), duration: 600.ms, curve: Curves.elasticOut)
-                .then(delay: 2000.ms)
-                .shimmer(duration: 2500.ms, color: Colors.white.withValues(alpha: 0.6))
-                .then(delay: 1500.ms)
-                .shimmer(duration: 2500.ms, color: Colors.white.withValues(alpha: 0.6)),
+            bottom: ui.onboardingIconPosition80,
+            right: ui.onboardingIconPosition80,
+            child:
+                Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: ui.spacing2,
+                        vertical: ui.spacing1,
+                      ),
+                      decoration: BoxDecoration(
+                        color: primaryColor,
+                        borderRadius: BorderRadius.circular(ui.radius8),
+                      ),
+                      child: Text(
+                        'FREE',
+                        style: GoogleFonts.inter(
+                          fontSize: ui.onboardingFreeTextSize,
+                          fontWeight: FontWeight.bold,
+                          color: ui.getColorByTheme(
+                            isDark: isDark,
+                            lightColor: ui.lightOnPrimary,
+                            darkColor: ui.darkOnPrimary,
+                          ),
+                        ),
+                      ),
+                    )
+                    .animate(delay: ui.animationDelayGiga.ms)
+                    .fadeIn(duration: ui.animationDurationSlow.ms)
+                    .scale(
+                      begin: Offset(ui.animationScaleLarge, ui.animationScaleLarge),
+                      duration: ui.animationDurationMedium.ms,
+                      curve: Curves.elasticOut,
+                    )
+                    .then(delay: ui.animationDurationUltraSlow.ms)
+                    .shimmer(
+                      duration: ui.animationDurationMega.ms,
+                      color: ui.white.withValues(alpha: ui.animationAlphaVeryHeavy),
+                    )
+                    .then(delay: ui.animationDurationExtraSlow.ms)
+                    .shimmer(
+                       duration: ui.animationDurationMega.ms,
+                       color: ui.white.withValues(alpha: ui.animationAlphaVeryHeavy),
+                     ),
           ),
         ],
       ),

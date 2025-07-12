@@ -211,7 +211,87 @@ class UIConstants {
   // COMMON COLORS
   // ==========================================================================
    Color transparent = Colors.transparent;
+   Color white = Colors.white;
   
+  // ==========================================================================
+  // ONBOARDING ILLUSTRATIONS CONSTANTS
+  // ==========================================================================
+  
+  // Container dimensions
+   double onboardingIllustrationSize = 280.0;
+   double onboardingBackgroundSize = 200.0;
+  
+  // Icon sizes
+   double onboardingMainIconSize = 80.0;
+   double onboardingSecondaryIconSize = 32.0;
+   double onboardingTertiaryIconSize = 28.0;
+   double onboardingSmallIconSize = 24.0;
+   double onboardingChefHatIconSize = 40.0;
+  
+  // Positioning values
+   double onboardingIconPosition60 = 60.0;
+   double onboardingIconPosition70 = 70.0;
+   double onboardingIconPosition80 = 80.0;
+  
+  // Animation durations (in milliseconds)
+   int animationDurationFast = 400;
+   int animationDurationMedium = 600;
+   int animationDurationSlow = 800;
+   int animationDurationVerySlow = 1000;
+   int animationDurationExtraSlow = 1500;
+   int animationDurationUltraSlow = 2000;
+   int animationDurationMega = 2500;
+   int animationDurationGiga = 3000;
+   int animationDurationTera = 4000;
+   int animationDurationPeta = 8000;
+  
+  // Animation delays (in milliseconds)
+   int animationDelayShort = 200;
+   int animationDelayMedium = 300;
+   int animationDelayLong = 400;
+   int animationDelayExtraLong = 500;
+   int animationDelayVeryLong = 700;
+   int animationDelayUltraLong = 800;
+   int animationDelayMega = 900;
+   int animationDelayGiga = 1100;
+   int animationDelayTera = 1200;
+  
+  // Animation scale values
+   double animationScaleSmall = 0.2;
+   double animationScaleMedium = 0.3;
+   double animationScaleLarge = 0.5;
+   double animationScaleExtraLarge = 0.8;
+   double animationScaleNormal = 1.0;
+   double animationScaleSlightlyLarge = 1.1;
+   double animationScaleModeratelyLarge = 1.15;
+   double animationScaleLarger = 1.2;
+   double animationScaleVeryLarge = 1.3;
+  
+  // Animation slide values
+   double animationSlideSmall = 0.02;
+   double animationSlideNormal = 0.03;
+   double animationSlideMedium = 0.1;
+   double animationSlideLarge = 0.3;
+   double animationSlideExtraLarge = 0.5;
+   double animationSlideHuge = 0.8;
+  
+  // Animation rotation values
+   double animationRotationSmall = 0.05;
+   double animationRotationMedium = 0.1;
+   double animationRotationFull = 1.0;
+  
+  // Alpha values for animations
+   double animationAlphaVeryLight = 0.05;
+   double animationAlphaLight = 0.1;
+   double animationAlphaMedium = 0.3;
+   double animationAlphaHeavy = 0.4;
+   double animationAlphaVeryHeavy = 0.6;
+   double animationAlphaStrong = 0.7;
+   double animationAlphaVeryStrong = 0.8;
+  
+  // Text sizes for onboarding
+   double onboardingFreeTextSize = 10.0;
+
   // ==========================================================================
   // UTILITY METHODS
   // ==========================================================================
