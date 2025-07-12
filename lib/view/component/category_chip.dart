@@ -21,7 +21,7 @@ class CategoryChip extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
+        duration: Duration(milliseconds: ui.categoryChipAnimationDuration),
         padding: EdgeInsets.symmetric(
           horizontal: ui.spacing4,
           vertical: ui.spacing2,
@@ -34,7 +34,7 @@ class CategoryChip extends StatelessWidget {
                   lightColor: ui.lightSurface,
                   darkColor: ui.darkSurface,
                 ),
-          borderRadius: BorderRadius.circular(ui.radius20),
+          borderRadius: BorderRadius.circular(ui.radiusFull),
           border: Border.all(
             color: isSelected 
                 ? ui.getPrimaryColor(isDark)
@@ -65,9 +65,11 @@ class CategoryChip extends StatelessWidget {
                   ),
                 ],
         ),
-        child: Text(
-          label,
-          style: TextStyle(
+        child: Center(
+          child: Text(
+            label,
+            textAlign: TextAlign.center,
+            style: TextStyle(
             color: isSelected 
                 ? ui.getColorByTheme(
                     isDark: isDark,
@@ -79,9 +81,10 @@ class CategoryChip extends StatelessWidget {
                     lightColor: ui.lightOnSurface,
                     darkColor: ui.darkOnSurface,
                   ),
-            fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-            fontSize: 14,
-            fontFamily: 'SanFranciscoPro',
+            fontWeight: isSelected ? ui.categoryChipSelectedFontWeight : ui.categoryChipUnselectedFontWeight,
+            fontSize: ui.categoryChipFontSize,
+            fontFamily: ui.categoryChipFontFamily,
+            ),
           ),
         ),
       ),

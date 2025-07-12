@@ -46,6 +46,7 @@ class UIConstants {
    double radius16 = 16.0;
    double radius20 = 20.0;
    double radius24 = 24.0;
+   double radiusFull = 50.0;
 
   // ==========================================================================
   // ELEVATION
@@ -346,6 +347,13 @@ class UIConstants {
    double cartFloatingButtonTotalFontSize = 14.0;
    FontWeight cartFloatingButtonTotalFontWeight = FontWeight.bold;
    String cartFloatingButtonFontFamily = 'SanFranciscoPro';
+
+  // Category chip constants
+   int categoryChipAnimationDuration = 200;
+   double categoryChipFontSize = 14.0;
+   FontWeight categoryChipSelectedFontWeight = FontWeight.bold;
+   FontWeight categoryChipUnselectedFontWeight = FontWeight.w500;
+   String categoryChipFontFamily = 'SanFranciscoPro';
 
   // ==========================================================================
   // UTILITY METHODS
