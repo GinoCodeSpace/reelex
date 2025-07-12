@@ -12,8 +12,8 @@ class ThemeToggleButton extends StatelessWidget {
             themeProvider.isDarkMode ? Icons.light_mode : Icons.dark_mode,
           ),
           tooltip: themeProvider.isDarkMode 
-              ? LocaleConstants.lightModeTooltip 
-              : LocaleConstants.darkModeTooltip,
+              ? LocaleConstants.lightModeTooltip(context) 
+              : LocaleConstants.darkModeTooltip(context),
           onPressed: () {
             themeProvider.toggleTheme();
           },

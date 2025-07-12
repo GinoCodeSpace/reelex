@@ -1,6 +1,47 @@
-# Montreal
+# Reelex - Implementação do Template Montreal
 
-🚀 **Template Flutter Profissional** - Um projeto base completo para acelerar o desenvolvimento de aplicações Flutter com arquitetura sólida e decisões técnicas bem fundamentadas.
+🍕 **App de Delivery de Comida** - Uma implementação prática do template Montreal, demonstrando como construir um aplicativo completo de delivery usando a arquitetura e padrões estabelecidos.
+
+![Demo do App](captura.gif)
+
+## 📱 Sobre o Reelex
+
+O **Reelex** é uma demonstração prática do template **Montreal**, mostrando como implementar um aplicativo real de delivery de comida com todas as funcionalidades essenciais:
+
+- 🏪 **Catálogo de Restaurantes**: Navegação por restaurantes e cardápios
+- 🛒 **Carrinho de Compras**: Adição/remoção de itens com cálculo automático
+- 📋 **Gestão de Pedidos**: Acompanhamento de pedidos ativos e histórico
+- 🎨 **Temas Claro/Escuro**: Interface adaptável com mudança dinâmica
+- 🌍 **Suporte a Idiomas**: Localização para múltiplos idiomas
+- 📱 **Design Responsivo**: Interface otimizada para diferentes telas
+
+### 🛠️ Funcionalidades Implementadas
+
+**Páginas Principais:**
+- 🏠 **Home**: Lista de restaurantes com filtros e busca
+- 🍽️ **Detalhes do Restaurante**: Cardápio completo com categorias
+- 🛒 **Carrinho**: Gestão de itens com cálculos automáticos
+- 📋 **Pedidos**: Acompanhamento de status e histórico
+- ⚙️ **Configurações**: Temas, idiomas e preferências
+
+**Recursos Técnicos:**
+- 🔄 **Provider**: Gerenciamento de estado para carrinho, pedidos e configurações
+- 🧭 **Go Router**: Navegação type-safe entre páginas
+- 🎨 **UI Constants**: Sistema de design consistente com cores e espaçamentos
+- 📱 **Responsive Design**: Adaptação automática para diferentes dispositivos
+- 🌙 **Theme Switching**: Alternância dinâmica entre temas claro e escuro
+
+**Arquitetura Aplicada:**
+- 📁 **Separação de Responsabilidades**: Models, Providers, Views e Utils organizados
+- 🔧 **Injeção de Dependência**: Configuração centralizada de serviços
+- 🌐 **Localização**: Suporte a múltiplos idiomas com fallback inteligente
+- 📊 **Gestão de Dados**: Simulação de API com dados JSON locais
+
+---
+
+# Montreal Template
+
+🚀 **Template Flutter Profissional** - O projeto base completo usado para construir o Reelex, acelerando o desenvolvimento de aplicações Flutter com arquitetura sólida e decisões técnicas bem fundamentadas.
 
 ## 🎯 Por que usar este template?
 
