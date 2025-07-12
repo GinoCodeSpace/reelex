@@ -1,5 +1,6 @@
 import '../../utils/imports/common_libs.dart';
 
+
 class OrdersPage extends StatefulWidget {
   const OrdersPage({super.key});
 
@@ -24,23 +25,27 @@ class _OrdersPageState extends State<OrdersPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final uiConstants = UIConstants();
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: uiConstants.ordersBackgroundColor(isDark),
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Meus Pedidos',
           style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+            fontSize: uiConstants.ordersAppBarTitleFontSize,
+            fontWeight: uiConstants.ordersAppBarTitleFontWeight,
+            color: uiConstants.ordersAppBarForegroundColor(isDark),
           ),
         ),
-        backgroundColor: Colors.orange,
+        backgroundColor: uiConstants.ordersAppBarBackgroundColor(isDark),
         elevation: 0,
         bottom: TabBar(
           controller: _tabController,
-          labelColor: Colors.white,
-          unselectedLabelColor: Colors.orange[100],
-          indicatorColor: Colors.white,
+          labelColor: uiConstants.ordersTabSelectedColor(isDark),
+          unselectedLabelColor: uiConstants.ordersTabUnselectedColor(isDark),
+          indicatorColor: uiConstants.ordersTabIndicatorColor(isDark),
           tabs: const [
             Tab(text: 'Ativos'),
             Tab(text: 'Histórico'),
@@ -50,9 +55,9 @@ class _OrdersPageState extends State<OrdersPage> with TickerProviderStateMixin {
       body: Consumer<OrdersProvider>(
         builder: (context, ordersProvider, child) {
           if (ordersProvider.isLoading) {
-            return const Center(
+            return Center(
               child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.orange),
+                valueColor: AlwaysStoppedAnimation<Color>(uiConstants.ordersLoadingIndicatorColor(isDark)),
               ),
             );
           }
@@ -64,35 +69,40 @@ class _OrdersPageState extends State<OrdersPage> with TickerProviderStateMixin {
                 children: [
                   Icon(
                     Icons.error_outline,
-                    size: 64,
-                    color: Colors.grey[400],
+                    size: uiConstants.ordersErrorIconSize,
+                    color: uiConstants.ordersErrorIconColor(isDark),
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: uiConstants.spacingMedium),
                   Text(
                     'Erro ao carregar pedidos',
                     style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.grey[600],
-                      fontWeight: FontWeight.w500,
+                      fontSize: uiConstants.ordersErrorTitleFontSize,
+                      color: uiConstants.ordersErrorTextColor(isDark),
+                      fontWeight: uiConstants.ordersErrorTitleFontWeight,
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  SizedBox(height: uiConstants.spacingSmall),
                   Text(
                     ordersProvider.error!,
                     style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey[500],
+                      fontSize: uiConstants.ordersErrorSubtitleFontSize,
+                      color: uiConstants.ordersErrorTextColor(isDark),
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 24),
+                  SizedBox(height: uiConstants.spacingLarge),
                   ElevatedButton(
                     onPressed: () => ordersProvider.clearError(),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.orange,
-                      foregroundColor: Colors.white,
+                      backgroundColor: uiConstants.ordersRetryButtonBackgroundColor(isDark),
+                      foregroundColor: uiConstants.ordersRetryButtonForegroundColor(isDark),
                     ),
-                    child: const Text('Tentar novamente'),
+                    child: Text(
+                      'Tentar novamente',
+                      style: TextStyle(
+                        fontSize: uiConstants.ordersRetryButtonFontSize,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -112,6 +122,8 @@ class _OrdersPageState extends State<OrdersPage> with TickerProviderStateMixin {
   }
 
   Widget _buildActiveOrdersTab(OrdersProvider ordersProvider) {
+    final uiConstants = UIConstants();
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final activeOrders = ordersProvider.activeOrders;
 
     if (activeOrders.isEmpty) {
@@ -119,22 +131,26 @@ class _OrdersPageState extends State<OrdersPage> with TickerProviderStateMixin {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.receipt_long, size: 64, color: Colors.grey[400]),
-            const SizedBox(height: 16),
+            Icon(
+              Icons.receipt_long,
+              size: uiConstants.ordersEmptyIconSize,
+              color: uiConstants.ordersEmptyIconColor(isDark),
+            ),
+            SizedBox(height: uiConstants.spacingMedium),
             Text(
               'Nenhum pedido ativo',
               style: TextStyle(
-                fontSize: 18,
-                color: Colors.grey[600],
-                fontWeight: FontWeight.w500,
+                fontSize: uiConstants.ordersEmptyTitleFontSize,
+                color: uiConstants.ordersEmptyTextColor(isDark),
+                fontWeight: uiConstants.ordersEmptyTitleFontWeight,
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: uiConstants.spacingSmall),
             Text(
               'Seus pedidos em andamento aparecerão aqui',
               style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey[500],
+                fontSize: uiConstants.ordersEmptySubtitleFontSize,
+                color: uiConstants.ordersEmptyTextColor(isDark),
               ),
               textAlign: TextAlign.center,
             ),
@@ -144,12 +160,12 @@ class _OrdersPageState extends State<OrdersPage> with TickerProviderStateMixin {
     }
 
     return ListView.builder(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(uiConstants.ordersCardPadding),
       itemCount: activeOrders.length,
       itemBuilder: (context, index) {
         final order = activeOrders[index];
         return Padding(
-          padding: const EdgeInsets.only(bottom: 16),
+          padding: EdgeInsets.only(bottom: uiConstants.ordersCardSpacing),
           child: _buildOrderCard(order, isActive: true),
         );
       },
@@ -157,6 +173,8 @@ class _OrdersPageState extends State<OrdersPage> with TickerProviderStateMixin {
   }
 
   Widget _buildOrderHistoryTab(OrdersProvider ordersProvider) {
+    final uiConstants = UIConstants();
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final orderHistory = ordersProvider.orderHistory;
 
     if (orderHistory.isEmpty) {
@@ -164,22 +182,26 @@ class _OrdersPageState extends State<OrdersPage> with TickerProviderStateMixin {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.history, size: 64, color: Colors.grey[400]),
-            const SizedBox(height: 16),
+            Icon(
+              Icons.history,
+              size: uiConstants.ordersEmptyIconSize,
+              color: uiConstants.ordersEmptyIconColor(isDark),
+            ),
+            SizedBox(height: uiConstants.spacingMedium),
             Text(
               'Nenhum pedido no histórico',
               style: TextStyle(
-                fontSize: 18,
-                color: Colors.grey[600],
-                fontWeight: FontWeight.w500,
+                fontSize: uiConstants.ordersEmptyTitleFontSize,
+                color: uiConstants.ordersEmptyTextColor(isDark),
+                fontWeight: uiConstants.ordersEmptyTitleFontWeight,
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: uiConstants.spacingSmall),
             Text(
               'Seus pedidos finalizados aparecerão aqui',
               style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey[500],
+                fontSize: uiConstants.ordersEmptySubtitleFontSize,
+                color: uiConstants.ordersEmptyTextColor(isDark),
               ),
               textAlign: TextAlign.center,
             ),
@@ -189,12 +211,12 @@ class _OrdersPageState extends State<OrdersPage> with TickerProviderStateMixin {
     }
 
     return ListView.builder(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(uiConstants.ordersCardPadding),
       itemCount: orderHistory.length,
       itemBuilder: (context, index) {
         final order = orderHistory[index];
         return Padding(
-          padding: const EdgeInsets.only(bottom: 16),
+          padding: EdgeInsets.only(bottom: uiConstants.ordersCardSpacing),
           child: _buildOrderCard(order, isActive: false),
         );
       },
@@ -202,13 +224,17 @@ class _OrdersPageState extends State<OrdersPage> with TickerProviderStateMixin {
   }
 
   Widget _buildOrderCard(Order order, {required bool isActive}) {
+    final uiConstants = UIConstants();
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    
     return Card(
-      elevation: 2,
+      elevation: uiConstants.ordersCardElevation,
+      color: uiConstants.ordersCardBackgroundColor(isDark),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(uiConstants.ordersCardBorderRadius),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(uiConstants.ordersCardPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -218,23 +244,27 @@ class _OrdersPageState extends State<OrdersPage> with TickerProviderStateMixin {
               children: [
                 Text(
                   'Pedido #${order.id.substring(order.id.length - 6)}',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                  style: TextStyle(
+                    fontWeight: uiConstants.ordersOrderIdFontWeight,
+                    fontSize: uiConstants.ordersOrderIdFontSize,
+                    color: uiConstants.ordersOrderIdColor(isDark),
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: uiConstants.ordersStatusPaddingHorizontal,
+                    vertical: uiConstants.ordersStatusPaddingVertical,
+                  ),
                   decoration: BoxDecoration(
-                    color: _getStatusColor(order.status).withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(12),
+                    color: _getStatusColor(order.status, isDark).withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(uiConstants.ordersStatusBorderRadius),
                   ),
                   child: Text(
                     order.status.displayName,
                     style: TextStyle(
-                      color: _getStatusColor(order.status),
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12,
+                      color: _getStatusColor(order.status, isDark),
+                      fontWeight: uiConstants.ordersStatusFontWeight,
+                      fontSize: uiConstants.ordersStatusFontSize,
                     ),
                   ),
                 ),
@@ -246,20 +276,22 @@ class _OrdersPageState extends State<OrdersPage> with TickerProviderStateMixin {
             Text(
               _formatDateTime(order.orderDate),
               style: TextStyle(
-                color: Colors.grey[600],
-                fontSize: 14,
+                color: uiConstants.ordersDateTimeColor(isDark),
+                fontSize: uiConstants.ordersDateTimeFontSize,
               ),
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: uiConstants.spacingMedium),
             
             // Itens do pedido (resumo)
             Text(
               '${order.items.length} ${order.items.length == 1 ? 'item' : 'itens'}',
-              style: const TextStyle(
-                fontWeight: FontWeight.w500,
+              style: TextStyle(
+                fontWeight: uiConstants.ordersItemCountFontWeight,
+                fontSize: uiConstants.ordersItemCountFontSize,
+                color: uiConstants.ordersItemCountColor(isDark),
               ),
             ),
-            const SizedBox(height: 4),
+            SizedBox(height: uiConstants.spacingXSmall),
             
             // Primeiro item como exemplo
             if (order.items.isNotEmpty)
@@ -267,13 +299,13 @@ class _OrdersPageState extends State<OrdersPage> with TickerProviderStateMixin {
                 order.items.first.productName +
                     (order.items.length > 1 ? ' e mais ${order.items.length - 1}' : ''),
                 style: TextStyle(
-                  color: Colors.grey[600],
-                  fontSize: 14,
+                  color: uiConstants.ordersItemNameColor(isDark),
+                  fontSize: uiConstants.ordersItemNameFontSize,
                 ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
-            const SizedBox(height: 12),
+            SizedBox(height: uiConstants.spacingMedium),
             
             // Total e ações
             Row(
@@ -281,10 +313,10 @@ class _OrdersPageState extends State<OrdersPage> with TickerProviderStateMixin {
               children: [
                 Text(
                   'Total: R\$ ${order.totalWithDelivery.toStringAsFixed(2)}',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                    color: Colors.orange,
+                  style: TextStyle(
+                    fontWeight: uiConstants.ordersTotalFontWeight,
+                    fontSize: uiConstants.ordersTotalFontSize,
+                    color: uiConstants.ordersTotalColor(isDark),
                   ),
                 ),
                 if (isActive && order.status == OrderStatus.confirmed)
@@ -293,9 +325,12 @@ class _OrdersPageState extends State<OrdersPage> with TickerProviderStateMixin {
                       final ordersProvider = Provider.of<OrdersProvider>(context, listen: false);
                       ordersProvider.cancelOrder(order.id);
                     },
-                    child: const Text(
+                    child: Text(
                       'Cancelar',
-                      style: TextStyle(color: Colors.red),
+                      style: TextStyle(
+                        color: uiConstants.ordersCancelButtonColor(isDark),
+                        fontSize: uiConstants.ordersCancelButtonFontSize,
+                      ),
                     ),
                   ),
               ],
@@ -304,26 +339,26 @@ class _OrdersPageState extends State<OrdersPage> with TickerProviderStateMixin {
             // Descrição do status
             if (isActive)
               Container(
-                margin: const EdgeInsets.only(top: 8),
-                padding: const EdgeInsets.all(8),
+                margin: EdgeInsets.only(top: uiConstants.spacingSmall),
+                padding: EdgeInsets.all(uiConstants.ordersStatusDescriptionPadding),
                 decoration: BoxDecoration(
-                  color: Colors.grey[100],
-                  borderRadius: BorderRadius.circular(8),
+                  color: uiConstants.ordersStatusDescriptionBackgroundColor(isDark),
+                  borderRadius: BorderRadius.circular(uiConstants.ordersStatusDescriptionBorderRadius),
                 ),
                 child: Row(
                   children: [
                     Icon(
                       _getStatusIcon(order.status),
-                      size: 16,
-                      color: _getStatusColor(order.status),
+                      size: uiConstants.ordersStatusIconSize,
+                      color: _getStatusColor(order.status, isDark),
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: uiConstants.spacingSmall),
                     Expanded(
                       child: Text(
                         order.status.description,
                         style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey[700],
+                          fontSize: uiConstants.ordersStatusDescriptionFontSize,
+                          color: uiConstants.ordersStatusDescriptionTextColor(isDark),
                         ),
                       ),
                     ),
@@ -336,20 +371,21 @@ class _OrdersPageState extends State<OrdersPage> with TickerProviderStateMixin {
     );
   }
 
-  Color _getStatusColor(OrderStatus status) {
+  Color _getStatusColor(OrderStatus status, bool isDark) {
+    final uiConstants = UIConstants();
     switch (status) {
       case OrderStatus.pending:
-        return Colors.orange;
+        return uiConstants.orderStatusPendingColor(isDark);
       case OrderStatus.confirmed:
-        return Colors.blue;
+        return uiConstants.orderStatusConfirmedColor(isDark);
       case OrderStatus.preparing:
-        return Colors.purple;
+        return uiConstants.orderStatusPreparingColor(isDark);
       case OrderStatus.onTheWay:
-        return Colors.indigo;
+        return uiConstants.orderStatusOnTheWayColor(isDark);
       case OrderStatus.delivered:
-        return Colors.green;
+        return uiConstants.orderStatusDeliveredColor(isDark);
       case OrderStatus.cancelled:
-        return Colors.red;
+        return uiConstants.orderStatusCancelledColor(isDark);
     }
   }
 

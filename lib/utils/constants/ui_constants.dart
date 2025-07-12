@@ -40,6 +40,12 @@ class UIConstants {
   double get spacing20 => _spacing20;
   double get spacing24 => _spacing24;
 
+  // Semantic spacing getters
+  double get spacingXSmall => _spacing1; // 4.0
+  double get spacingSmall => _spacing2; // 8.0
+  double get spacingMedium => _spacing4; // 16.0
+  double get spacingLarge => _spacing6; // 24.0
+
   // ==========================================================================
   // OPACITY SCALE
   // ==========================================================================
@@ -1399,6 +1405,224 @@ class UIConstants {
     isDark: isDark,
     lightColor: lightOnSurface.withValues(alpha: 0.7),
     darkColor: darkOnSurface.withValues(alpha: 0.7),
+  );
+
+  // Orders page constants
+  static const double _ordersAppBarTitleFontSize = 18.0;
+  static const FontWeight _ordersAppBarTitleFontWeight = FontWeight.bold;
+  static const double _ordersTabFontSize = 14.0;
+  static const double _ordersEmptyIconSize = 64.0;
+  static const double _ordersEmptyTitleFontSize = 18.0;
+  static const FontWeight _ordersEmptyTitleFontWeight = FontWeight.w500;
+  static const double _ordersEmptySubtitleFontSize = 14.0;
+  static const double _ordersCardElevation = 2.0;
+  static const double _ordersCardBorderRadius = 12.0;
+  static const double _ordersCardPadding = 16.0;
+  static const double _ordersCardSpacing = 16.0;
+  static const double _ordersOrderIdFontSize = 16.0;
+  static const FontWeight _ordersOrderIdFontWeight = FontWeight.bold;
+  static const double _ordersStatusFontSize = 12.0;
+  static const FontWeight _ordersStatusFontWeight = FontWeight.w500;
+  static const double _ordersStatusPaddingHorizontal = 8.0;
+  static const double _ordersStatusPaddingVertical = 4.0;
+  static const double _ordersStatusBorderRadius = 12.0;
+  static const double _ordersDateTimeFontSize = 14.0;
+  static const double _ordersItemCountFontSize = 14.0;
+  static const FontWeight _ordersItemCountFontWeight = FontWeight.w500;
+  static const double _ordersItemNameFontSize = 14.0;
+  static const double _ordersTotalFontSize = 16.0;
+  static const FontWeight _ordersTotalFontWeight = FontWeight.bold;
+  static const double _ordersCancelButtonFontSize = 14.0;
+  static const double _ordersStatusDescriptionFontSize = 12.0;
+  static const double _ordersStatusDescriptionPadding = 8.0;
+  static const double _ordersStatusDescriptionBorderRadius = 8.0;
+  static const double _ordersStatusIconSize = 16.0;
+  static const double _ordersLoadingIndicatorSize = 24.0;
+  static const double _ordersErrorIconSize = 64.0;
+  static const double _ordersErrorTitleFontSize = 18.0;
+  static const FontWeight _ordersErrorTitleFontWeight = FontWeight.w500;
+  static const double _ordersErrorSubtitleFontSize = 14.0;
+  static const double _ordersRetryButtonFontSize = 14.0;
+
+  // Orders page getters
+  double get ordersAppBarTitleFontSize => _ordersAppBarTitleFontSize;
+  FontWeight get ordersAppBarTitleFontWeight => _ordersAppBarTitleFontWeight;
+  double get ordersTabFontSize => _ordersTabFontSize;
+  double get ordersEmptyIconSize => _ordersEmptyIconSize;
+  double get ordersEmptyTitleFontSize => _ordersEmptyTitleFontSize;
+  FontWeight get ordersEmptyTitleFontWeight => _ordersEmptyTitleFontWeight;
+  double get ordersEmptySubtitleFontSize => _ordersEmptySubtitleFontSize;
+  double get ordersCardElevation => _ordersCardElevation;
+  double get ordersCardBorderRadius => _ordersCardBorderRadius;
+  double get ordersCardPadding => _ordersCardPadding;
+  double get ordersCardSpacing => _ordersCardSpacing;
+  double get ordersOrderIdFontSize => _ordersOrderIdFontSize;
+  FontWeight get ordersOrderIdFontWeight => _ordersOrderIdFontWeight;
+  double get ordersStatusFontSize => _ordersStatusFontSize;
+  FontWeight get ordersStatusFontWeight => _ordersStatusFontWeight;
+  double get ordersStatusPaddingHorizontal => _ordersStatusPaddingHorizontal;
+  double get ordersStatusPaddingVertical => _ordersStatusPaddingVertical;
+  double get ordersStatusBorderRadius => _ordersStatusBorderRadius;
+  double get ordersDateTimeFontSize => _ordersDateTimeFontSize;
+  double get ordersItemCountFontSize => _ordersItemCountFontSize;
+  FontWeight get ordersItemCountFontWeight => _ordersItemCountFontWeight;
+  double get ordersItemNameFontSize => _ordersItemNameFontSize;
+  double get ordersTotalFontSize => _ordersTotalFontSize;
+  FontWeight get ordersTotalFontWeight => _ordersTotalFontWeight;
+  double get ordersCancelButtonFontSize => _ordersCancelButtonFontSize;
+  double get ordersStatusDescriptionFontSize => _ordersStatusDescriptionFontSize;
+  double get ordersStatusDescriptionPadding => _ordersStatusDescriptionPadding;
+  double get ordersStatusDescriptionBorderRadius => _ordersStatusDescriptionBorderRadius;
+  double get ordersStatusIconSize => _ordersStatusIconSize;
+  double get ordersLoadingIndicatorSize => _ordersLoadingIndicatorSize;
+  double get ordersErrorIconSize => _ordersErrorIconSize;
+  double get ordersErrorTitleFontSize => _ordersErrorTitleFontSize;
+  FontWeight get ordersErrorTitleFontWeight => _ordersErrorTitleFontWeight;
+  double get ordersErrorSubtitleFontSize => _ordersErrorSubtitleFontSize;
+  double get ordersRetryButtonFontSize => _ordersRetryButtonFontSize;
+
+  // Orders page theme-aware color getters
+  Color ordersBackgroundColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: const Color(0xFFFAFAFA),
+    darkColor: darkSurfaceContainerLow,
+  );
+  Color ordersAppBarBackgroundColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: lightPrimary,
+    darkColor: darkPrimary,
+  );
+  Color ordersAppBarForegroundColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: lightOnPrimary,
+    darkColor: darkOnPrimary,
+  );
+  Color ordersTabSelectedColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: lightOnPrimary,
+    darkColor: darkOnPrimary,
+  );
+  Color ordersTabUnselectedColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: lightOnPrimary.withValues(alpha: 0.7),
+    darkColor: darkOnPrimary.withValues(alpha: 0.7),
+  );
+  Color ordersTabIndicatorColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: lightOnPrimary,
+    darkColor: darkOnPrimary,
+  );
+  Color ordersLoadingIndicatorColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: lightPrimary,
+    darkColor: darkPrimary,
+  );
+  Color ordersEmptyIconColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: const Color(0xFFBDBDBD),
+    darkColor: darkOnSurfaceVariant,
+  );
+  Color ordersEmptyTextColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: const Color(0xFF757575),
+    darkColor: darkOnSurfaceVariant,
+  );
+  Color ordersErrorIconColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: const Color(0xFFBDBDBD),
+    darkColor: darkOnSurfaceVariant,
+  );
+  Color ordersErrorTextColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: const Color(0xFF757575),
+    darkColor: darkOnSurfaceVariant,
+  );
+  Color ordersRetryButtonBackgroundColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: lightPrimary,
+    darkColor: darkPrimary,
+  );
+  Color ordersRetryButtonForegroundColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: lightOnPrimary,
+    darkColor: darkOnPrimary,
+  );
+  Color ordersCardBackgroundColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: lightSurface,
+    darkColor: darkSurface,
+  );
+  Color ordersOrderIdColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: lightOnSurface,
+    darkColor: darkOnSurface,
+  );
+  Color ordersDateTimeColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: const Color(0xFF757575),
+    darkColor: darkOnSurfaceVariant,
+  );
+  Color ordersItemCountColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: lightOnSurface,
+    darkColor: darkOnSurface,
+  );
+  Color ordersItemNameColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: const Color(0xFF757575),
+    darkColor: darkOnSurfaceVariant,
+  );
+  Color ordersTotalColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: lightPrimary,
+    darkColor: darkPrimary,
+  );
+  Color ordersCancelButtonColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: lightError,
+    darkColor: darkError,
+  );
+  Color ordersStatusDescriptionBackgroundColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: const Color(0xFFF5F5F5),
+    darkColor: darkSurfaceContainerHigh,
+  );
+  Color ordersStatusDescriptionTextColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: const Color(0xFF616161),
+    darkColor: darkOnSurfaceVariant,
+  );
+  
+  // Order status colors
+  Color orderStatusPendingColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: lightPrimary,
+    darkColor: darkPrimary,
+  );
+  Color orderStatusConfirmedColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: const Color(0xFF2196F3),
+    darkColor: const Color(0xFF64B5F6),
+  );
+  Color orderStatusPreparingColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: const Color(0xFF9C27B0),
+    darkColor: const Color(0xFFBA68C8),
+  );
+  Color orderStatusOnTheWayColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: const Color(0xFF3F51B5),
+    darkColor: const Color(0xFF7986CB),
+  );
+  Color orderStatusDeliveredColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: const Color(0xFF4CAF50),
+    darkColor: const Color(0xFF81C784),
+  );
+  Color orderStatusCancelledColor(bool isDark) => getColorByTheme(
+    isDark: isDark,
+    lightColor: lightError,
+    darkColor: darkError,
   );
 
   // ==========================================================================
