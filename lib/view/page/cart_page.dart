@@ -1,5 +1,6 @@
 import '../../providers/cart_provider.dart';
 import '../../providers/products_provider.dart';
+import '../../providers/orders_provider.dart';
 import '../../model/cart_item.dart';
 import '../../utils/imports/common_libs.dart';
 
@@ -462,8 +463,8 @@ class CartPage extends StatelessWidget {
             TextButton(
               onPressed: () {
                 cartProvider.clearCart();
-                Navigator.pop(context);
-                Navigator.pop(context); // Volta para a página anterior
+                Navigator.pop(context); // Fecha o dialog
+                context.go(Routes.home); // Navega para a home
               },
               child: Text(
                 'Limpar',
@@ -482,6 +483,7 @@ class CartPage extends StatelessWidget {
 
     showDialog(
       context: context,
+      barrierDismissible: false, // Impede fechar clicando fora
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Pedido Confirmado!'),
@@ -495,19 +497,63 @@ class CartPage extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               Text(
-                'Seu pedido foi confirmado com sucesso!\n\nTotal: R\$ ${cartProvider.totalWithDelivery.toStringAsFixed(2)}',
+                'Seu pedido foi confirmado com sucesso!\n\nTotal: R\$ ${cartProvider.totalWithDelivery.toStringAsFixed(2)}\n\nVocê pode acompanhar seu pedido na aba "Pedidos".',
                 textAlign: TextAlign.center,
               ),
             ],
           ),
           actions: [
             TextButton(
-              onPressed: () {
-                cartProvider.clearCart();
-                Navigator.pop(context); // Fecha o dialog
-                Navigator.pop(context); // Volta para a página anterior
+              onPressed: () async {
+                final ordersProvider = Provider.of<OrdersProvider>(context, listen: false);
+                final productsProvider = Provider.of<ProductsProvider>(context, listen: false);
+                try {
+                  // Salvar o pedido antes de limpar o carrinho
+                  final orderId = await ordersProvider.addOrder(cartProvider, productsProvider);
+                  cartProvider.clearCart();
+                  
+                  // Simular progresso do pedido
+                  ordersProvider.simulateOrderProgress(orderId);
+                  
+                  Navigator.pop(context); // Fecha o dialog
+                  context.go(Routes.orders); // Navega para a página de pedidos
+                } catch (e) {
+                  Navigator.pop(context);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Erro ao processar pedido: $e'),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
+                }
               },
-              child: const Text('OK'),
+              child: const Text('Ver Pedidos'),
+            ),
+            TextButton(
+              onPressed: () async {
+                final ordersProvider = Provider.of<OrdersProvider>(context, listen: false);
+                final productsProvider = Provider.of<ProductsProvider>(context, listen: false);
+                try {
+                  // Salvar o pedido antes de limpar o carrinho
+                  final orderId = await ordersProvider.addOrder(cartProvider, productsProvider);
+                  cartProvider.clearCart();
+                  
+                  // Simular progresso do pedido
+                  ordersProvider.simulateOrderProgress(orderId);
+                  
+                  Navigator.pop(context); // Fecha o dialog
+                  context.go(Routes.home); // Navega para a home
+                } catch (e) {
+                  Navigator.pop(context);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Erro ao processar pedido: $e'),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
+                }
+              },
+              child: const Text('Continuar Comprando'),
             ),
           ],
         );
