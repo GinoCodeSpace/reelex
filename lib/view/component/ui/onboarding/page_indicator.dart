@@ -15,17 +15,17 @@ class PageIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
-    final ui = UIConstants();
+    final ui = uiConstants;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
         totalPages,
         (index) => AnimatedContainer(
-          duration: const Duration(milliseconds: 300),
+          duration: Duration(milliseconds: ui.pageIndicatorAnimationDuration),
           margin: EdgeInsets.symmetric(horizontal: ui.spacing1),
-          width: currentPage == index ? 24.0 : 8.0,
-          height: 8.0,
+          width: currentPage == index ? ui.pageIndicatorActiveWidth : ui.pageIndicatorInactiveWidth,
+          height: ui.pageIndicatorHeight,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(ui.radius4),
             color: currentPage == index

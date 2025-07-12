@@ -1,6 +1,5 @@
 import '../../utils/imports/common_libs.dart';
 
-
 /// Página de cadastro com formulário de registro
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -18,7 +17,7 @@ class _SignUpPageState extends State<SignUpPage> {
   bool _isPasswordVisible = false;
   bool _isConfirmPasswordVisible = false;
 
-  final UIConstants _ui = UIConstants();
+  final UIConstants _ui = uiConstants;
 
   @override
   void dispose() {
@@ -32,7 +31,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Future<void> _handleSignUp() async {
     if (_formKey.currentState!.validate()) {
       final authProvider = Provider.of<AuthProvider>(context, listen: false);
-      
+
       final success = await authProvider.register(
         _emailController.text.trim(),
         _passwordController.text,
@@ -199,7 +198,9 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
           suffixIcon: IconButton(
             icon: Icon(
-              _isConfirmPasswordVisible ? Icons.visibility : Icons.visibility_off,
+              _isConfirmPasswordVisible
+                  ? Icons.visibility
+                  : Icons.visibility_off,
               color: _ui.getColorByTheme(
                 isDark: isDark,
                 lightColor: _ui.lightOnSurfaceVariant,

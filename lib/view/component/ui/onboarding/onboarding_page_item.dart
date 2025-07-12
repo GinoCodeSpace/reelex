@@ -17,7 +17,7 @@ class OnboardingPageItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
-    final ui = UIConstants();
+    final ui = uiConstants;
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: ui.spacing6),
@@ -26,12 +26,12 @@ class OnboardingPageItem extends StatelessWidget {
         children: [
           // Ilustração
           Expanded(
-            flex: 3,
+            flex: ui.onboardingIllustrationFlex,
             child: Center(
               child: Container(
-                constraints: const BoxConstraints(
-                  maxWidth: 300,
-                  maxHeight: 300,
+                constraints: BoxConstraints(
+                  maxWidth: ui.onboardingIllustrationMaxSize,
+                  maxHeight: ui.onboardingIllustrationMaxSize,
                 ),
                 child: illustration,
               ),
@@ -43,9 +43,10 @@ class OnboardingPageItem extends StatelessWidget {
           // Título
           Text(
             title,
-            style: GoogleFonts.inter(
-              fontSize: 28,
+            style: TextStyle(
+              fontSize: ui.onboardingTitleFontSize,
               fontWeight: FontWeight.bold,
+              fontFamily: ui.onboardingFontFamily,
               color: ui.getColorByTheme(
                 isDark: isDark,
                 lightColor: ui.lightOnSurface,
@@ -62,14 +63,15 @@ class OnboardingPageItem extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: ui.spacing4),
             child: Text(
               description,
-              style: GoogleFonts.inter(
-                fontSize: 16,
+              style: TextStyle(
+                fontSize: ui.onboardingDescriptionFontSize,
+                fontFamily: ui.onboardingFontFamily,
                 color: ui.getColorByTheme(
                   isDark: isDark,
                   lightColor: ui.lightOnSurfaceVariant,
                   darkColor: ui.darkOnSurfaceVariant,
                 ),
-                height: 1.5,
+                height: ui.onboardingDescriptionLineHeight,
               ),
               textAlign: TextAlign.center,
             ),

@@ -10,7 +10,7 @@ class OnboardingPage extends StatefulWidget {
 
 class _OnboardingPageState extends State<OnboardingPage> {
   final PageController _pageController = PageController();
-  final UIConstants _ui = UIConstants();
+  final UIConstants _ui = uiConstants;
 
   @override
   void initState() {

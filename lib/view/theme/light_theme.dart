@@ -1,6 +1,7 @@
 import '../../utils/imports/common_libs.dart';
 
-ColorScheme _lightColorScheme = ColorScheme.light(
+final _lightColorScheme = ColorScheme(
+  brightness: Brightness.light,
   // Primary colors
   primary: uiConstants.lightPrimary,
   onPrimary: uiConstants.lightOnPrimary,

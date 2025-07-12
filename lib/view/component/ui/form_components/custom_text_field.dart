@@ -35,17 +35,18 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
-    final ui = UIConstants();
+    final ui = uiConstants;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           label,
-          style: GoogleFonts.inter(
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-            letterSpacing: 0.5,
+          style: TextStyle(
+            fontSize: ui.textFieldLabelFontSize,
+            fontWeight: ui.textFieldLabelFontWeight,
+            letterSpacing: ui.textFieldLabelLetterSpacing,
+            fontFamily: ui.textFieldFontFamily,
             color: ui.getOnSurfaceColor(isDark),
           ),
         ),
@@ -61,7 +62,8 @@ class CustomTextField extends StatelessWidget {
           readOnly: readOnly,
           decoration: InputDecoration(
             hintText: hintText,
-            hintStyle: GoogleFonts.inter(
+            hintStyle: TextStyle(
+              fontFamily: ui.textFieldFontFamily,
               color: ui.getColorByTheme(
                 isDark: isDark,
                 lightColor: ui.lightOnSurfaceVariant,
@@ -86,7 +88,7 @@ class CustomTextField extends StatelessWidget {
               borderRadius: BorderRadius.circular(ui.radius12),
               borderSide: BorderSide(
                 color: ui.getPrimaryColor(isDark),
-                width: 2,
+                width: ui.textFieldFocusedBorderWidth,
               ),
             ),
             errorBorder: OutlineInputBorder(
@@ -97,7 +99,7 @@ class CustomTextField extends StatelessWidget {
                   lightColor: ui.lightError,
                   darkColor: ui.darkError,
                 ),
-                width: 1,
+                width: ui.textFieldErrorBorderWidth,
               ),
             ),
             contentPadding: EdgeInsets.symmetric(

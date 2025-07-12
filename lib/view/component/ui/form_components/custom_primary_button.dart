@@ -17,14 +17,14 @@ class CustomPrimaryButton extends StatelessWidget {
     this.isLoading = false,
     this.icon,
     this.width,
-    this.height = 56,
+    this.height = 56.0,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
-    final ui = UIConstants();
+    final ui = uiConstants;
 
     return SizedBox(
       width: width,
@@ -41,17 +41,17 @@ class CustomPrimaryButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(ui.radius12),
           ),
-          elevation: 0,
+          elevation: ui.primaryButtonElevation,
           disabledBackgroundColor: ui
               .getPrimaryColor(isDark)
-              .withValues(alpha: 0.6),
+              .withValues(alpha: ui.primaryButtonDisabledAlpha),
         ),
         child: isLoading
             ? SizedBox(
-                height: 20,
-                width: 20,
+                height: ui.primaryButtonProgressSize,
+                width: ui.primaryButtonProgressSize,
                 child: CircularProgressIndicator(
-                  strokeWidth: 2,
+                  strokeWidth: ui.primaryButtonProgressStrokeWidth,
                   valueColor: AlwaysStoppedAnimation<Color>(
                     ui.getColorByTheme(
                       isDark: isDark,
@@ -66,16 +66,16 @@ class CustomPrimaryButton extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   if (icon != null) ...[
-                    Icon(icon, size: 18),
-                    const SizedBox(width: 8),
+                    Icon(icon, size: ui.primaryButtonIconSize),
+                    SizedBox(width: ui.primaryButtonIconSpacing),
                   ],
                   Flexible(
                     child: Text(
                       text,
                       style: GoogleFonts.inter(
-                        fontSize: 16,
+                        fontSize: ui.primaryButtonFontSize,
                         fontWeight: FontWeight.w600,
-                        letterSpacing: 0.5,
+                        letterSpacing: ui.primaryButtonLetterSpacing,
                       ),
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.center,

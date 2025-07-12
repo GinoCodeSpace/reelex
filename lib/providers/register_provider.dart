@@ -1,5 +1,6 @@
 import '../utils/imports/common_libs.dart';
 
+
 class RegisterProvider {
   RegisterProvider._();
 
@@ -10,6 +11,9 @@ class RegisterProvider {
       ChangeNotifierProvider(create: (context) => AuthProvider()),
       ChangeNotifierProvider(create: (context) => NavigationProvider()),
       ChangeNotifierProvider(create: (context) => OnboardingProvider()),
+      ChangeNotifierProvider(create: (context) => ProductsProvider()),
+      ChangeNotifierProvider(create: (context) => CartProvider()),
+      ChangeNotifierProvider(create: (context) => OrdersProvider()),
     ];
   }
 }

@@ -10,6 +10,9 @@ export 'package:flutter/services.dart';
 // Localization
 export 'package:flutter_localizations/flutter_localizations.dart';
 
+// Animations
+export 'package:flutter_animate/flutter_animate.dart';
+
 // UI & Styling
 export 'package:google_fonts/google_fonts.dart';
 
@@ -46,6 +49,9 @@ export '../../providers/locale_provider.dart';
 export '../../providers/auth_provider.dart';
 export '../../providers/navigation_provider.dart';
 export '../../providers/onboarding_provider.dart';
+export '../../providers/products_provider.dart';
+export '../../providers/cart_provider.dart';
+export '../../providers/orders_provider.dart';
 
 // =============================================================================
 // ROUTING
@@ -61,6 +67,16 @@ export 'package:montreal/route/router.dart';
 // =============================================================================
 
 export '../../model/locale_data.dart';
+export '../../model/product.dart';
+export '../../model/restaurant.dart';
+export '../../model/cart_item.dart';
+export '../../model/order.dart';
+
+// =============================================================================
+// SERVICES
+// =============================================================================
+
+export '../../service/data_service.dart';
 
 // =============================================================================
 // CONSTANTS
@@ -97,6 +113,10 @@ export '../../view/page/home_page.dart';
 export '../../view/page/forgot_password_page.dart';
 export '../../view/page/sign_up_page.dart';
 export '../../view/page/onboarding_page.dart';
+export '../../view/page/login_page.dart';
+export '../../view/page/orders_page.dart';
+export '../../view/page/restaurant_detail_page.dart';
+export '../../view/page/cart_page.dart';
 
 // Components - Screens
 export '../../view/component/ui/screen/scaffold_sliver.dart';
@@ -109,3 +129,10 @@ export '../../view/component/ui/app_bar/custom_sliver_app_bar.dart';
 export '../../view/component/ui/pop_up_menu/language_selector.dart';
 // Buttons
 export '../../view/component/ui/button/theme_toggle_button.dart';
+
+// Components - Custom
+export '../../view/component/search_bar_widget.dart';
+export '../../view/component/category_chip.dart';
+export '../../view/component/restaurant_card.dart';
+export '../../view/component/product_card.dart';
+export '../../view/component/cart_floating_button.dart';
