@@ -429,11 +429,197 @@ class UIConstants {
    static const FontWeight restaurantCardNameFontWeight = FontWeight.bold;
    static const FontWeight restaurantCardTagFontWeight = FontWeight.w500;
    static const String restaurantCardFontFamily = 'SanFranciscoPro';
+
+  // Cart page constants
+  static const double cartEmptyIconSize = 80.0;
+  static const double cartEmptyTitleFontSize = 20.0;
+  static const FontWeight cartEmptyTitleFontWeight = FontWeight.w600;
+  static const double cartEmptySubtitleFontSize = 16.0;
+  static const double cartItemImageSize = 80.0;
+  static const double cartItemImageBorderRadius = 8.0;
+  static const double cartItemNameFontSize = 16.0;
+  static const FontWeight cartItemNameFontWeight = FontWeight.bold;
+  static const double cartItemRestaurantFontSize = 14.0;
+  static const double cartItemPriceFontSize = 16.0;
+  static const FontWeight cartItemPriceFontWeight = FontWeight.bold;
+  static const double cartItemInstructionsFontSize = 12.0;
+  static const double cartQuantityControlIconSize = 18.0;
+  static const double cartQuantityControlBorderRadius = 20.0;
+  static const double cartQuantityTextFontSize = 16.0;
+  static const FontWeight cartQuantityTextFontWeight = FontWeight.bold;
+  static const double cartTotalPriceFontSize = 14.0;
+  static const FontWeight cartTotalPriceFontWeight = FontWeight.bold;
+  static const double cartSummaryFontSize = 16.0;
+  static const FontWeight cartSummaryFontWeight = FontWeight.w500;
+  static const double cartTotalFontSize = 18.0;
+  static const FontWeight cartTotalFontWeight = FontWeight.bold;
+  static const double cartButtonFontSize = 16.0;
+  static const FontWeight cartButtonFontWeight = FontWeight.bold;
+  static const double cartButtonBorderRadius = 12.0;
+  static const double cartCardElevation = 2.0;
+  static const double cartCardBorderRadius = 12.0;
+  static const double cartSummaryBlurRadius = 10.0;
+  static const double cartConfirmationIconSize = 64.0;
+
+  // Restaurant detail page constants
+  static const double restaurantAppBarExpandedHeight = 250.0;
+  static const double restaurantImagePlaceholderIconSize = 80.0;
+  static const double restaurantStatusBorderRadius = 20.0;
+  static const FontWeight restaurantStatusFontWeight = FontWeight.bold;
+  static const double restaurantNameFontSize = 24.0;
+  static const FontWeight restaurantNameFontWeight = FontWeight.bold;
+  static const double restaurantRatingIconSize = 16.0;
+  static const double restaurantRatingBorderRadius = 20.0;
+  static const FontWeight restaurantRatingFontWeight = FontWeight.bold;
+  static const double restaurantDescriptionFontSize = 16.0;
+  static const double restaurantInfoIconSize = 20.0;
+  static const double restaurantInfoLabelFontSize = 12.0;
+  static const double restaurantInfoValueFontSize = 12.0;
+  static const FontWeight restaurantInfoValueFontWeight = FontWeight.bold;
+  static const double restaurantScheduleIconSize = 16.0;
+  static const double restaurantScheduleFontSize = 14.0;
+  static const double restaurantTagBorderRadius = 20.0;
+  static const FontWeight restaurantTagFontWeight = FontWeight.w500;
+  static const double restaurantMenuTitleFontSize = 20.0;
+  static const FontWeight restaurantMenuTitleFontWeight = FontWeight.bold;
+  static const double restaurantErrorIconSize = 48.0;
+  static const double restaurantErrorTextFontSize = 16.0;
+  static const double restaurantEmptyIconSize = 48.0;
+  static const double restaurantEmptyTextFontSize = 16.0;
+  static const int restaurantProductGridCrossAxisCount = 2;
+  static const double restaurantProductGridAspectRatio = 0.75;
+  static const double restaurantProductGridSpacing = 16.0;
+
+  // Home page constants
+  static const double homeErrorIconSize = 64.0;
+  static const double homeEmptyIconSize = 64.0;
+  static const double homeEmptyTextFontSize = 18.0;
+  static const double homeCategoryFilterHeight = 60.0;
+  static const int homeProductGridCrossAxisCount = 2;
+  static const double homeProductGridAspectRatio = 0.75;
+  static const double homeProductGridSpacing = 16.0;
    Color restaurantCardStatusOpenColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightTertiary, darkColor: darkTertiary);
    Color restaurantCardStatusClosedColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightError, darkColor: darkError);
    Color restaurantCardStatusTextColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnTertiary, darkColor: darkOnTertiary);
    Color restaurantCardRatingIconColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: Color(0xFFFFC107), darkColor: Color(0xFFFFC107));
    Color restaurantCardRatingTextColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnPrimary, darkColor: darkOnPrimary);
+
+  // Page constants
+  // Common page font sizes
+   static const double pageTitleFontSize = 32.0;
+   static const double pageSubtitleFontSize = 16.0;
+   static const double pageBodyFontSize = 14.0;
+   static const double pageSmallFontSize = 12.0;
+   static const double pageLargeFontSize = 18.0;
+   static const double pageExtraLargeFontSize = 20.0;
+   static const double pageHugeFontSize = 24.0;
+   
+  // Common page font weights
+   static const FontWeight pageTitleFontWeight = FontWeight.bold;
+   static const FontWeight pageSubtitleFontWeight = FontWeight.w500;
+   static const FontWeight pageBodyFontWeight = FontWeight.w600;
+   
+  // Common page icon sizes
+   static const double pageSmallIconSize = 16.0;
+   static const double pageMediumIconSize = 20.0;
+   static const double pageLargeIconSize = 48.0;
+   static const double pageExtraLargeIconSize = 64.0;
+   static const double pageHugeIconSize = 80.0;
+   
+  // Page color getters
+   Color pageBackgroundColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightSurfaceContainerLow, darkColor: darkSurfaceContainerLow);
+   Color pageAppBarBackgroundColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightSurface, darkColor: darkSurface);
+   Color pageAppBarForegroundColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnSurface, darkColor: darkOnSurface);
+   Color pageErrorColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightError, darkColor: darkError);
+   Color pageSuccessColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightTertiary, darkColor: darkTertiary);
+   Color pageWarningColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: Color(0xFFFF9800), darkColor: Color(0xFFFFB74D));
+   Color pageTextPrimaryColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnSurface, darkColor: darkOnSurface);
+   Color pageTextSecondaryColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnSurfaceVariant, darkColor: darkOnSurfaceVariant);
+   Color pageTextDisabledColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnSurfaceVariant.withValues(alpha: 0.6), darkColor: darkOnSurfaceVariant.withValues(alpha: 0.6));
+   Color pageIconColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnSurfaceVariant, darkColor: darkOnSurfaceVariant);
+   Color pageIconDisabledColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnSurfaceVariant.withValues(alpha: 0.4), darkColor: darkOnSurfaceVariant.withValues(alpha: 0.4));
+   Color pageButtonPrimaryColor(bool isDark) => getPrimaryColor(isDark);
+   Color pageButtonPrimaryTextColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnPrimary, darkColor: darkOnPrimary);
+   Color pageButtonSecondaryColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightSecondary, darkColor: darkSecondary);
+   Color pageButtonSecondaryTextColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnSecondary, darkColor: darkOnSecondary);
+   Color pageCardBackgroundColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightSurface, darkColor: darkSurface);
+   Color pageCardShadowColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightShadow.withValues(alpha: 0.12), darkColor: darkShadow.withValues(alpha: 0.2));
+   Color pageTabIndicatorColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnPrimary, darkColor: darkOnPrimary);
+   Color pageTabSelectedColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnPrimary, darkColor: darkOnPrimary);
+   Color pageTabUnselectedColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnPrimary.withValues(alpha: 0.7), darkColor: darkOnPrimary.withValues(alpha: 0.7));
+
+  // Cart page theme-aware color getters
+   Color cartBackgroundColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: Color(0xFFFAFAFA), darkColor: darkSurface);
+   Color cartAppBarBackgroundColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightSurface, darkColor: darkSurface);
+   Color cartAppBarTextColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: Color(0xFF1C1B1F), darkColor: darkOnSurface);
+   Color cartAppBarIconColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: Color(0xFF1C1B1F), darkColor: darkOnSurface);
+   Color cartClearButtonColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightError, darkColor: darkError);
+   Color cartEmptyIconColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: Color(0xFFBDBDBD), darkColor: darkOnSurfaceVariant);
+   Color cartEmptyTitleColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: Color(0xFF757575), darkColor: darkOnSurfaceVariant);
+   Color cartEmptySubtitleColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: Color(0xFF9E9E9E), darkColor: darkOnSurfaceVariant);
+   Color cartExploreButtonColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: Color(0xFFFF9800), darkColor: darkPrimary);
+   Color cartExploreButtonTextColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnPrimary, darkColor: darkOnPrimary);
+   Color cartItemCardColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightSurface, darkColor: darkSurface);
+   Color cartItemImagePlaceholderColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: Color(0xFFEEEEEE), darkColor: darkSurfaceContainerHigh);
+   Color cartItemImageIconColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: Color(0xFF9E9E9E), darkColor: darkOnSurfaceVariant);
+   Color cartItemNameColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnSurface, darkColor: darkOnSurface);
+   Color cartItemRestaurantColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: Color(0xFF757575), darkColor: darkOnSurfaceVariant);
+   Color cartItemPriceColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: Color(0xFF4CAF50), darkColor: darkTertiary);
+   Color cartItemInstructionsColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: Color(0xFF757575), darkColor: darkOnSurfaceVariant);
+   Color cartQuantityControlColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: Color(0xFFFF9800), darkColor: darkPrimary);
+   Color cartQuantityControlTextColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnPrimary, darkColor: darkOnPrimary);
+   Color cartTotalPriceColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnSurface, darkColor: darkOnSurface);
+   Color cartSummaryBackgroundColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightSurface, darkColor: darkSurface);
+   Color cartSummaryShadowColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: Color(0x1F000000), darkColor: darkShadow);
+   Color cartSummaryTextColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: Color(0xFF1C1B1F), darkColor: darkOnSurface);
+   Color cartTotalTextColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnSurface, darkColor: darkOnSurface);
+   Color cartTotalPriceTextColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: Color(0xFF4CAF50), darkColor: darkTertiary);
+   Color cartFinishButtonColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: Color(0xFFFF9800), darkColor: darkPrimary);
+   Color cartFinishButtonTextColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnPrimary, darkColor: darkOnPrimary);
+   Color cartConfirmationIconColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: const Color(0xFF4CAF50), darkColor: darkTertiary);
+
+  // Home page theme-aware color getters
+  Color homeAppBarBackgroundColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: const Color(0xFFFF9800), darkColor: darkPrimary);
+  Color homeAppBarTextColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnPrimary, darkColor: darkOnPrimary);
+  Color homeSearchBarBackgroundColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: const Color(0xFFFF9800), darkColor: darkPrimary);
+  Color homeTabIndicatorColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnPrimary, darkColor: darkOnPrimary);
+  Color homeTabSelectedColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnPrimary, darkColor: darkOnPrimary);
+  Color homeTabUnselectedColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnPrimary.withValues(alpha: 0.7), darkColor: darkOnPrimary.withValues(alpha: 0.7));
+  Color homeErrorIconColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightError, darkColor: darkError);
+  Color homeEmptyIconColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: const Color(0xFF9E9E9E), darkColor: darkOnSurfaceVariant);
+  Color homeEmptyTextColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: const Color(0xFF9E9E9E), darkColor: darkOnSurfaceVariant);
+
+  // Restaurant detail page theme-aware color getters
+  Color restaurantBackgroundColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightSurface, darkColor: darkSurface);
+  Color restaurantAppBarBackgroundColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightSurface, darkColor: darkSurface);
+  Color restaurantAppBarIconColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnSurface, darkColor: darkOnSurface);
+  Color restaurantImagePlaceholderBackgroundColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnSurface.withValues(alpha: 0.3), darkColor: darkOnSurface.withValues(alpha: 0.3));
+  Color restaurantImagePlaceholderIconColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnSurface.withValues(alpha: 0.6), darkColor: darkOnSurface.withValues(alpha: 0.6));
+  Color restaurantStatusOpenColor(bool isDark) => const Color(0xFF4CAF50);
+  Color restaurantStatusClosedColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightError, darkColor: darkError);
+  Color restaurantStatusTextColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnPrimary, darkColor: darkOnPrimary);
+  Color restaurantInfoBackgroundColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightSurface, darkColor: darkSurface);
+  Color restaurantNameColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnSurface, darkColor: darkOnSurface);
+  Color restaurantRatingBackgroundColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightPrimary, darkColor: darkPrimary);
+  Color restaurantRatingIconColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnPrimary, darkColor: darkOnPrimary);
+  Color restaurantRatingTextColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnPrimary, darkColor: darkOnPrimary);
+  Color restaurantDescriptionColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnSurface.withValues(alpha: 0.7), darkColor: darkOnSurface.withValues(alpha: 0.7));
+  Color restaurantInfoIconColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightPrimary, darkColor: darkPrimary);
+  Color restaurantInfoLabelColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnSurface.withValues(alpha: 0.7), darkColor: darkOnSurface.withValues(alpha: 0.7));
+  Color restaurantInfoValueColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnSurface, darkColor: darkOnSurface);
+  Color restaurantScheduleIconColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnSurface.withValues(alpha: 0.7), darkColor: darkOnSurface.withValues(alpha: 0.7));
+  Color restaurantScheduleTextColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnSurface.withValues(alpha: 0.7), darkColor: darkOnSurface.withValues(alpha: 0.7));
+  Color restaurantTagBackgroundColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightPrimary.withValues(alpha: 0.1), darkColor: darkPrimary.withValues(alpha: 0.1));
+  Color restaurantTagBorderColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightPrimary.withValues(alpha: 0.3), darkColor: darkPrimary.withValues(alpha: 0.3));
+  Color restaurantTagTextColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightPrimary, darkColor: darkPrimary);
+  Color restaurantMenuTitleColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnSurface, darkColor: darkOnSurface);
+  Color restaurantLoadingIndicatorColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightPrimary, darkColor: darkPrimary);
+  Color restaurantErrorIconColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnSurface.withValues(alpha: 0.4), darkColor: darkOnSurface.withValues(alpha: 0.4));
+  Color restaurantErrorTextColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnSurface.withValues(alpha: 0.7), darkColor: darkOnSurface.withValues(alpha: 0.7));
+  Color restaurantRetryButtonBackgroundColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightPrimary, darkColor: darkPrimary);
+  Color restaurantRetryButtonTextColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnPrimary, darkColor: darkOnPrimary);
+  Color restaurantEmptyIconColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnSurface.withValues(alpha: 0.4), darkColor: darkOnSurface.withValues(alpha: 0.4));
+  Color restaurantEmptyTextColor(bool isDark) => getColorByTheme(isDark: isDark, lightColor: lightOnSurface.withValues(alpha: 0.7), darkColor: darkOnSurface.withValues(alpha: 0.7));
 
   // ==========================================================================
   // UTILITY METHODS

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../../model/restaurant.dart';
 import '../../model/product.dart';
 import '../../providers/products_provider.dart';
+import '../../utils/constants/ui_constants.dart';
 
 import '../component/product_card.dart';
 import '../component/cart_floating_button.dart';
@@ -53,16 +54,19 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    final ui = UIConstants();
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: ui.restaurantBackgroundColor(isDark),
       body: CustomScrollView(
         slivers: [
           // App Bar com imagem
           SliverAppBar(
-            expandedHeight: 250,
+            expandedHeight: UIConstants.restaurantAppBarExpandedHeight,
             pinned: true,
-            backgroundColor: Colors.white,
-            iconTheme: const IconThemeData(color: Colors.white),
+            backgroundColor: ui.restaurantAppBarBackgroundColor(isDark),
+            iconTheme: IconThemeData(color: ui.restaurantAppBarIconColor(isDark)),
             flexibleSpace: FlexibleSpaceBar(
               background: Stack(
                 fit: StackFit.expand,
@@ -73,11 +77,11 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage> {
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) {
                       return Container(
-                        color: Colors.grey[300],
-                        child: const Icon(
+                        color: ui.restaurantImagePlaceholderBackgroundColor(isDark),
+                        child: Icon(
                           Icons.restaurant,
-                          size: 80,
-                          color: Colors.grey,
+                          size: UIConstants.restaurantImagePlaceholderIconSize,
+                          color: ui.restaurantImagePlaceholderIconColor(isDark),
                         ),
                       );
                     },
@@ -108,15 +112,15 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage> {
                       ),
                       decoration: BoxDecoration(
                         color: widget.restaurant.isOpen
-                            ? Colors.green
-                            : Colors.red,
-                        borderRadius: BorderRadius.circular(20),
+                            ? ui.restaurantStatusOpenColor(isDark)
+                            : ui.restaurantStatusClosedColor(isDark),
+                        borderRadius: BorderRadius.circular(UIConstants.restaurantStatusBorderRadius),
                       ),
                       child: Text(
                         widget.restaurant.isOpen ? 'Aberto' : 'Fechado',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
+                        style: TextStyle(
+                          color: ui.restaurantStatusTextColor(isDark),
+                          fontWeight: UIConstants.restaurantStatusFontWeight,
                         ),
                       ),
                     ),
@@ -129,7 +133,7 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage> {
           // Informações do restaurante
           SliverToBoxAdapter(
             child: Container(
-              color: Colors.white,
+              color: ui.restaurantInfoBackgroundColor(isDark),
               padding: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -141,9 +145,10 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage> {
                       Expanded(
                         child: Text(
                           widget.restaurant.name,
-                          style: const TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
+                          style: TextStyle(
+                            fontSize: UIConstants.restaurantNameFontSize,
+                            fontWeight: UIConstants.restaurantNameFontWeight,
+                            color: ui.restaurantNameColor(isDark),
                           ),
                         ),
                       ),
@@ -153,23 +158,23 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage> {
                           vertical: 6,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.orange,
-                          borderRadius: BorderRadius.circular(20),
+                          color: ui.restaurantRatingBackgroundColor(isDark),
+                          borderRadius: BorderRadius.circular(UIConstants.restaurantRatingBorderRadius),
                         ),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            const Icon(
+                            Icon(
                               Icons.star,
-                              color: Colors.white,
-                              size: 16,
+                              color: ui.restaurantRatingIconColor(isDark),
+                              size: UIConstants.restaurantRatingIconSize,
                             ),
                             const SizedBox(width: 4),
                             Text(
                               widget.restaurant.rating.toString(),
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
+                              style: TextStyle(
+                                color: ui.restaurantRatingTextColor(isDark),
+                                fontWeight: UIConstants.restaurantRatingFontWeight,
                               ),
                             ),
                           ],
@@ -183,7 +188,10 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage> {
                   // Descrição
                   Text(
                     widget.restaurant.description,
-                    style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                    style: TextStyle(
+                      fontSize: UIConstants.restaurantDescriptionFontSize,
+                      color: ui.restaurantDescriptionColor(isDark),
+                    ),
                   ),
 
                   const SizedBox(height: 16),
@@ -216,11 +224,18 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage> {
                   // Horário de funcionamento
                   Row(
                     children: [
-                      Icon(Icons.schedule, size: 16, color: Colors.grey[600]),
+                      Icon(
+                        Icons.schedule,
+                        size: UIConstants.restaurantScheduleIconSize,
+                        color: ui.restaurantScheduleIconColor(isDark),
+                      ),
                       const SizedBox(width: 8),
                       Text(
                         'Horário: ${widget.restaurant.openingHours}',
-                        style: TextStyle(color: Colors.grey[600], fontSize: 14),
+                        style: TextStyle(
+                          color: ui.restaurantScheduleTextColor(isDark),
+                          fontSize: UIConstants.restaurantScheduleFontSize,
+                        ),
                       ),
                     ],
                   ),
@@ -238,17 +253,17 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage> {
                           vertical: 6,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.orange.withValues(alpha: 0.1),
-                          borderRadius: BorderRadius.circular(20),
+                          color: ui.restaurantTagBackgroundColor(isDark),
+                          borderRadius: BorderRadius.circular(UIConstants.restaurantTagBorderRadius),
                           border: Border.all(
-                            color: Colors.orange.withValues(alpha: 0.3),
+                            color: ui.restaurantTagBorderColor(isDark),
                           ),
                         ),
                         child: Text(
                           tag,
-                          style: const TextStyle(
-                            color: Colors.orange,
-                            fontWeight: FontWeight.w500,
+                          style: TextStyle(
+                            color: ui.restaurantTagTextColor(isDark),
+                            fontWeight: UIConstants.restaurantTagFontWeight,
                           ),
                         ),
                       );
@@ -262,11 +277,15 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage> {
           // Título dos produtos
           SliverToBoxAdapter(
             child: Container(
-              color: Colors.grey[50],
+              color: ui.restaurantBackgroundColor(isDark),
               padding: const EdgeInsets.fromLTRB(20, 20, 20, 16),
-              child: const Text(
+              child: Text(
                 'Cardápio',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: UIConstants.restaurantMenuTitleFontSize,
+                  fontWeight: UIConstants.restaurantMenuTitleFontWeight,
+                  color: ui.restaurantMenuTitleColor(isDark),
+                ),
               ),
             ),
           ),
@@ -280,27 +299,49 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage> {
   }
 
   Widget _buildInfoItem(IconData icon, String label, String value) {
+    final ui = UIConstants();
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    
     return Column(
       children: [
-        Icon(icon, color: Colors.orange, size: 20),
+        Icon(
+          icon,
+          color: ui.restaurantInfoIconColor(isDark),
+          size: UIConstants.restaurantInfoIconSize,
+        ),
         const SizedBox(height: 4),
-        Text(label, style: TextStyle(fontSize: 12, color: Colors.grey[600])),
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: UIConstants.restaurantInfoLabelFontSize,
+            color: ui.restaurantInfoLabelColor(isDark),
+          ),
+        ),
         const SizedBox(height: 2),
         Text(
           value,
-          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: UIConstants.restaurantInfoValueFontSize,
+            fontWeight: UIConstants.restaurantInfoValueFontWeight,
+            color: ui.restaurantInfoValueColor(isDark),
+          ),
         ),
       ],
     );
   }
 
   Widget _buildProductsList() {
+    final ui = UIConstants();
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    
     if (_isLoading) {
-      return const SliverToBoxAdapter(
+      return SliverToBoxAdapter(
         child: Center(
           child: Padding(
-            padding: EdgeInsets.all(40),
-            child: CircularProgressIndicator(color: Colors.orange),
+            padding: const EdgeInsets.all(40),
+            child: CircularProgressIndicator(
+              color: ui.restaurantLoadingIndicatorColor(isDark),
+            ),
           ),
         ),
       );
@@ -313,18 +354,25 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage> {
             padding: const EdgeInsets.all(40),
             child: Column(
               children: [
-                Icon(Icons.error_outline, size: 48, color: Colors.grey[400]),
+                Icon(
+                  Icons.error_outline,
+                  size: UIConstants.restaurantErrorIconSize,
+                  color: ui.restaurantErrorIconColor(isDark),
+                ),
                 const SizedBox(height: 16),
                 Text(
                   'Erro ao carregar produtos',
-                  style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                  style: TextStyle(
+                    fontSize: UIConstants.restaurantErrorTextFontSize,
+                    color: ui.restaurantErrorTextColor(isDark),
+                  ),
                 ),
                 const SizedBox(height: 16),
                 ElevatedButton(
                   onPressed: _loadProducts,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.orange,
-                    foregroundColor: Colors.white,
+                    backgroundColor: ui.restaurantRetryButtonBackgroundColor(isDark),
+                    foregroundColor: ui.restaurantRetryButtonTextColor(isDark),
                   ),
                   child: const Text('Tentar novamente'),
                 ),
@@ -342,11 +390,18 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage> {
             padding: const EdgeInsets.all(40),
             child: Column(
               children: [
-                Icon(Icons.fastfood, size: 48, color: Colors.grey[400]),
+                Icon(
+                  Icons.fastfood,
+                  size: UIConstants.restaurantEmptyIconSize,
+                  color: ui.restaurantEmptyIconColor(isDark),
+                ),
                 const SizedBox(height: 16),
                 Text(
                   'Nenhum produto disponível',
-                  style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                  style: TextStyle(
+                    fontSize: UIConstants.restaurantEmptyTextFontSize,
+                    color: ui.restaurantEmptyTextColor(isDark),
+                  ),
                 ),
               ],
             ),
@@ -358,11 +413,11 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage> {
     return SliverPadding(
       padding: const EdgeInsets.all(16),
       sliver: SliverGrid(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 0.75,
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: UIConstants.restaurantProductGridCrossAxisCount,
+          childAspectRatio: UIConstants.restaurantProductGridAspectRatio,
+          crossAxisSpacing: UIConstants.restaurantProductGridSpacing,
+          mainAxisSpacing: UIConstants.restaurantProductGridSpacing,
         ),
         delegate: SliverChildBuilderDelegate((context, index) {
           return ProductCard(product: _products[index]);

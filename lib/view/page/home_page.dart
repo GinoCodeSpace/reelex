@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
-    
+
     // Carregar dados quando a página for inicializada
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<ProductsProvider>().loadAllData();
@@ -38,13 +38,16 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final ui = uiConstants;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Consumer3<AuthProvider, ProductsProvider, CartProvider>(
       builder: (context, authProvider, productsProvider, cartProvider, child) {
         return Scaffold(
           appBar: AppBar(
             title: const Text('Reelex Delivery'),
-            backgroundColor: Colors.orange,
-            foregroundColor: Colors.white,
+            backgroundColor: ui.homeAppBarBackgroundColor(isDark),
+            foregroundColor: ui.homeAppBarTextColor(isDark),
             elevation: 0,
             actions: [
               IconButton(
@@ -58,7 +61,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       content: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text('Usuário: ${authProvider.userEmail ?? "Não logado"}'),
+                          Text(
+                            'Usuário: ${authProvider.userEmail ?? "Não logado"}',
+                          ),
                           const SizedBox(height: 16),
                           ElevatedButton(
                             onPressed: () {
@@ -82,9 +87,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ],
             bottom: TabBar(
               controller: _tabController,
-              indicatorColor: Colors.white,
-              labelColor: Colors.white,
-              unselectedLabelColor: Colors.white70,
+              indicatorColor: ui.homeTabIndicatorColor(isDark),
+              labelColor: ui.homeTabSelectedColor(isDark),
+              unselectedLabelColor: ui.homeTabUnselectedColor(isDark),
               tabs: const [
                 Tab(text: 'Restaurantes'),
                 Tab(text: 'Pratos'),
@@ -95,7 +100,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             children: [
               // Barra de busca
               Container(
-                color: Colors.orange,
+                color: ui.homeSearchBarBackgroundColor(isDark),
                 padding: const EdgeInsets.all(16),
                 child: SearchBarWidget(
                   controller: _searchController,
@@ -105,49 +110,49 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   hintText: 'Buscar restaurantes e pratos...',
                 ),
               ),
-              
+
               // Conteúdo principal
               Expanded(
                 child: productsProvider.isLoading
                     ? const Center(child: CircularProgressIndicator())
                     : productsProvider.error != null
-                        ? Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Icon(
-                                  Icons.error_outline,
-                                  size: 64,
-                                  color: Colors.red,
-                                ),
-                                const SizedBox(height: 16),
-                                Text(
-                                  'Erro ao carregar dados',
-                                  style: Theme.of(context).textTheme.titleLarge,
-                                ),
-                                const SizedBox(height: 8),
-                                Text(
-                                  productsProvider.error!,
-                                  textAlign: TextAlign.center,
-                                  style: Theme.of(context).textTheme.bodyMedium,
-                                ),
-                                const SizedBox(height: 16),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    productsProvider.refresh();
-                                  },
-                                  child: const Text('Tentar novamente'),
-                                ),
-                              ],
+                    ? Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.error_outline,
+                              size: UIConstants.homeErrorIconSize,
+                              color: ui.homeErrorIconColor(isDark),
                             ),
-                          )
-                        : TabBarView(
-                            controller: _tabController,
-                            children: [
-                              _buildRestaurantsTab(productsProvider),
-                              _buildProductsTab(productsProvider),
-                            ],
-                          ),
+                            const SizedBox(height: 16),
+                            Text(
+                              'Erro ao carregar dados',
+                              style: Theme.of(context).textTheme.titleLarge,
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              productsProvider.error!,
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                            const SizedBox(height: 16),
+                            ElevatedButton(
+                              onPressed: () {
+                                productsProvider.refresh();
+                              },
+                              child: const Text('Tentar novamente'),
+                            ),
+                          ],
+                        ),
+                      )
+                    : TabBarView(
+                        controller: _tabController,
+                        children: [
+                          _buildRestaurantsTab(productsProvider),
+                          _buildProductsTab(productsProvider),
+                        ],
+                      ),
               ),
             ],
           ),
@@ -158,24 +163,26 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   }
 
   Widget _buildRestaurantsTab(ProductsProvider productsProvider) {
+    final ui = uiConstants;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final restaurants = productsProvider.filteredRestaurants;
-    
+
     if (restaurants.isEmpty) {
-      return const Center(
+      return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
               Icons.restaurant,
-              size: 64,
-              color: Colors.grey,
+              size: UIConstants.homeEmptyIconSize.toDouble(),
+              color: ui.homeEmptyIconColor(isDark),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               'Nenhum restaurante encontrado',
               style: TextStyle(
-                fontSize: 18,
-                color: Colors.grey,
+                fontSize: UIConstants.homeEmptyTextFontSize,
+                color: ui.homeEmptyTextColor(isDark),
               ),
             ),
           ],
@@ -204,7 +211,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         // Filtros de categoria
         if (productsProvider.categories.isNotEmpty)
           Container(
-            height: 60,
+            height: UIConstants.homeCategoryFilterHeight,
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -223,7 +230,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     ),
                   );
                 }
-                
+
                 final category = productsProvider.categories[index - 1];
                 return Padding(
                   padding: const EdgeInsets.only(right: 8),
@@ -238,34 +245,34 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               },
             ),
           ),
-        
+
         // Lista de produtos
-        Expanded(
-          child: _buildProductsGrid(productsProvider),
-        ),
+        Expanded(child: _buildProductsGrid(productsProvider)),
       ],
     );
   }
 
   Widget _buildProductsGrid(ProductsProvider productsProvider) {
+    final ui = uiConstants;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final products = productsProvider.filteredProducts;
-    
+
     if (products.isEmpty) {
-      return const Center(
+      return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
               Icons.fastfood,
-              size: 64,
-              color: Colors.grey,
+              size: UIConstants.homeEmptyIconSize.toDouble(),
+              color: ui.homeEmptyIconColor(isDark),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               'Nenhum produto encontrado',
               style: TextStyle(
-                fontSize: 18,
-                color: Colors.grey,
+                fontSize: UIConstants.homeEmptyTextFontSize,
+                color: ui.homeEmptyTextColor(isDark),
               ),
             ),
           ],
@@ -277,11 +284,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       onRefresh: () => productsProvider.refresh(),
       child: GridView.builder(
         padding: const EdgeInsets.all(16),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 0.75,
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: UIConstants.homeProductGridCrossAxisCount,
+          childAspectRatio: UIConstants.homeProductGridAspectRatio,
+          crossAxisSpacing: UIConstants.homeProductGridSpacing,
+          mainAxisSpacing: UIConstants.homeProductGridSpacing,
         ),
         itemCount: products.length,
         itemBuilder: (context, index) {

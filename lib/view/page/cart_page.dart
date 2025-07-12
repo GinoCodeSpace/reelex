@@ -1,27 +1,29 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../../providers/cart_provider.dart';
 import '../../providers/products_provider.dart';
 import '../../model/cart_item.dart';
+import '../../utils/imports/common_libs.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final ui = uiConstants;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: ui.cartBackgroundColor(isDark),
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Carrinho',
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: Colors.black87,
+            color: ui.cartAppBarTextColor(isDark),
           ),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: ui.cartAppBarBackgroundColor(isDark),
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black87),
+        iconTheme: IconThemeData(color: ui.cartAppBarIconColor(isDark)),
         actions: [
           Consumer<CartProvider>(
             builder: (context, cartProvider, child) {
@@ -30,10 +32,10 @@ class CartPage extends StatelessWidget {
                   onPressed: () {
                     _showClearCartDialog(context, cartProvider);
                   },
-                  child: const Text(
+                  child: Text(
                     'Limpar',
                     style: TextStyle(
-                      color: Colors.red,
+                      color: ui.cartClearButtonColor(isDark),
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -66,7 +68,7 @@ class CartPage extends StatelessWidget {
                   },
                 ),
               ),
-              
+
               // Resumo do pedido
               _buildOrderSummary(context, cartProvider),
             ],
@@ -77,50 +79,50 @@ class CartPage extends StatelessWidget {
   }
 
   Widget _buildEmptyCart(BuildContext context) {
+    final ui = uiConstants;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
             Icons.shopping_cart_outlined,
-            size: 80,
-            color: Colors.grey[400],
+            size: UIConstants.cartEmptyIconSize,
+            color: ui.cartEmptyIconColor(isDark),
           ),
           const SizedBox(height: 24),
           Text(
             'Seu carrinho está vazio',
             style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-              color: Colors.grey[600],
+              fontSize: UIConstants.cartEmptyTitleFontSize,
+              fontWeight: UIConstants.cartEmptyTitleFontWeight,
+              color: ui.cartEmptyTitleColor(isDark),
             ),
           ),
           const SizedBox(height: 8),
           Text(
             'Adicione alguns itens deliciosos!',
             style: TextStyle(
-              fontSize: 16,
-              color: Colors.grey[500],
+              fontSize: UIConstants.cartEmptySubtitleFontSize,
+              color: ui.cartEmptySubtitleColor(isDark),
             ),
           ),
           const SizedBox(height: 32),
           ElevatedButton(
             onPressed: () => Navigator.pop(context),
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.orange,
-              foregroundColor: Colors.white,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 32,
-                vertical: 16,
-              ),
+              backgroundColor: ui.cartExploreButtonColor(isDark),
+              foregroundColor: ui.cartExploreButtonTextColor(isDark),
+              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(25),
               ),
             ),
-            child: const Text(
+            child: Text(
               'Explorar Cardápio',
               style: TextStyle(
-                fontSize: 16,
+                fontSize: UIConstants.cartButtonFontSize,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -130,15 +132,27 @@ class CartPage extends StatelessWidget {
     );
   }
 
-  Widget _buildCartItem(BuildContext context, CartItem item, CartProvider cartProvider) {
+  Widget _buildCartItem(
+    BuildContext context,
+    CartItem item,
+    CartProvider cartProvider,
+  ) {
+    final ui = uiConstants;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Consumer<ProductsProvider>(
       builder: (context, productsProvider, child) {
-        final restaurant = productsProvider.getRestaurantById(item.product.restaurantId);
-        
+        final restaurant = productsProvider.getRestaurantById(
+          item.product.restaurantId,
+        );
+
         return Card(
-          elevation: 2,
+          elevation: UIConstants.cartCardElevation,
+          color: ui.cartItemCardColor(isDark),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(
+              UIConstants.cartCardBorderRadius,
+            ),
           ),
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -146,10 +160,12 @@ class CartPage extends StatelessWidget {
               children: [
                 // Imagem do produto
                 Container(
-                  width: 80,
-                  height: 80,
+                  width: UIConstants.cartItemImageSize,
+                  height: UIConstants.cartItemImageSize,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(
+                      UIConstants.cartItemImageBorderRadius,
+                    ),
                     image: DecorationImage(
                       image: NetworkImage(item.product.image),
                       fit: BoxFit.cover,
@@ -158,19 +174,21 @@ class CartPage extends StatelessWidget {
                   ),
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(
+                        UIConstants.cartItemImageBorderRadius,
+                      ),
+                      color: ui.cartItemImagePlaceholderColor(isDark),
                     ),
-                    child: const Icon(
+                    child: Icon(
                       Icons.fastfood,
-                      color: Colors.grey,
+                      color: ui.cartItemImageIconColor(isDark),
                       size: 30,
                     ),
                   ),
                 ),
-                
+
                 const SizedBox(width: 16),
-                
+
                 // Informações do produto
                 Expanded(
                   child: Column(
@@ -178,43 +196,45 @@ class CartPage extends StatelessWidget {
                     children: [
                       Text(
                         item.product.name,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
+                        style: TextStyle(
+                          fontWeight: UIConstants.cartItemNameFontWeight,
+                          fontSize: UIConstants.cartItemNameFontSize,
+                          color: ui.cartItemNameColor(isDark),
                         ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      
+
                       if (restaurant != null) ...[
                         const SizedBox(height: 4),
                         Text(
                           restaurant.name,
                           style: TextStyle(
-                            color: Colors.grey[600],
-                            fontSize: 14,
+                            color: ui.cartItemRestaurantColor(isDark),
+                            fontSize: UIConstants.cartItemRestaurantFontSize,
                           ),
                         ),
                       ],
-                      
+
                       const SizedBox(height: 8),
-                      
+
                       Text(
                         'R\$ ${item.product.price.toStringAsFixed(2)}',
-                        style: const TextStyle(
-                          color: Colors.green,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
+                        style: TextStyle(
+                          color: ui.cartItemPriceColor(isDark),
+                          fontWeight: UIConstants.cartItemPriceFontWeight,
+                          fontSize: UIConstants.cartItemPriceFontSize,
                         ),
                       ),
-                      
-                      if (item.specialInstructions != null && item.specialInstructions!.isNotEmpty) ...[
+
+                      if (item.specialInstructions != null &&
+                          item.specialInstructions!.isNotEmpty) ...[
                         const SizedBox(height: 4),
                         Text(
                           'Obs: ${item.specialInstructions}',
                           style: TextStyle(
-                            color: Colors.grey[600],
-                            fontSize: 12,
+                            color: ui.cartItemInstructionsColor(isDark),
+                            fontSize: UIConstants.cartItemInstructionsFontSize,
                             fontStyle: FontStyle.italic,
                           ),
                         ),
@@ -222,28 +242,31 @@ class CartPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                
+
                 const SizedBox(width: 16),
-                
+
                 // Controles de quantidade
                 Column(
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        color: Colors.orange,
-                        borderRadius: BorderRadius.circular(20),
+                        color: ui.cartQuantityControlColor(isDark),
+                        borderRadius: BorderRadius.circular(
+                          UIConstants.cartQuantityControlBorderRadius,
+                        ),
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           GestureDetector(
-                            onTap: () => cartProvider.decrementQuantity(item.product.id),
-                            child: const Padding(
-                              padding: EdgeInsets.all(8),
+                            onTap: () =>
+                                cartProvider.decrementQuantity(item.product.id),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8),
                               child: Icon(
                                 Icons.remove,
-                                color: Colors.white,
-                                size: 18,
+                                color: ui.cartQuantityControlTextColor(isDark),
+                                size: UIConstants.cartQuantityControlIconSize,
                               ),
                             ),
                           ),
@@ -254,35 +277,38 @@ class CartPage extends StatelessWidget {
                             ),
                             child: Text(
                               item.quantity.toString(),
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
+                              style: TextStyle(
+                                color: ui.cartQuantityControlTextColor(isDark),
+                                fontWeight:
+                                    UIConstants.cartQuantityTextFontWeight,
+                                fontSize: UIConstants.cartQuantityTextFontSize,
                               ),
                             ),
                           ),
                           GestureDetector(
-                            onTap: () => cartProvider.incrementQuantity(item.product.id),
-                            child: const Padding(
-                              padding: EdgeInsets.all(8),
+                            onTap: () =>
+                                cartProvider.incrementQuantity(item.product.id),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8),
                               child: Icon(
                                 Icons.add,
-                                color: Colors.white,
-                                size: 18,
+                                color: ui.cartQuantityControlTextColor(isDark),
+                                size: UIConstants.cartQuantityControlIconSize,
                               ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                    
+
                     const SizedBox(height: 8),
-                    
+
                     Text(
                       'R\$ ${item.totalPrice.toStringAsFixed(2)}',
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
+                      style: TextStyle(
+                        fontWeight: UIConstants.cartTotalPriceFontWeight,
+                        fontSize: UIConstants.cartTotalPriceFontSize,
+                        color: ui.cartTotalPriceColor(isDark),
                       ),
                     ),
                   ],
@@ -296,14 +322,17 @@ class CartPage extends StatelessWidget {
   }
 
   Widget _buildOrderSummary(BuildContext context, CartProvider cartProvider) {
+    final ui = uiConstants;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
+      decoration: BoxDecoration(
+        color: ui.cartSummaryBackgroundColor(isDark),
         boxShadow: [
           BoxShadow(
-            color: Colors.black12,
-            blurRadius: 10,
-            offset: Offset(0, -2),
+            color: ui.cartSummaryShadowColor(isDark),
+            blurRadius: UIConstants.cartSummaryBlurRadius,
+            offset: const Offset(0, -2),
           ),
         ],
       ),
@@ -314,70 +343,73 @@ class CartPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 'Subtotal',
                 style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black87,
+                  fontSize: UIConstants.cartSummaryFontSize,
+                  color: ui.cartSummaryTextColor(isDark),
                 ),
               ),
               Text(
                 'R\$ ${cartProvider.totalAmount.toStringAsFixed(2)}',
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
+                style: TextStyle(
+                  fontSize: UIConstants.cartSummaryFontSize,
+                  fontWeight: UIConstants.cartSummaryFontWeight,
+                  color: ui.cartSummaryTextColor(isDark),
                 ),
               ),
             ],
           ),
-          
+
           const SizedBox(height: 8),
-          
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 'Taxa de entrega',
                 style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black87,
+                  fontSize: UIConstants.cartSummaryFontSize,
+                  color: ui.cartSummaryTextColor(isDark),
                 ),
               ),
               Text(
                 'R\$ ${cartProvider.deliveryFee.toStringAsFixed(2)}',
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
+                style: TextStyle(
+                  fontSize: UIConstants.cartSummaryFontSize,
+                  fontWeight: UIConstants.cartSummaryFontWeight,
+                  color: ui.cartSummaryTextColor(isDark),
                 ),
               ),
             ],
           ),
-          
+
           const Divider(height: 24),
-          
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 'Total',
                 style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+                  fontSize: UIConstants.cartTotalFontSize,
+                  fontWeight: UIConstants.cartTotalFontWeight,
+                  color: ui.cartTotalTextColor(isDark),
                 ),
               ),
               Text(
                 'R\$ ${cartProvider.totalWithDelivery.toStringAsFixed(2)}',
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.green,
+                style: TextStyle(
+                  fontSize: UIConstants.cartTotalFontSize,
+                  fontWeight: UIConstants.cartTotalFontWeight,
+                  color: ui.cartTotalPriceTextColor(isDark),
                 ),
               ),
             ],
           ),
-          
+
           const SizedBox(height: 20),
-          
+
           // Botão de finalizar pedido
           SizedBox(
             width: double.infinity,
@@ -386,19 +418,21 @@ class CartPage extends StatelessWidget {
                 _showOrderConfirmation(context, cartProvider);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.orange,
-                foregroundColor: Colors.white,
+                backgroundColor: ui.cartFinishButtonColor(isDark),
+                foregroundColor: ui.cartFinishButtonTextColor(isDark),
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(
+                    UIConstants.cartButtonBorderRadius,
+                  ),
                 ),
-                elevation: 2,
+                elevation: UIConstants.cartCardElevation,
               ),
               child: Text(
                 'Finalizar Pedido - R\$ ${cartProvider.totalWithDelivery.toStringAsFixed(2)}',
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+                style: TextStyle(
+                  fontSize: UIConstants.cartButtonFontSize,
+                  fontWeight: UIConstants.cartButtonFontWeight,
                 ),
               ),
             ),
@@ -409,12 +443,17 @@ class CartPage extends StatelessWidget {
   }
 
   void _showClearCartDialog(BuildContext context, CartProvider cartProvider) {
+    final ui = uiConstants;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Limpar Carrinho'),
-          content: const Text('Tem certeza que deseja remover todos os itens do carrinho?'),
+          content: const Text(
+            'Tem certeza que deseja remover todos os itens do carrinho?',
+          ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
@@ -426,9 +465,9 @@ class CartPage extends StatelessWidget {
                 Navigator.pop(context);
                 Navigator.pop(context); // Volta para a página anterior
               },
-              child: const Text(
+              child: Text(
                 'Limpar',
-                style: TextStyle(color: Colors.red),
+                style: TextStyle(color: ui.cartClearButtonColor(isDark)),
               ),
             ),
           ],
@@ -438,6 +477,9 @@ class CartPage extends StatelessWidget {
   }
 
   void _showOrderConfirmation(BuildContext context, CartProvider cartProvider) {
+    final ui = uiConstants;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -446,10 +488,10 @@ class CartPage extends StatelessWidget {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(
+              Icon(
                 Icons.check_circle,
-                color: Colors.green,
-                size: 64,
+                color: ui.cartConfirmationIconColor(isDark),
+                size: UIConstants.cartConfirmationIconSize,
               ),
               const SizedBox(height: 16),
               Text(
