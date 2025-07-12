@@ -338,6 +338,15 @@ class UIConstants {
    double socialLoginButtonShadowAlphaDark = 0.4;
    Color get socialLoginButtonIconColor => lightOnPrimary;
 
+  // Cart floating button constants
+   double cartFloatingButtonBadgeFontSize = 10.0;
+   FontWeight cartFloatingButtonBadgeFontWeight = FontWeight.bold;
+   double cartFloatingButtonItemCountFontSize = 12.0;
+   FontWeight cartFloatingButtonItemCountFontWeight = FontWeight.w500;
+   double cartFloatingButtonTotalFontSize = 14.0;
+   FontWeight cartFloatingButtonTotalFontWeight = FontWeight.bold;
+   String cartFloatingButtonFontFamily = 'SanFranciscoPro';
+
   // ==========================================================================
   // UTILITY METHODS
   // ==========================================================================

@@ -64,9 +64,9 @@ class CartFloatingButton extends StatelessWidget {
                             lightColor: ui.lightOnError,
                             darkColor: ui.darkOnError,
                           ),
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'SanFranciscoPro',
+                          fontSize: ui.cartFloatingButtonBadgeFontSize,
+                          fontWeight: ui.cartFloatingButtonBadgeFontWeight,
+                          fontFamily: ui.cartFloatingButtonFontFamily,
                         ),
                         textAlign: TextAlign.center,
                       ),
@@ -81,9 +81,9 @@ class CartFloatingButton extends StatelessWidget {
                 Text(
                   '${cartProvider.itemCount} ${cartProvider.itemCount == 1 ? 'item' : 'itens'}',
                   style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: 'SanFranciscoPro',
+                    fontSize: ui.cartFloatingButtonItemCountFontSize,
+                    fontWeight: ui.cartFloatingButtonItemCountFontWeight,
+                    fontFamily: ui.cartFloatingButtonFontFamily,
                     color: ui.getColorByTheme(
                       isDark: isDark,
                       lightColor: ui.lightOnPrimary,
@@ -94,9 +94,9 @@ class CartFloatingButton extends StatelessWidget {
                 Text(
                   'R\$ ${cartProvider.totalAmount.toStringAsFixed(2)}',
                   style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'SanFranciscoPro',
+                    fontSize: ui.cartFloatingButtonTotalFontSize,
+                    fontWeight: ui.cartFloatingButtonTotalFontWeight,
+                    fontFamily: ui.cartFloatingButtonFontFamily,
                     color: ui.getColorByTheme(
                       isDark: isDark,
                       lightColor: ui.lightOnPrimary,
