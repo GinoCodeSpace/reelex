@@ -22,8 +22,8 @@ class SocialLoginButton extends StatelessWidget {
     final ui = uiConstants;
 
     final button = Container(
-      width: 56,
-      height: 56,
+      width: ui.socialLoginButtonSize,
+      height: ui.socialLoginButtonSize,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: color,
@@ -31,8 +31,8 @@ class SocialLoginButton extends StatelessWidget {
           BoxShadow(
             color: ui.getColorByTheme(
               isDark: isDark,
-              lightColor: color.withValues(alpha: 0.3),
-              darkColor: color.withValues(alpha: 0.4),
+              lightColor: color.withValues(alpha: ui.socialLoginButtonShadowAlphaLight),
+              darkColor: color.withValues(alpha: ui.socialLoginButtonShadowAlphaDark),
             ),
             blurRadius: ui.elevation2,
             offset: Offset(0, ui.spacing1 / 2),
@@ -42,8 +42,8 @@ class SocialLoginButton extends StatelessWidget {
       child: IconButton(
         icon: Icon(
           icon,
-          color: Colors.white,
-          size: 24,
+          color: ui.socialLoginButtonIconColor,
+          size: ui.socialLoginButtonIconSize,
         ),
         onPressed: onPressed,
       ),

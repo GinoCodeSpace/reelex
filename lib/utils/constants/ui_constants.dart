@@ -211,7 +211,7 @@ class UIConstants {
   // COMMON COLORS
   // ==========================================================================
    Color transparent = Colors.transparent;
-   Color white = Colors.white;
+   Color get white => lightOnPrimary;
   
   // ==========================================================================
   // ONBOARDING ILLUSTRATIONS CONSTANTS
@@ -330,6 +330,13 @@ class UIConstants {
    String textFieldFontFamily = 'SanFranciscoPro';
    double textFieldFocusedBorderWidth = 2.0;
    double textFieldErrorBorderWidth = 1.0;
+
+  // Social login button constants
+   double socialLoginButtonSize = 56.0;
+   double socialLoginButtonIconSize = 24.0;
+   double socialLoginButtonShadowAlphaLight = 0.3;
+   double socialLoginButtonShadowAlphaDark = 0.4;
+   Color get socialLoginButtonIconColor => lightOnPrimary;
 
   // ==========================================================================
   // UTILITY METHODS
