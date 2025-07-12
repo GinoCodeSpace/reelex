@@ -127,11 +127,11 @@ class _FavoritesIllustration extends StatelessWidget {
                 .fadeIn(duration: ui.animationDurationMedium.ms)
                 .slideX(begin: ui.animationSlideLarge, duration: ui.animationDurationFast.ms, curve: Curves.easeOut)
                 .then(delay: ui.animationDurationVerySlow.ms)
-                .rotate(begin: 0, end: ui.animationRotationMedium, duration: ui.animationDurationExtraSlow.ms)
+                .rotate(begin: ui.animationRotationStart, end: ui.animationRotationMedium, duration: ui.animationDurationExtraSlow.ms)
                 .then()
                 .rotate(begin: ui.animationRotationMedium, end: -ui.animationRotationMedium, duration: ui.animationDurationGiga.ms)
                 .then()
-                .rotate(begin: -ui.animationRotationMedium, end: 0, duration: ui.animationDurationExtraSlow.ms),
+                .rotate(begin: -ui.animationRotationMedium, end: ui.animationRotationStart, duration: ui.animationDurationExtraSlow.ms),
           ),
           Positioned(
             bottom: ui.onboardingIconPosition60,
@@ -153,14 +153,14 @@ class _FavoritesIllustration extends StatelessWidget {
                     .scale(
                       begin: Offset(ui.animationScaleNormal, ui.animationScaleNormal),
                       end: Offset(ui.animationScaleLarger, ui.animationScaleLarger),
-                      duration: 1800.ms,
+                      duration: ui.animationDuration1800.ms,
                       curve: Curves.easeInOut,
                     )
                     .then()
                     .scale(
                       begin: Offset(ui.animationScaleLarger, ui.animationScaleLarger),
                       end: Offset(ui.animationScaleNormal, ui.animationScaleNormal),
-                      duration: 1800.ms,
+                      duration: ui.animationDuration1800.ms,
                       curve: Curves.easeInOut,
                     ),
           ),
@@ -181,7 +181,7 @@ class _FavoritesIllustration extends StatelessWidget {
                       curve: Curves.elasticOut,
                     )
                     .then(delay: ui.animationDelayTera.ms)
-                    .rotate(begin: 0, end: ui.animationRotationFull, duration: ui.animationDurationTera.ms),
+                    .rotate(begin: ui.animationRotationStart, end: ui.animationRotationFull, duration: ui.animationDurationTera.ms),
           ),
         ],
       ),
@@ -240,7 +240,7 @@ class _ChefIllustration extends StatelessWidget {
           Icon(Icons.person_outline, size: ui.onboardingMainIconSize, color: primaryColor)
               .animate()
               .slideY(
-                begin: 0,
+                begin: ui.animationRotationStart,
                 end: -ui.animationSlideSmall,
                 duration: ui.animationDurationMega.ms,
                 curve: Curves.easeInOut,
@@ -248,7 +248,7 @@ class _ChefIllustration extends StatelessWidget {
               .then()
               .slideY(
                 begin: -ui.animationSlideSmall,
-                end: 0,
+                end: ui.animationRotationStart,
                 duration: ui.animationDurationMega.ms,
                 curve: Curves.easeInOut,
               ),
@@ -260,11 +260,11 @@ class _ChefIllustration extends StatelessWidget {
                 .fadeIn(duration: ui.animationDurationSlow.ms)
                 .slideY(begin: -ui.animationSlideLarge, duration: ui.animationDurationMedium.ms, curve: Curves.bounceOut)
                 .then(delay: ui.animationDurationVerySlow.ms)
-                .rotate(begin: 0, end: ui.animationRotationSmall, duration: 1800.ms)
+                .rotate(begin: ui.animationRotationStart, end: ui.animationRotationSmall, duration: ui.animationDuration1800.ms)
                 .then()
-                .rotate(begin: ui.animationRotationSmall, end: -ui.animationRotationSmall, duration: 3600.ms)
+                .rotate(begin: ui.animationRotationSmall, end: -ui.animationRotationSmall, duration: ui.animationDuration3600.ms)
                 .then()
-                .rotate(begin: -ui.animationRotationSmall, end: 0, duration: 1800.ms),
+                .rotate(begin: -ui.animationRotationSmall, end: ui.animationRotationStart, duration: ui.animationDuration1800.ms),
           ),
           // Utensílios ao redor
           Positioned(
@@ -314,14 +314,14 @@ class _ChefIllustration extends StatelessWidget {
                     .scale(
                       begin: Offset(ui.animationScaleNormal, ui.animationScaleNormal),
                       end: Offset(ui.animationScaleModeratelyLarge, ui.animationScaleModeratelyLarge),
-                      duration: 2200.ms,
+                      duration: ui.animationDuration2200.ms,
                       curve: Curves.easeInOut,
                     )
                     .then()
                     .scale(
                       begin: Offset(ui.animationScaleModeratelyLarge, ui.animationScaleModeratelyLarge),
                       end: Offset(ui.animationScaleNormal, ui.animationScaleNormal),
-                      duration: 2200.ms,
+                      duration: ui.animationDuration2200.ms,
                       curve: Curves.easeInOut,
                     ),
           ),
@@ -382,7 +382,7 @@ class _DeliveryIllustration extends StatelessWidget {
           Icon(Icons.delivery_dining, size: ui.onboardingMainIconSize, color: primaryColor)
               .animate()
               .slideX(
-                begin: 0,
+                begin: ui.animationRotationStart,
                 end: ui.animationSlideNormal,
                 duration: ui.animationDurationUltraSlow.ms,
                 curve: Curves.easeInOut,
@@ -397,7 +397,7 @@ class _DeliveryIllustration extends StatelessWidget {
               .then()
               .slideX(
                 begin: -ui.animationSlideNormal,
-                end: 0,
+                end: ui.animationRotationStart,
                 duration: ui.animationDurationUltraSlow.ms,
                 curve: Curves.easeInOut,
               ),
@@ -411,7 +411,7 @@ class _DeliveryIllustration extends StatelessWidget {
                 .slideX(begin: ui.animationSlideHuge, duration: ui.animationDelayExtraLong.ms, curve: Curves.easeOutBack)
                 .then(delay: ui.animationDelayTera.ms)
                 .slideX(
-                  begin: 0,
+                  begin: ui.animationRotationStart,
                   end: ui.animationSlideMedium,
                   duration: ui.animationDurationExtraSlow.ms,
                   curve: Curves.easeInOut,
@@ -419,7 +419,7 @@ class _DeliveryIllustration extends StatelessWidget {
                 .then()
                 .slideX(
                   begin: ui.animationSlideMedium,
-                  end: 0,
+                  end: ui.animationRotationStart,
                   duration: ui.animationDurationExtraSlow.ms,
                   curve: Curves.easeInOut,
                 ),
@@ -441,7 +441,7 @@ class _DeliveryIllustration extends StatelessWidget {
                       curve: Curves.elasticOut,
                     )
                     .then(delay: ui.animationDurationVerySlow.ms)
-                    .rotate(begin: 0, end: ui.animationRotationFull, duration: ui.animationDurationPeta.ms),
+                    .rotate(begin: ui.animationRotationStart, end: ui.animationRotationFull, duration: ui.animationDurationPeta.ms),
           ),
           Positioned(
             top: ui.onboardingIconPosition80,

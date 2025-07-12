@@ -278,7 +278,13 @@ class UIConstants {
   // Animation rotation values
    double animationRotationSmall = 0.05;
    double animationRotationMedium = 0.1;
-   double animationRotationFull = 1.0;
+   double animationRotationFull = 6.28; // 2π radianos
+   double animationRotationStart = 0.0;
+
+  // Durações específicas para animações complexas
+   int animationDuration1800 = 1800;
+   int animationDuration2200 = 2200;
+   int animationDuration3600 = 3600;
   
   // Alpha values for animations
    double animationAlphaVeryLight = 0.05;
