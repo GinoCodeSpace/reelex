@@ -1,5 +1,4 @@
 import '../../../../utils/imports/common_libs.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 
 /// Ilustrações SVG para as páginas de onboarding
 class OnboardingIllustrations {
@@ -7,9 +6,15 @@ class OnboardingIllustrations {
     final ui = UIConstants();
     return _FavoritesIllustration()
         .animate()
-        .fadeIn(duration: ui.animationDurationSlow.ms, curve: Curves.easeOutCubic)
+        .fadeIn(
+          duration: ui.animationDurationSlow.ms,
+          curve: Curves.easeOutCubic,
+        )
         .scale(
-          begin: Offset(ui.animationScaleExtraLarge, ui.animationScaleExtraLarge),
+          begin: Offset(
+            ui.animationScaleExtraLarge,
+            ui.animationScaleExtraLarge,
+          ),
           duration: ui.animationDurationMedium.ms,
           curve: Curves.elasticOut,
         )
@@ -24,7 +29,10 @@ class OnboardingIllustrations {
     final ui = UIConstants();
     return _ChefIllustration()
         .animate()
-        .fadeIn(duration: ui.animationDurationSlow.ms, curve: Curves.easeOutCubic)
+        .fadeIn(
+          duration: ui.animationDurationSlow.ms,
+          curve: Curves.easeOutCubic,
+        )
         .slideY(
           begin: ui.animationSlideLarge,
           duration: ui.animationDelayVeryLong.ms,
@@ -32,16 +40,19 @@ class OnboardingIllustrations {
         )
         .then(delay: ui.animationDelayMedium.ms)
         .shimmer(
-            duration: ui.animationDurationExtraSlow.ms,
-            color: ui.white.withValues(alpha: ui.animationAlphaMedium),
-          );
+          duration: ui.animationDurationExtraSlow.ms,
+          color: ui.white.withValues(alpha: ui.animationAlphaMedium),
+        );
   }
 
   static Widget get delivery {
     final ui = UIConstants();
     return _DeliveryIllustration()
         .animate()
-        .fadeIn(duration: ui.animationDurationSlow.ms, curve: Curves.easeOutCubic)
+        .fadeIn(
+          duration: ui.animationDurationSlow.ms,
+          curve: Curves.easeOutCubic,
+        )
         .slideX(
           begin: ui.animationSlideLarge,
           duration: ui.animationDelayVeryLong.ms,
@@ -49,9 +60,9 @@ class OnboardingIllustrations {
         )
         .then(delay: ui.animationDelayLong.ms)
         .shimmer(
-            duration: ui.animationDurationExtraSlow.ms,
-            color: ui.white.withValues(alpha: ui.animationAlphaMedium),
-          );
+          duration: ui.animationDurationExtraSlow.ms,
+          color: ui.white.withValues(alpha: ui.animationAlphaMedium),
+        );
   }
 }
 
@@ -103,17 +114,27 @@ class _FavoritesIllustration extends StatelessWidget {
             ),
           ),
           // Ícone principal
-          Icon(Icons.favorite, size: ui.onboardingMainIconSize, color: primaryColor)
+          Icon(
+                Icons.favorite,
+                size: ui.onboardingMainIconSize,
+                color: primaryColor,
+              )
               .animate()
               .scale(
                 begin: Offset(ui.animationScaleNormal, ui.animationScaleNormal),
-                end: Offset(ui.animationScaleSlightlyLarge, ui.animationScaleSlightlyLarge),
+                end: Offset(
+                  ui.animationScaleSlightlyLarge,
+                  ui.animationScaleSlightlyLarge,
+                ),
                 duration: ui.animationDurationUltraSlow.ms,
                 curve: Curves.easeInOut,
               )
               .then()
               .scale(
-                begin: Offset(ui.animationScaleSlightlyLarge, ui.animationScaleSlightlyLarge),
+                begin: Offset(
+                  ui.animationScaleSlightlyLarge,
+                  ui.animationScaleSlightlyLarge,
+                ),
                 end: Offset(ui.animationScaleNormal, ui.animationScaleNormal),
                 duration: ui.animationDurationUltraSlow.ms,
                 curve: Curves.easeInOut,
@@ -122,16 +143,37 @@ class _FavoritesIllustration extends StatelessWidget {
           Positioned(
             top: ui.onboardingIconPosition60,
             right: ui.onboardingIconPosition60,
-            child: Icon(Icons.restaurant, size: ui.onboardingSecondaryIconSize, color: secondaryColor)
-                .animate(delay: ui.animationDelayExtraLong.ms)
-                .fadeIn(duration: ui.animationDurationMedium.ms)
-                .slideX(begin: ui.animationSlideLarge, duration: ui.animationDurationFast.ms, curve: Curves.easeOut)
-                .then(delay: ui.animationDurationVerySlow.ms)
-                .rotate(begin: ui.animationRotationStart, end: ui.animationRotationMedium, duration: ui.animationDurationExtraSlow.ms)
-                .then()
-                .rotate(begin: ui.animationRotationMedium, end: -ui.animationRotationMedium, duration: ui.animationDurationGiga.ms)
-                .then()
-                .rotate(begin: -ui.animationRotationMedium, end: ui.animationRotationStart, duration: ui.animationDurationExtraSlow.ms),
+            child:
+                Icon(
+                      Icons.restaurant,
+                      size: ui.onboardingSecondaryIconSize,
+                      color: secondaryColor,
+                    )
+                    .animate(delay: ui.animationDelayExtraLong.ms)
+                    .fadeIn(duration: ui.animationDurationMedium.ms)
+                    .slideX(
+                      begin: ui.animationSlideLarge,
+                      duration: ui.animationDurationFast.ms,
+                      curve: Curves.easeOut,
+                    )
+                    .then(delay: ui.animationDurationVerySlow.ms)
+                    .rotate(
+                      begin: ui.animationRotationStart,
+                      end: ui.animationRotationMedium,
+                      duration: ui.animationDurationExtraSlow.ms,
+                    )
+                    .then()
+                    .rotate(
+                      begin: ui.animationRotationMedium,
+                      end: -ui.animationRotationMedium,
+                      duration: ui.animationDurationGiga.ms,
+                    )
+                    .then()
+                    .rotate(
+                      begin: -ui.animationRotationMedium,
+                      end: ui.animationRotationStart,
+                      duration: ui.animationDurationExtraSlow.ms,
+                    ),
           ),
           Positioned(
             bottom: ui.onboardingIconPosition60,
@@ -140,7 +182,9 @@ class _FavoritesIllustration extends StatelessWidget {
                 Icon(
                       Icons.local_pizza,
                       size: ui.onboardingTertiaryIconSize,
-                      color: primaryColor.withValues(alpha: ui.animationAlphaStrong),
+                      color: primaryColor.withValues(
+                        alpha: ui.animationAlphaStrong,
+                      ),
                     )
                     .animate(delay: ui.animationDelayVeryLong.ms)
                     .fadeIn(duration: ui.animationDurationMedium.ms)
@@ -151,15 +195,27 @@ class _FavoritesIllustration extends StatelessWidget {
                     )
                     .then(delay: ui.animationDelayUltraLong.ms)
                     .scale(
-                      begin: Offset(ui.animationScaleNormal, ui.animationScaleNormal),
-                      end: Offset(ui.animationScaleLarger, ui.animationScaleLarger),
+                      begin: Offset(
+                        ui.animationScaleNormal,
+                        ui.animationScaleNormal,
+                      ),
+                      end: Offset(
+                        ui.animationScaleLarger,
+                        ui.animationScaleLarger,
+                      ),
                       duration: ui.animationDuration1800.ms,
                       curve: Curves.easeInOut,
                     )
                     .then()
                     .scale(
-                      begin: Offset(ui.animationScaleLarger, ui.animationScaleLarger),
-                      end: Offset(ui.animationScaleNormal, ui.animationScaleNormal),
+                      begin: Offset(
+                        ui.animationScaleLarger,
+                        ui.animationScaleLarger,
+                      ),
+                      end: Offset(
+                        ui.animationScaleNormal,
+                        ui.animationScaleNormal,
+                      ),
                       duration: ui.animationDuration1800.ms,
                       curve: Curves.easeInOut,
                     ),
@@ -171,17 +227,26 @@ class _FavoritesIllustration extends StatelessWidget {
                 Icon(
                       Icons.cake,
                       size: ui.onboardingSmallIconSize,
-                      color: secondaryColor.withValues(alpha: ui.animationAlphaVeryStrong),
+                      color: secondaryColor.withValues(
+                        alpha: ui.animationAlphaVeryStrong,
+                      ),
                     )
                     .animate(delay: ui.animationDelayMega.ms)
                     .fadeIn(duration: ui.animationDurationMedium.ms)
                     .scale(
-                      begin: Offset(ui.animationScaleLarge, ui.animationScaleLarge),
+                      begin: Offset(
+                        ui.animationScaleLarge,
+                        ui.animationScaleLarge,
+                      ),
                       duration: ui.animationDelayExtraLong.ms,
                       curve: Curves.elasticOut,
                     )
                     .then(delay: ui.animationDelayTera.ms)
-                    .rotate(begin: ui.animationRotationStart, end: ui.animationRotationFull, duration: ui.animationDurationTera.ms),
+                    .rotate(
+                      begin: ui.animationRotationStart,
+                      end: ui.animationRotationFull,
+                      duration: ui.animationDurationTera.ms,
+                    ),
           ),
         ],
       ),
@@ -237,7 +302,11 @@ class _ChefIllustration extends StatelessWidget {
             ),
           ),
           // Ícone principal do chef
-          Icon(Icons.person_outline, size: ui.onboardingMainIconSize, color: primaryColor)
+          Icon(
+                Icons.person_outline,
+                size: ui.onboardingMainIconSize,
+                color: primaryColor,
+              )
               .animate()
               .slideY(
                 begin: ui.animationRotationStart,
@@ -255,16 +324,37 @@ class _ChefIllustration extends StatelessWidget {
           // Chapéu do chef
           Positioned(
             top: ui.onboardingIconPosition80,
-            child: Icon(Icons.restaurant_menu, size: ui.onboardingChefHatIconSize, color: secondaryColor)
-                .animate(delay: ui.animationDelayLong.ms)
-                .fadeIn(duration: ui.animationDurationSlow.ms)
-                .slideY(begin: -ui.animationSlideLarge, duration: ui.animationDurationMedium.ms, curve: Curves.bounceOut)
-                .then(delay: ui.animationDurationVerySlow.ms)
-                .rotate(begin: ui.animationRotationStart, end: ui.animationRotationSmall, duration: ui.animationDuration1800.ms)
-                .then()
-                .rotate(begin: ui.animationRotationSmall, end: -ui.animationRotationSmall, duration: ui.animationDuration3600.ms)
-                .then()
-                .rotate(begin: -ui.animationRotationSmall, end: ui.animationRotationStart, duration: ui.animationDuration1800.ms),
+            child:
+                Icon(
+                      Icons.restaurant_menu,
+                      size: ui.onboardingChefHatIconSize,
+                      color: secondaryColor,
+                    )
+                    .animate(delay: ui.animationDelayLong.ms)
+                    .fadeIn(duration: ui.animationDurationSlow.ms)
+                    .slideY(
+                      begin: -ui.animationSlideLarge,
+                      duration: ui.animationDurationMedium.ms,
+                      curve: Curves.bounceOut,
+                    )
+                    .then(delay: ui.animationDurationVerySlow.ms)
+                    .rotate(
+                      begin: ui.animationRotationStart,
+                      end: ui.animationRotationSmall,
+                      duration: ui.animationDuration1800.ms,
+                    )
+                    .then()
+                    .rotate(
+                      begin: ui.animationRotationSmall,
+                      end: -ui.animationRotationSmall,
+                      duration: ui.animationDuration3600.ms,
+                    )
+                    .then()
+                    .rotate(
+                      begin: -ui.animationRotationSmall,
+                      end: ui.animationRotationStart,
+                      duration: ui.animationDuration1800.ms,
+                    ),
           ),
           // Utensílios ao redor
           Positioned(
@@ -274,24 +364,33 @@ class _ChefIllustration extends StatelessWidget {
                 Icon(
                       Icons.kitchen,
                       size: ui.onboardingTertiaryIconSize,
-                      color: primaryColor.withValues(alpha: ui.animationAlphaStrong),
+                      color: primaryColor.withValues(
+                        alpha: ui.animationAlphaStrong,
+                      ),
                     )
                     .animate(delay: ui.animationDurationMedium.ms)
                     .fadeIn(duration: ui.animationDurationMedium.ms)
                     .scale(
-                      begin: Offset(ui.animationScaleMedium, ui.animationScaleMedium),
+                      begin: Offset(
+                        ui.animationScaleMedium,
+                        ui.animationScaleMedium,
+                      ),
                       duration: ui.animationDelayExtraLong.ms,
                       curve: Curves.elasticOut,
                     )
                     .then(delay: ui.animationDelayUltraLong.ms)
                     .shimmer(
                       duration: ui.animationDurationGiga.ms,
-                      color: primaryColor.withValues(alpha: ui.animationAlphaHeavy),
+                      color: primaryColor.withValues(
+                        alpha: ui.animationAlphaHeavy,
+                      ),
                     )
                     .then(delay: ui.animationDurationVerySlow.ms)
                     .shimmer(
                       duration: ui.animationDurationGiga.ms,
-                      color: primaryColor.withValues(alpha: ui.animationAlphaHeavy),
+                      color: primaryColor.withValues(
+                        alpha: ui.animationAlphaHeavy,
+                      ),
                     ),
           ),
           Positioned(
@@ -301,7 +400,9 @@ class _ChefIllustration extends StatelessWidget {
                 Icon(
                       Icons.dining,
                       size: ui.onboardingSmallIconSize,
-                      color: secondaryColor.withValues(alpha: ui.animationAlphaVeryStrong),
+                      color: secondaryColor.withValues(
+                        alpha: ui.animationAlphaVeryStrong,
+                      ),
                     )
                     .animate(delay: ui.animationDelayUltraLong.ms)
                     .fadeIn(duration: ui.animationDurationMedium.ms)
@@ -312,15 +413,27 @@ class _ChefIllustration extends StatelessWidget {
                     )
                     .then(delay: ui.animationDurationExtraSlow.ms)
                     .scale(
-                      begin: Offset(ui.animationScaleNormal, ui.animationScaleNormal),
-                      end: Offset(ui.animationScaleModeratelyLarge, ui.animationScaleModeratelyLarge),
+                      begin: Offset(
+                        ui.animationScaleNormal,
+                        ui.animationScaleNormal,
+                      ),
+                      end: Offset(
+                        ui.animationScaleModeratelyLarge,
+                        ui.animationScaleModeratelyLarge,
+                      ),
                       duration: ui.animationDuration2200.ms,
                       curve: Curves.easeInOut,
                     )
                     .then()
                     .scale(
-                      begin: Offset(ui.animationScaleModeratelyLarge, ui.animationScaleModeratelyLarge),
-                      end: Offset(ui.animationScaleNormal, ui.animationScaleNormal),
+                      begin: Offset(
+                        ui.animationScaleModeratelyLarge,
+                        ui.animationScaleModeratelyLarge,
+                      ),
+                      end: Offset(
+                        ui.animationScaleNormal,
+                        ui.animationScaleNormal,
+                      ),
                       duration: ui.animationDuration2200.ms,
                       curve: Curves.easeInOut,
                     ),
@@ -379,7 +492,11 @@ class _DeliveryIllustration extends StatelessWidget {
             ),
           ),
           // Ícone principal de entrega
-          Icon(Icons.delivery_dining, size: ui.onboardingMainIconSize, color: primaryColor)
+          Icon(
+                Icons.delivery_dining,
+                size: ui.onboardingMainIconSize,
+                color: primaryColor,
+              )
               .animate()
               .slideX(
                 begin: ui.animationRotationStart,
@@ -405,24 +522,33 @@ class _DeliveryIllustration extends StatelessWidget {
           Positioned(
             top: ui.onboardingIconPosition60,
             right: ui.onboardingIconPosition60,
-            child: Icon(Icons.local_shipping, size: ui.onboardingSecondaryIconSize, color: secondaryColor)
-                .animate(delay: ui.animationDelayExtraLong.ms)
-                .fadeIn(duration: ui.animationDurationMedium.ms)
-                .slideX(begin: ui.animationSlideHuge, duration: ui.animationDelayExtraLong.ms, curve: Curves.easeOutBack)
-                .then(delay: ui.animationDelayTera.ms)
-                .slideX(
-                  begin: ui.animationRotationStart,
-                  end: ui.animationSlideMedium,
-                  duration: ui.animationDurationExtraSlow.ms,
-                  curve: Curves.easeInOut,
-                )
-                .then()
-                .slideX(
-                  begin: ui.animationSlideMedium,
-                  end: ui.animationRotationStart,
-                  duration: ui.animationDurationExtraSlow.ms,
-                  curve: Curves.easeInOut,
-                ),
+            child:
+                Icon(
+                      Icons.local_shipping,
+                      size: ui.onboardingSecondaryIconSize,
+                      color: secondaryColor,
+                    )
+                    .animate(delay: ui.animationDelayExtraLong.ms)
+                    .fadeIn(duration: ui.animationDurationMedium.ms)
+                    .slideX(
+                      begin: ui.animationSlideHuge,
+                      duration: ui.animationDelayExtraLong.ms,
+                      curve: Curves.easeOutBack,
+                    )
+                    .then(delay: ui.animationDelayTera.ms)
+                    .slideX(
+                      begin: ui.animationRotationStart,
+                      end: ui.animationSlideMedium,
+                      duration: ui.animationDurationExtraSlow.ms,
+                      curve: Curves.easeInOut,
+                    )
+                    .then()
+                    .slideX(
+                      begin: ui.animationSlideMedium,
+                      end: ui.animationRotationStart,
+                      duration: ui.animationDurationExtraSlow.ms,
+                      curve: Curves.easeInOut,
+                    ),
           ),
           Positioned(
             bottom: ui.onboardingIconPosition60,
@@ -431,17 +557,26 @@ class _DeliveryIllustration extends StatelessWidget {
                 Icon(
                       Icons.schedule,
                       size: ui.onboardingTertiaryIconSize,
-                      color: primaryColor.withValues(alpha: ui.animationAlphaStrong),
+                      color: primaryColor.withValues(
+                        alpha: ui.animationAlphaStrong,
+                      ),
                     )
                     .animate(delay: ui.animationDelayVeryLong.ms)
                     .fadeIn(duration: ui.animationDurationMedium.ms)
                     .scale(
-                      begin: Offset(ui.animationScaleSmall, ui.animationScaleSmall),
+                      begin: Offset(
+                        ui.animationScaleSmall,
+                        ui.animationScaleSmall,
+                      ),
                       duration: ui.animationDurationMedium.ms,
                       curve: Curves.elasticOut,
                     )
                     .then(delay: ui.animationDurationVerySlow.ms)
-                    .rotate(begin: ui.animationRotationStart, end: ui.animationRotationFull, duration: ui.animationDurationPeta.ms),
+                    .rotate(
+                      begin: ui.animationRotationStart,
+                      end: ui.animationRotationFull,
+                      duration: ui.animationDurationPeta.ms,
+                    ),
           ),
           Positioned(
             top: ui.onboardingIconPosition80,
@@ -450,7 +585,9 @@ class _DeliveryIllustration extends StatelessWidget {
                 Icon(
                       Icons.location_on,
                       size: ui.onboardingSmallIconSize,
-                      color: secondaryColor.withValues(alpha: ui.animationAlphaVeryStrong),
+                      color: secondaryColor.withValues(
+                        alpha: ui.animationAlphaVeryStrong,
+                      ),
                     )
                     .animate(delay: ui.animationDelayMega.ms)
                     .fadeIn(duration: ui.animationDurationMedium.ms)
@@ -461,15 +598,27 @@ class _DeliveryIllustration extends StatelessWidget {
                     )
                     .then(delay: ui.animationDelayUltraLong.ms)
                     .scale(
-                      begin: Offset(ui.animationScaleNormal, ui.animationScaleNormal),
-                      end: Offset(ui.animationScaleVeryLarge, ui.animationScaleVeryLarge),
+                      begin: Offset(
+                        ui.animationScaleNormal,
+                        ui.animationScaleNormal,
+                      ),
+                      end: Offset(
+                        ui.animationScaleVeryLarge,
+                        ui.animationScaleVeryLarge,
+                      ),
                       duration: ui.animationDurationVerySlow.ms,
                       curve: Curves.easeInOut,
                     )
                     .then()
                     .scale(
-                      begin: Offset(ui.animationScaleVeryLarge, ui.animationScaleVeryLarge),
-                      end: Offset(ui.animationScaleNormal, ui.animationScaleNormal),
+                      begin: Offset(
+                        ui.animationScaleVeryLarge,
+                        ui.animationScaleVeryLarge,
+                      ),
+                      end: Offset(
+                        ui.animationScaleNormal,
+                        ui.animationScaleNormal,
+                      ),
                       duration: ui.animationDurationVerySlow.ms,
                       curve: Curves.easeInOut,
                     )
@@ -505,20 +654,27 @@ class _DeliveryIllustration extends StatelessWidget {
                     .animate(delay: ui.animationDelayGiga.ms)
                     .fadeIn(duration: ui.animationDurationSlow.ms)
                     .scale(
-                      begin: Offset(ui.animationScaleLarge, ui.animationScaleLarge),
+                      begin: Offset(
+                        ui.animationScaleLarge,
+                        ui.animationScaleLarge,
+                      ),
                       duration: ui.animationDurationMedium.ms,
                       curve: Curves.elasticOut,
                     )
                     .then(delay: ui.animationDurationUltraSlow.ms)
                     .shimmer(
                       duration: ui.animationDurationMega.ms,
-                      color: ui.white.withValues(alpha: ui.animationAlphaVeryHeavy),
+                      color: ui.white.withValues(
+                        alpha: ui.animationAlphaVeryHeavy,
+                      ),
                     )
                     .then(delay: ui.animationDurationExtraSlow.ms)
                     .shimmer(
-                       duration: ui.animationDurationMega.ms,
-                       color: ui.white.withValues(alpha: ui.animationAlphaVeryHeavy),
-                     ),
+                      duration: ui.animationDurationMega.ms,
+                      color: ui.white.withValues(
+                        alpha: ui.animationAlphaVeryHeavy,
+                      ),
+                    ),
           ),
         ],
       ),

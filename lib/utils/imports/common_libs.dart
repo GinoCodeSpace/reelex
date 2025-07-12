@@ -10,6 +10,9 @@ export 'package:flutter/services.dart';
 // Localization
 export 'package:flutter_localizations/flutter_localizations.dart';
 
+// Animations
+export 'package:flutter_animate/flutter_animate.dart';
+
 // UI & Styling
 export 'package:google_fonts/google_fonts.dart';
 
