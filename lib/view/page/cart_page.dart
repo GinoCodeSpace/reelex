@@ -1,7 +1,3 @@
-import '../../providers/cart_provider.dart';
-import '../../providers/products_provider.dart';
-import '../../providers/orders_provider.dart';
-import '../../model/cart_item.dart';
 import '../../utils/imports/common_libs.dart';
 
 class CartPage extends StatelessWidget {

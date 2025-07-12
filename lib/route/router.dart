@@ -1,6 +1,4 @@
 import '../utils/imports/common_libs.dart';
-import '../view/page/login_page.dart';
-import '../view/page/orders_page.dart';
 
 final GoRouter appRouter = GoRouter(
   redirect: HandleRedirect().handleRedirect,

@@ -1,9 +1,5 @@
 import '../../utils/imports/common_libs.dart';
 
-import '../../model/restaurant.dart';
-
-import '../page/restaurant_detail_page.dart';
-
 class RestaurantCard extends StatelessWidget {
   final Restaurant restaurant;
 

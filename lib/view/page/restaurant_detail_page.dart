@@ -1,12 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../../model/restaurant.dart';
-import '../../model/product.dart';
-import '../../providers/products_provider.dart';
-import '../../utils/constants/ui_constants.dart';
-
-import '../component/product_card.dart';
-import '../component/cart_floating_button.dart';
+import '../../utils/imports/common_libs.dart';
 
 class RestaurantDetailPage extends StatefulWidget {
   final Restaurant restaurant;

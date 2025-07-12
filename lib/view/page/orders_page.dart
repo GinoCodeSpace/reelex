@@ -1,7 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../../providers/orders_provider.dart';
-import '../../model/order.dart';
 import '../../utils/imports/common_libs.dart';
 
 class OrdersPage extends StatefulWidget {

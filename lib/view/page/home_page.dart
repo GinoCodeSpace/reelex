@@ -1,11 +1,4 @@
 import '../../utils/imports/common_libs.dart';
-import '../../providers/products_provider.dart';
-import '../../providers/cart_provider.dart';
-import '../component/search_bar_widget.dart';
-import '../component/category_chip.dart';
-import '../component/restaurant_card.dart';
-import '../component/product_card.dart';
-import '../component/cart_floating_button.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

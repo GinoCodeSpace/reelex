@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'dart:developer' as developer;
-import 'package:flutter/services.dart';
-import '../model/product.dart';
-import '../model/restaurant.dart';
+import '../utils/imports/common_libs.dart';
 
 class DataService {
   static DataService? _instance;

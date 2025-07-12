@@ -1,7 +1,4 @@
-import 'package:flutter/foundation.dart';
-import '../model/product.dart';
-import '../model/restaurant.dart';
-import '../service/data_service.dart';
+import '../utils/imports/common_libs.dart';
 
 class ProductsProvider with ChangeNotifier {
   final DataService _dataService = DataService.instance;

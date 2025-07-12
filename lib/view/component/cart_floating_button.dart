@@ -1,6 +1,4 @@
 import '../../utils/imports/common_libs.dart';
-import '../../providers/cart_provider.dart';
-import '../page/cart_page.dart';
 
 class CartFloatingButton extends StatelessWidget {
   const CartFloatingButton({super.key});
