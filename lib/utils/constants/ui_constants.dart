@@ -312,6 +312,17 @@ class UIConstants {
    double pageIndicatorInactiveWidth = 8.0;
    double pageIndicatorHeight = 8.0;
 
+  // Primary button constants
+   double primaryButtonHeight = 56.0;
+   double primaryButtonElevation = 0.0;
+   double primaryButtonProgressSize = 20.0;
+   double primaryButtonProgressStrokeWidth = 2.0;
+   double primaryButtonIconSize = 18.0;
+   double primaryButtonIconSpacing = 8.0;
+   double primaryButtonFontSize = 16.0;
+   double primaryButtonLetterSpacing = 0.5;
+   double primaryButtonDisabledAlpha = 0.6;
+
   // ==========================================================================
   // UTILITY METHODS
   // ==========================================================================
