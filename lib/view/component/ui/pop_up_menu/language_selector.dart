@@ -7,7 +7,7 @@ class LanguageSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
-    final ui = UIConstants();
+    final ui = uiConstants;
 
     return Consumer<LocaleProvider>(
       builder: (context, localeProvider, child) {

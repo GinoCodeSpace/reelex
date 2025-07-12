@@ -13,7 +13,7 @@ class RestaurantCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
-    final ui = UIConstants();
+    final ui = uiConstants;
 
     return Container(
       margin: EdgeInsets.symmetric(horizontal: ui.spacing4, vertical: ui.spacing2),

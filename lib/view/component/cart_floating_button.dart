@@ -15,7 +15,7 @@ class CartFloatingButton extends StatelessWidget {
 
         final theme = Theme.of(context);
         final isDark = theme.brightness == Brightness.dark;
-        final ui = UIConstants();
+        final ui = uiConstants;
 
         return Container(
           margin: EdgeInsets.only(bottom: ui.spacing4),

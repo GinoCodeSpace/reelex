@@ -16,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   bool _isPasswordVisible = false;
   bool _rememberMe = false;
 
-  final UIConstants _ui = UIConstants();
+  final UIConstants _ui = uiConstants;
 
   @override
   void dispose() {

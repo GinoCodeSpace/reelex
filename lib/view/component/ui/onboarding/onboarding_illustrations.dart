@@ -3,7 +3,7 @@ import '../../../../utils/imports/common_libs.dart';
 /// Ilustrações SVG para as páginas de onboarding
 class OnboardingIllustrations {
   static Widget get favorites {
-    final ui = UIConstants();
+    final ui = uiConstants;
     return _FavoritesIllustration()
         .animate()
         .fadeIn(

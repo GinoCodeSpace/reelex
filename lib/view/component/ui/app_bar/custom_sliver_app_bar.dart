@@ -18,7 +18,7 @@ class CustomSliverAppBar extends StatelessWidget {
 
         final theme = Theme.of(context);
         final isDark = theme.brightness == Brightness.dark;
-        final ui = UIConstants();
+        final ui = uiConstants;
 
         return SliverAppBar(
           title: Text(
