@@ -95,4 +95,10 @@ class DataService {
              restaurant.tags.any((tag) => tag.toLowerCase().contains(lowercaseQuery));
     }).toList();
   }
+
+  // Método para limpar o cache e forçar recarregamento
+  void clearCache() {
+    _products = null;
+    _restaurants = null;
+  }
 }

@@ -96,14 +96,17 @@ class ProductsProvider with ChangeNotifier {
 
   Future<void> loadAllData() async {
     _setLoading(true);
+    _error = null;
     try {
-      await Future.wait([
-        loadProducts(),
-        loadRestaurants(),
-        loadCategories(),
-      ]);
+      // Carregar dados sequencialmente para evitar conflitos
+      _products = await _dataService.getProducts();
+      _restaurants = await _dataService.getRestaurants();
+      _categories = await _dataService.getCategories();
     } catch (e) {
       _error = 'Erro ao carregar dados: $e';
+      _products = [];
+      _restaurants = [];
+      _categories = [];
     }
     _setLoading(false);
   }
@@ -173,9 +176,15 @@ class ProductsProvider with ChangeNotifier {
   }
 
   Future<void> refresh() async {
+    _error = null;
     _products.clear();
     _restaurants.clear();
     _categories.clear();
+    
+    // Limpar cache do DataService para forçar recarregamento
+    _dataService.clearCache();
+    
+    notifyListeners(); // Notificar que as listas foram limpas
     await loadAllData();
   }
 }
